@@ -82,9 +82,9 @@ $rows = Client::rows_tot();
                                  <th>numéro de téléphone</th>
                                  <th>email</th>
                                  <th>date de creation</th>
-                                 <th>...</th>
-                                 <th>...</th>
-                                 <th>...</th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
                              </tr>
                          </thead>
                          <tbody>
@@ -101,9 +101,36 @@ $rows = Client::rows_tot();
                                     <td><?php echo h($client->email);?></td>
                                     
                                     <td><?php echo h($client->creation_date);?></td>
-                                    <td> afficher </td>
-                                    <td> modifier </td>
-                                    <td> supprimer </td>
+                                    <td>
+                                        <button class="ui tiny blue  button"
+                                            data-button_id="<?php echo h($client->id) ?>" data-type="afficher">
+                                            <i class="question icon"></i><span>Afficher</span></button>
+
+                                        <div class="ui large modal afficher a<?php echo h($client->id) ?>">
+                                            <div class="content">
+                                                <?php afficher_modal($client->id, ''); ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="ui tiny yellow  button"
+                                            data-button_id="<?php echo h($client->id) ?>" data-type="modifier"><i
+                                                class="edit outline icon"></i><span>Modifier</span></button>
+                                        <div class="ui modal modifier m<?php echo h($client->id, '') ?>">
+                                            <div class="content">
+                                                <?php modifier_modal($client->id, '') ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                     <button class="ui tiny red button" data-button_id="<?php echo h($client->id) ?>"
+                                         data-type="supprimer">
+                                         <i class="user slash icon"></i><span>Supprimer</span></button>
+
+                                     <div class="ui modal supprimer s<?php echo h($client->id) ?>">
+                                         <?php supprimer_modal($client->id, ''); ?>
+                                     </div>
+                                 </td>
                                     
                                 </tr>
                                 <?php

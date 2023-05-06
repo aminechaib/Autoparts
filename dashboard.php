@@ -360,7 +360,7 @@ $hyb_expiré = Hebergement::find_expired();
                                             if($hyb_expiré){
                                                 foreach($hyb_expiré as $expiré){
                                                     $date_now =  (new \DateTime())->format('Y-m-d G:i:s');
-                                                    $id=$expiré->id_cl;
+                                                    $id=$expiré->id;
                                                     $name = Hebergement::find_name($id);
                                                     $id_p = $expiré->id_pack;
                                                     $nom_pack = Hebergement::find_pack($id_p);
@@ -404,7 +404,7 @@ $hyb_expiré = $hebergement->find_going_expired();
                                             if($hyb_expiré){
                                                 foreach($hyb_expiré as $expiré){
                                                     $date_now =  (new \DateTime())->format('Y-m-d G:i:s');
-                                                    $id=$expiré->id_cl;
+                                                    $id=$expiré->id;
                                                     $name = Hebergement::find_name($id);
                                                     $id_p = $expiré->id_pack;
                                                     $nom_pack = Hebergement::find_pack($id_p);
@@ -491,11 +491,11 @@ $heb_non_payer = Hebergement::find_non_payer();
                                     if($heb_non_payer){
                                         foreach($heb_non_payer as $heb)
                                         {
-                                            $id=$heb->id_cl;
+                                            $id=$heb->id;
                                             $name = Hebergement::find_name($id);
                                             $id_p = $heb->id_pack;
                                             $nom_pack = Hebergement::find_pack($id_p);
-                                    //   $id = $cons->id_cl;
+                                    //   $id = $cons->id;
                                     //   $name = Conception::find_name($id);
                                     //   $date_now =  (new \DateTime())->format('Y-m-d');
                                     //   $date_fin = Conception::date_fin($cons->date_deb_con,$cons->delai_con);

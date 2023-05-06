@@ -4,7 +4,6 @@ require_login();
 
 
 function supprimer_modal($id_tab, $type_client){
-
     
     $id= $id_tab ?? false;
     include('supprimer_modal.php');

@@ -18,23 +18,15 @@ if(is_post_request() && isset($_POST['modifier'])){
 
    
    $args = [];
-   $args['id_cl'] = $_GET['id']?? NULL;
+   $args['id'] = $_GET['id']?? NULL;
 
-   $args['nom_cl'] = $_POST['nom_cl'] ?? NULL;
-   $args['prenom_cl'] = $_POST['prenom_cl'] ?? NULL;
-   $args['num_tel_cl'] = $_POST['telephon'] ?? NULL;
-   $args['email_cl'] = $_POST['email'] ?? NULL;
-   $args['adresse_cl'] = $_POST['adresse'] ?? NULL;
-
-   if($_POST['check'] == 'particulier'){
-     $args['type'] = 1;
-     $args['nom_societe_cl'] = '/';
-   }else{
-   $args['type'] = 0;
-   $args['nom_societe_cl'] = $_POST['entreprise'];
-   }
+   $args['first_name'] = $_POST['first_name'] ?? NULL;
+   $args['last_name'] = $_POST['last_name'] ?? NULL;
+   $args['mobile_phone'] = $_POST['mobile_phone'] ?? NULL;
+   $args['email'] = $_POST['email'] ?? NULL;
+   $args['adresse'] = $_POST['adresse'] ?? NULL;
   
-   $args['id_ad'] = /*$_POST[''] ?? NULL*/ 1;
+   $args['id_ad'] = 1;
    
 
    $client->merge_attributes($args);
