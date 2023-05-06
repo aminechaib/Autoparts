@@ -150,11 +150,11 @@ if(!isset($page_title)){
           <i class="users large icon"></i>
           <div class="content">Client</div>
         </a>
-        <a class="item open_cons" href="<?php echo url_for('categories/index.php'); ?>">
+        <a class="item open_cat" href="<?php echo url_for('categories/index.php'); ?>">
             <i class="file code large icon"></i>
             <div class="content">Category</div>
           </a>
-          <a class="item open_heb" href="<?php echo url_for('marque/index.php'); ?>">
+          <a class="item open_mar" href="<?php echo url_for('marque/index.php'); ?>">
               <i class="database large icon"></i>
               <div class="content">marque</div>
             </a>

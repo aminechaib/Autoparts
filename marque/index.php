@@ -24,7 +24,7 @@ height: 100%;
     height: 85vh;
     overflow: scroll;
 }
-.open_cl{
+.open_mar{
         border-right:3px solid #119ee7;
         
         }

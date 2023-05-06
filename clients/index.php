@@ -37,16 +37,9 @@ height: 100%;
          <?php include('../includes/menu_head.php'); ?>
 
          <div class="ui padded grid">
-
-
              <?php 
 
-
-
 $rows = Client::rows_tot();
-$rows_particulier = Client::rows_part();
-$rows_pro = Client::rows_pro();
-
 ?>
              <div class="ui fifteen wide column row centered grid segment">
 
@@ -55,14 +48,9 @@ $rows_pro = Client::rows_pro();
 
                      <h1 class="ui  header item"><i class="users icon"></i>Clients</h1>
 
-
-                   
-
-                                    
                      <div class="right item">
-                         <a href="ajouter_client.php" class="">
+                         <a href="add_client.php" class="">
                              <i class="big plus circle icon"></i>
-
                          </a>
                          <div class="ui search  " id="load_search">
                                             <div class="ui icon input">
@@ -75,30 +63,14 @@ $rows_pro = Client::rows_pro();
                                     </div>
                      </div>
                  </div>
-                 <div class="row">
-                     <div class=" column">
-                         <div class="ui big form">
-                             <div class="fields">
-                                 <div class=" five wide field" >
-                                    <select name="" id="selectFilter" class="ui dropdown">
-                                        <option value="" id="all">Tout (<?php echo (!empty($rows)) ? $rows : 0;  ?>)</option>
-                                        <option value="pro" id="pro">Pro(<?php echo (!empty($rows_pro)) ? $rows_pro : 0;  ?>)</option>
-                                        <option value="" id="particulier">Particulier(<?php echo (!empty($rows_particulier)) ? $rows_particulier : 0;  ?>)</option>
-
-                                    </select>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
+               
                  <div class="ui bottom attached tab  active limits" data-tab="first">
 
 
                      <?php 
 /////////////////////////////////////////////////////////////////////:::
 
-$clients = Client::find_all();
-
+//var_dump($clients);exit;
 ?>
 
                      <table class="ui striped  table" id="tabAll">
@@ -107,84 +79,37 @@ $clients = Client::find_all();
                                  <th>#</th>
                                  <th>Nom et Prénom</th>
                                  <th>Adresse</th>
-                                 <th>nom de l'entreprise</th>
                                  <th>numéro de téléphone</th>
                                  <th>email</th>
-                                 <th colspan="4">catégorie</th>
-
+                                 <th>date de creation</th>
+                                 <th>...</th>
+                                 <th>...</th>
+                                 <th>...</th>
                              </tr>
                          </thead>
                          <tbody>
-
-                             <?php 
-                             if($clients){
-                             foreach($clients as $client){
+                            <?php
+                                $clients = Client::find_all();
+                                if($clients){
+                                    foreach($clients as $client){
                                 ?>
-                             <tr class="all <?php  if($client->type == 1){ 
-                                    echo 'particulier';}else{
-                                        echo 'pro';
-                                    } ?>">
-                                 <td><?php echo h($client->id_cl);?></td>
-                                 <td><?php echo h($client->nom_cl) . ' ' .  h($client->prenom_cl);?></td>
-                                 <td><?php echo h($client->adresse_cl);?></td>
-                                 <td><?php echo h($client->nom_societe_cl);?></td>
-
-                                 <td><?php echo h($client->num_tel_cl);?></td>
-                                 <td><?php echo h($client->email_cl);?></td>
-                                 <td><?php if($client->type == 1){ 
-                                    echo 'Particulier';}else{
-                                        echo 'Pro';
+                                <tr>
+                                    <td><?php echo h($client->id);?></td>
+                                    <td><?php echo h($client->first_name.' '.$client->last_name);?></td>
+                                    <td><?php echo h($client->adresse);?></td>
+                                    <td><?php echo h($client->mobile_phone);?></td>
+                                    <td><?php echo h($client->email);?></td>
+                                    
+                                    <td><?php echo h($client->creation_date);?></td>
+                                    <td> afficher </td>
+                                    <td> modifier </td>
+                                    <td> supprimer </td>
+                                    
+                                </tr>
+                                <?php
                                     }
-                                    
-                                    
-                                ?>
-
-                                 </td>
-
-
-                                 <td>
-
-                                     <button class="ui tiny blue  button"
-                                         data-button_id="<?php echo h($client->id_cl) ?>" data-type="afficher">
-                                         <i class="question icon"></i><span>Afficher</span></button>
-
-                                     <div class="ui large modal afficher a<?php echo h($client->id_cl) ?>">
-                                         <div class="content">
-                                             <?php afficher_modal($client->id_cl, ''); ?>
-                                         </div>
-                                     </div>
-                                 </td>
-
-                                 <td>
-                                     <button class="ui tiny yellow  button"
-                                         data-button_id="<?php echo h($client->id_cl) ?>" data-type="modifier"><i
-                                             class="edit outline icon"></i><span>Modifier</span></button>
-                                     <div class="ui modal modifier m<?php echo h($client->id_cl, '') ?>">
-                                         <div class="content">
-                                             <?php modifier_modal($client->id_cl, '') ?>
-                                         </div>
-                                     </div>
-                                 </td>
-
-                                 <td>
-                                     <button class="ui tiny red button" data-button_id="<?php echo h($client->id_cl) ?>"
-                                         data-type="supprimer">
-                                         <i class="user slash icon"></i><span>Supprimer</span></button>
-
-                                     <div class="ui modal supprimer s<?php echo h($client->id_cl) ?>">
-                                         <?php supprimer_modal($client->id_cl, ''); ?>
-                                     </div>
-                                 </td>
-                             </tr>
-
-
-
-
-                             <?php
-                            } 
-                        }
-                            else echo '<h3 style="color:red;">pas de client ajouter</h3>';
-                        ?>
+                                }
+                            ?>
                          </tbody>
                      </table>
 

@@ -35,34 +35,15 @@ require_once("../includes/initialize.php");
 
 /////////////////////////////////////////////////////////////////////////////
 
-if(is_post_request() && isset($_POST['ajouter'])){
-
-// $check_exist = Client::check_email($_POST['email']); 
-// if($check_exist){
-       
-//     $_SESSION['email'] = true;
-//     $_SESSION['error'] = 'email exist deja';
-   
-// }
-// else{
- 
-   
+if(is_post_request() && isset($_POST['ajouter'])){   
     //création et préparation de données pour les convertirs en objets 
       $args = [];
-      $args['nom_cl'] = $_POST['nom_cl'] ?? NULL;
-      $args['prenom_cl'] = $_POST['prenom_cl'] ?? NULL;
-      $args['num_tel_cl'] = $_POST['telephone'] ?? NULL;
-      $args['email_cl'] = $_POST['email'] ?? NULL;  
-      $args['adresse_cl'] = $_POST['adresse'] ?? NULL;
-
-      if($_POST['check'] == 'particulier'){
-        $args['type'] = 1;
-      }else{
-      $args['type'] = 0;
-      }
-      $args['nom_societe_cl'] = $_POST['entreprise'] ?? '/';
+      $args['first_name'] = $_POST['first_name'] ?? NULL;
+      $args['last_name'] = $_POST['last_name'] ?? NULL;
+      $args['mobile_phone'] = $_POST['mobile_phone'] ?? NULL;
+      $args['email'] = $_POST['email'] ?? NULL;  
+      $args['adresse'] = $_POST['adresse'] ?? NULL;
       $args['id_ad'] = /*$_POST[''] ?? NULL*/ 1;
-
 
      // var_dump($args) . "<br>";
       
@@ -80,7 +61,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       }else{
         session_start();
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
-        redirect_to('ajouter_client.php');//bah yweli hna
+        redirect_to('add_client.php');//bah yweli hna
       }
       //////////////////////////////////////////////
     //   $result = $client->create();
@@ -100,8 +81,6 @@ if(is_post_request() && isset($_POST['ajouter'])){
 //     $_SESSION['valid_email'] = true;
 //     $_SESSION['error_valid'] = 'email non valide';
 
- 
-
 // }
 // } 
 }
@@ -109,17 +88,11 @@ if(is_post_request() && isset($_POST['ajouter'])){
 include("../includes/app_head.php");
 ?>
 
-
     <div class="page">
 
         <div class="ui fluid container">
 
             <?php include('../includes/menu_head.php'); ?>
-
-
-
-
-
 
             <div class="ui padded grid">
 
@@ -132,48 +105,28 @@ include("../includes/app_head.php");
                         <div class="two fields">
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['nom_cl'])) echo $_POST['nom_cl']; ?>" name="nom_cl" placeholder="Nom de client">
+                                <input type="text" value="<?php if(isset($_POST['first_name'])) echo $_POST['first_name']; ?>" name="first_name" placeholder="Nom de client">
                             </div>
                             <div class="field">
                                 <label>Prénom</label>
-                                <input type="text" value="<?php if(isset($_POST['prenom_cl'])) echo $_POST['prenom_cl']; ?>" name="prenom_cl" placeholder="Prenom de client">
+                                <input type="text" value="<?php if(isset($_POST['last_name'])) echo $_POST['last_name']; ?>" name="last_name" placeholder="Prenom de client">
                             </div>
 
                         </div>
                         <div class="three fields">
                             <div class="field">
-                                <label style="">Adresse</label>
-                                <input type="text" value="<?php if(isset($_POST['adresse'])) echo $_POST['adresse']; ?>" name="adresse" placeholder="Adresse">
+                                <label style="">Numéro de téléphone</label>
+                                <input type="text" value="<?php if(isset($_POST['mobile_phone'])) echo $_POST['mobile_phone']; ?>" name="mobile_phone" placeholder="213...">
                             </div>
                             <div class="field">
                                 <label>E-mail</label>
                                 <input type="Email" name="email" placeholder="exemple@gmail.com" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
                             </div>
                             <div class="field">
-                                <label>Téléphone</label>
-                                <input type="text" name="telephone" placeholder="+213 ...">
+                                <label>Adresse</label>
+                                <input type="text" name="adresse" placeholder=".....">
                             </div>
 
-                        </div>
-                        <label>Vous ètes:</label><br><br>
-                        <div class="one  fields">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio"  id="particulier" name="check" value="particulier" class="hidden"
-                                        checked>
-                                    <label>Particulier</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="one  fields">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio"  id="professionnel" name="check" value="professionnel"
-                                        class="hidden">
-                                    <label>Professionnel</label>
-                                </div>
-                            </div>
                         </div>
                         <div class="one  fields">
                             <div class="field" id="myfield" hidden>
@@ -201,7 +154,6 @@ include("../includes/app_head.php");
                                 echo '<li>'. $error . '</li>';
                             }
                             }
-                        
                         ?>
 
                         </ul>
@@ -210,17 +162,8 @@ include("../includes/app_head.php");
 
                 </div><!-- end segment-->
 
-
-
-
-
             </div><!-- end grid-->
-
-
         </div><!-- end container-->
-
-
-
     </div>
     <!--fin page-->
 
