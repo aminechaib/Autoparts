@@ -43,7 +43,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['mobile_phone'] = $_POST['mobile_phone'] ?? NULL;
       $args['email'] = $_POST['email'] ?? NULL;  
       $args['adresse'] = $_POST['adresse'] ?? NULL;
-      $args['id_ad'] = /*$_POST[''] ?? NULL*/ 1;
+      $args['id_ad'] = 1;
 
      // var_dump($args) . "<br>";
       

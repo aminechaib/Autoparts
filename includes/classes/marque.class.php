@@ -10,8 +10,9 @@ class Marque{
     }
 
     static protected $db_columns = [
-       'id_marque',
-       'name'
+       'id',
+       'name',
+       'id_ad'
     ];
     
     static public function find_by_sql($sql){
@@ -52,7 +53,7 @@ class Marque{
     
     static public function find_by_id($id){
         $sql = "SELECT name FROM marque ";
-        $sql .="WHERE id_marque='". self::$database->escape_string($id) ."'";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $result = self::$database->query($sql);
         $array = $result->fetch_assoc();
         foreach($array as $key => $value)
@@ -74,7 +75,7 @@ class Marque{
 
        //echo $sql . "<br>";exit;
            
-        $result = self::$database->query($sql);
+        $result =   self::$database->query($sql);
 
         if($result){
             $this->id = self::$database->insert_id;
@@ -85,7 +86,7 @@ class Marque{
     }
 
     static public function delete($id){
-        $sql = "DELETE FROM marque WHERE id_marque =";
+        $sql = "DELETE FROM marque WHERE id =";
         $sql .= "'" . $id ."';";
         
         $result = self::$database->query($sql);
@@ -100,7 +101,7 @@ class Marque{
     public function attributes(){
         $attributes = [];
         foreach (self::$db_columns as $column) {
-            if($column == 'id_marque'){ continue;};
+            if($column == 'id'){ continue;};
            $attributes[$column] = $this->$column;
         }
         return $attributes;
@@ -144,13 +145,14 @@ class Marque{
 
     public $id; 
     public $name;
+    public $id_ad;
     public $errors = [];
     public $values = [];
 
     public function __construct($args=[])
     {
         $this->name = $args['name'] ?? '';
-        
+        $this->id_ad = $args['id_ad'] ?? '';
     }
 
     public function save(){

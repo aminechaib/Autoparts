@@ -40,7 +40,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
-      //$args['id_ad'] = /*$_POST[''] ?? NULL*/ 1;
+      $args['id_ad'] = 1;
 
 
      // var_dump($args) . "<br>";
@@ -84,7 +84,7 @@ include("../includes/app_head.php");
                         <div class="two fields">
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de client">
+                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de marque">
                             </div>
 
                         </div>

@@ -49,10 +49,6 @@ height: 100%;
 
 
                      <h1 class="ui  header item"><i class="users icon"></i>Marque</h1>
-
-
-                   
-
                                     
                      <div class="right item">
                          <a href="add_marque.php" class="">
@@ -89,9 +85,9 @@ height: 100%;
                          </thead>
                          <tbody>
                             <?php
-                                $make = marque::find_all(); 
-                                if($make){
-                                    foreach($make as $marque){
+                                $marques = Marque::find_all(); 
+                                if($marques){
+                                    foreach($marques as $marque){
                                 ?>
                                 <tr>
                                     <td><?php echo h($marque->id);?></td>
@@ -109,7 +105,7 @@ height: 100%;
                          </tbody>
                      </table>
 
-
+                                
 
 
 
