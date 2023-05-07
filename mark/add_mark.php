@@ -45,10 +45,10 @@ if(is_post_request() && isset($_POST['ajouter'])){
 
      // var_dump($args) . "<br>";
       
-      $marque = new marque($args);
-      //var_dump($marque);
+      $mark = new Mark($args);
+      //var_dump($mark);
       ///////////////////////////////////////////////
-      $result = $marque->check_validation();
+      $result = $mark->check_validation();
       
       if($result === true){
 
@@ -59,7 +59,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       }else{
         session_start();
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
-        redirect_to('add_marque.php');//bah yweli hna
+        redirect_to('add_mark.php');//bah yweli hna
       }
 }
 ///////////////////////////////////////////////////////////////////////////////////

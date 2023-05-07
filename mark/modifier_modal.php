@@ -16,7 +16,7 @@ label {
 
 
 <?php
-$marque = Marque::find_by_id($id);
+$mark = Mark::find_by_id($id);
 ?>
 
         <div class="ui fluid container">
@@ -30,7 +30,7 @@ $marque = Marque::find_by_id($id);
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
                         </i>&nbsp;modifier le marque</h2>
-                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_marque.php?id=<?php echo $id ?>">
+                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_mark.php?id=<?php echo $id ?>">
                         <div class="two fields">
                             <div class="field">
                                 <label>Nom</label>
@@ -148,7 +148,7 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($marque->name); ?>',
+    name     : '<?php echo h($mark->name); ?>',
 
     terms      : true
   })

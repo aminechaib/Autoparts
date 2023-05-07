@@ -34,7 +34,7 @@ $database = db_connect();
 Admin::set_database($database);
 Client::set_database($database);
 Category::set_database($database);
-Marque::set_database($database);
+Mark::set_database($database);
 //Pack::set_database($database);
 //Hebergement::set_database($database);
 //Facture::set_database($database);

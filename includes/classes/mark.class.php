@@ -1,7 +1,7 @@
 <?php 
 
 
-class Marque{
+class Mark{
 
 
     /////// active record code
@@ -37,7 +37,7 @@ class Marque{
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM marque ORDER by id DESC";
+        $sql = "SELECT * FROM mark ORDER by id DESC";
        return self::find_by_sql($sql);
     }
 
@@ -52,7 +52,7 @@ class Marque{
     }
     
     static public function find_by_id($id){
-        $sql = "SELECT * FROM marque ";
+        $sql = "SELECT * FROM mark ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -65,7 +65,7 @@ class Marque{
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
 
-        $sql = "INSERT INTO marque(";
+        $sql = "INSERT INTO mark(";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
@@ -115,7 +115,7 @@ class Marque{
     } 
 
     static public function delete($id){
-        $sql = "DELETE FROM marque WHERE id =";
+        $sql = "DELETE FROM mark WHERE id =";
         $sql .= "'" . $id ."';";
         
         $result = self::$database->query($sql);
@@ -128,7 +128,7 @@ class Marque{
     }
 
     static public function find_by_name($string){
-        $sql = "SELECT * FROM marque WHERE name LIKE ";
+        $sql = "SELECT * FROM mark WHERE name LIKE ";
         $sql .= "'" . self::$database->escape_string($string) ."%'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -147,7 +147,7 @@ class Marque{
             $attributes_pairs[] = "{$key}='{$value}'";
         }
 
-        $sql = "UPDATE marque SET ";
+        $sql = "UPDATE mark SET ";
         $sql .= join(', ', $attributes_pairs);
         $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
         $sql .= "LIMIT 1";
@@ -173,7 +173,7 @@ class Marque{
     
     static public function rows_tot()
     {
-        $sql = "select*from marque";
+        $sql = "select * from mark";
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();
@@ -183,7 +183,7 @@ class Marque{
     
     // static public function rows_pro()
     // {
-    //     $sql = "select*from marque where type=0";
+    //     $sql = "select*from mark where type=0";
     //     $result = self::$database->query($sql);
     //     $row = $result->num_rows;
     //     $result->free();
@@ -193,7 +193,7 @@ class Marque{
 
     // static public function rows_part()
     // {
-    //     $sql = "select*from marque where type=1";
+    //     $sql = "select*from mark where type=1";
     //     $result = self::$database->query($sql);
     //     $row = $result->num_rows;
     //     $result->free();
@@ -222,12 +222,13 @@ class Marque{
     }
     protected function validate(){
         $this->errors = [];
-        //nom marque
+        //nom mark
         if(is_blank($this->name)) {
             $this->errors[] = "nom du marque ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom du marque doit avoir au moins 4 caractéres! ";  }
-          return $this->errors;
+            $this->errors[] = "nom du marque doit avoir au moins 4 caractéres! ";  
+        }
+        return $this->errors;
     }
     
     

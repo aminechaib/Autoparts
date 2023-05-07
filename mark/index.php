@@ -49,13 +49,8 @@ height: 100%;
 
 
                     <h1 class="ui  header item"><i class="users icon"></i>Marque</h1>
-
-
-                  
-
-                                   
                     <div class="right item">
-                        <a href="add_marque.php" class="">
+                        <a href="add_mark.php" class="">
                             <i class="big plus circle icon"></i>
 
                         </a>
@@ -90,9 +85,9 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $marque = Marque::find_all(); 
-                               if($marque){
-                                   foreach($marque as $make){
+                               $mark = Mark::find_all(); 
+                               if($mark){
+                                   foreach($mark as $make){
                                ?>
                                <tr>
                                    <td><?php echo h($make->id);?></td>

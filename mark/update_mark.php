@@ -3,9 +3,9 @@ require_once('../includes/initialize.php');
 require_login();
 
 $id = $_GET['id'];
-$marque = Marque::find_by_id($id);
+$mark = Mark::find_by_id($id);
 
-if($marque == false){
+if($mark == false){
 redirect_to('index.php');
 };
 if(is_post_request() && isset($_POST['modifier'])){
@@ -23,8 +23,8 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args['id_ad'] = 1;
    
 
-   $marque->merge_attributes($args);
-  $result =$marque->update();
+   $mark->merge_attributes($args);
+  $result =$mark->update();
   if($result){
     //echo 'jazat la requete';
     session_start();

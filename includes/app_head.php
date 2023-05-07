@@ -154,7 +154,7 @@ if(!isset($page_title)){
             <i class="file code large icon"></i>
             <div class="content">Category</div>
           </a>
-          <a class="item open_mar" href="<?php echo url_for('marque/index.php'); ?>">
+          <a class="item open_mar" href="<?php echo url_for('mark/index.php'); ?>">
               <i class="database large icon"></i>
               <div class="content">marque</div>
             </a>

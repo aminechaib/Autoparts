@@ -15,7 +15,7 @@ class Model{
         'id',
         'name',
         'id_ad',
-        'id_marque'
+        'id_mark'
     ];
     
     static public function find_by_sql($sql){
