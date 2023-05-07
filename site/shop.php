@@ -1,3 +1,4 @@
+<?php require_once '../connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,7 +136,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
+						<p>QUALITÉ ET PRIX</p>
 						<h1>Shop</h1>
 					</div>
 				</div>
@@ -153,14 +154,26 @@
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
+							<?php
+$sql="SELECT * FROM `category`";
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+  while($row = mysqli_fetch_assoc($result)) {
+?>
+                            <li data-filter=".strawberry"><?php echo $row['name']; ?></li>
+							<?php
+				}
+			} else {
+			  echo "0 results";
+			}			
+				?>
                         </ul>
                     </div>
                 </div>
             </div>
-
 			<div class="row product-lists">
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
