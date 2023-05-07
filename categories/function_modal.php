@@ -3,7 +3,7 @@ require_once('../includes/initialize.php');
 require_login();
 
 
-function supprimer_modal($id_tab, $type_client){
+function supprimer_modal($id_tab, $type_category){
 
     
     $id= $id_tab ?? false;
@@ -11,7 +11,7 @@ function supprimer_modal($id_tab, $type_client){
 
 }
 
-function afficher_modal($id_tab, $type_client){
+function afficher_modal($id_tab, $type_category){
 
     $id= $id_tab ?? false;
   
@@ -19,7 +19,7 @@ function afficher_modal($id_tab, $type_client){
 
 }
 
-function modifier_modal($id_tab, $type_client){
+function modifier_modal($id_tab, $type_category){
 
     $id= $id_tab ?? false;
   

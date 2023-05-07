@@ -24,7 +24,7 @@ height: 100%;
     height: 85vh;
     overflow: scroll;
 }
-.open_cat{
+.open_mod{
         border-right:3px solid #119ee7;
         
         }
@@ -48,14 +48,14 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Category</h1>
+                    <h1 class="ui  header item"><i class="users icon"></i>Model</h1>
 
 
                   
 
                                    
                     <div class="right item">
-                        <a href="add_category.php" class="">
+                        <a href="add_model.php" class="">
                             <i class="big plus circle icon"></i>
 
                         </a>
@@ -90,9 +90,9 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $category = Category::find_all(); 
-                               if($category){
-                                   foreach($category as $make){
+                               $model = Model::find_all(); 
+                               if($model){
+                                   foreach($model as $make){
                                ?>
                                <tr>
                                    <td><?php echo h($make->id);?></td>

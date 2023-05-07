@@ -1,7 +1,7 @@
 <?php 
 
 
-class Client{
+class Model{
 
 
     /////// active record code
@@ -13,13 +13,9 @@ class Client{
 
     static protected $db_columns =[
         'id',
-        'first_name',
-        'last_name',
-        'mobile_phone',
-        'email',
-        'adresse',
-        'creation_date',
-        'id_ad'
+        'name',
+        'id_ad',
+        'id_marque'
     ];
     
     static public function find_by_sql($sql){
@@ -42,7 +38,7 @@ class Client{
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM client ORDER by id DESC";
+        $sql = "SELECT * FROM model ORDER by id DESC";
        return self::find_by_sql($sql);
     }
 
@@ -57,7 +53,7 @@ class Client{
     }
     
     static public function find_by_id($id){
-        $sql = "SELECT * FROM client ";
+        $sql = "SELECT * FROM model ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -66,33 +62,11 @@ class Client{
             return false;
         }
     }
-
-    static public function find_pro(){
-        $sql = "SELECT * FROM client ";
-        $sql .="WHERE type=0";
-        $object_array= self::find_by_sql($sql);
-        if(!empty($object_array)){
-            return $object_array;
-        }else{
-            return false;
-        }
-    }
-
-    static public function find_particulier(){
-        $sql = "SELECT * FROM client ";
-        $sql .="WHERE type=1";
-        $object_array= self::find_by_sql($sql);
-        if(!empty($object_array)){
-            return $object_array;
-        }else{
-            return false;
-        }
-    }
     
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
 
-        $sql = "INSERT INTO client(";
+        $sql = "INSERT INTO model(";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
@@ -142,7 +116,7 @@ class Client{
     } 
 
     static public function delete($id){
-        $sql = "DELETE FROM client WHERE id =";
+        $sql = "DELETE FROM model WHERE id =";
         $sql .= "'" . $id ."';";
         
         $result = self::$database->query($sql);
@@ -155,7 +129,7 @@ class Client{
     }
 
     static public function find_by_name($string){
-        $sql = "SELECT * FROM client WHERE nom_cl LIKE ";
+        $sql = "SELECT * FROM model WHERE name LIKE ";
         $sql .= "'" . self::$database->escape_string($string) ."%'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -174,7 +148,7 @@ class Client{
             $attributes_pairs[] = "{$key}='{$value}'";
         }
 
-        $sql = "UPDATE client SET ";
+        $sql = "UPDATE model SET ";
         $sql .= join(', ', $attributes_pairs);
         $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
         $sql .= "LIMIT 1";
@@ -200,7 +174,7 @@ class Client{
     
     static public function rows_tot()
     {
-        $sql = "select*from client";
+        $sql = "select*from model";
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();
@@ -210,7 +184,7 @@ class Client{
     
     // static public function rows_pro()
     // {
-    //     $sql = "select*from client where type=0";
+    //     $sql = "select*from model where type=0";
     //     $result = self::$database->query($sql);
     //     $row = $result->num_rows;
     //     $result->free();
@@ -220,7 +194,7 @@ class Client{
 
     // static public function rows_part()
     // {
-    //     $sql = "select*from client where type=1";
+    //     $sql = "select*from model where type=1";
     //     $result = self::$database->query($sql);
     //     $row = $result->num_rows;
     //     $result->free();
@@ -228,84 +202,32 @@ class Client{
     //     return $row;
     // }
 
-    static public function check_email($email)
-    {
-        $sql = "select*from client where email='".$email."'";
-        $object_array = self::find_by_sql($sql);
-        if(!empty($object_array)){
-            return $object_array;
-        }else{
-            return false;
-        }
-    }    
-
+    
 
     /////// end record code////////////////////////////
 
     public $id; 
-    public $first_name;
-    public $last_name; 
-    public $mobile_phone; 
-    public $email; 
-    public $adresse; 
+    public $name;
     public $creation_date;
     public $id_ad;
     
     public $errors = [];
-
-    public const CATEGORIES = ['Pro', 'Particulier'];
     
     public function __construct($args=[])
     {
         $this->id = $args['id'] ?? '';
-        $this->first_name = $args['first_name'] ?? '';
-        $this->last_name = $args['last_name'] ?? '';
-        $this->mobile_phone = $args['mobile_phone'] ?? '';
-        $this->email = $args['email'] ?? '';
-        $this->adresse = $args['adresse'] ?? '';
+        $this->name = $args['name'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_ad = $args['id_ad'] ?? '';
 
     }
     protected function validate(){
         $this->errors = [];
-        //nom client
-        if(is_blank($this->first_name)) {
-            $this->errors[] = "nom du client ne doit pas être vide.";
-        }elseif(!has_length($this->first_name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom du client doit avoir au moins 4 caractéres! ";
-        }elseif(ctype_alpha(str_replace([' ', '', '-'],'', $this->first_name)) === false){
-            $this->errors[] = "nom du client doit avoir seulement des caractère alphabetique! ";
-        }
-        //prenom client
-        if(is_blank($this->last_name)) {
-            $this->errors[] = "prenom du client ne doit pas être vide.";
-        }elseif(!has_length($this->last_name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "prenom du client doit avoir au moins 4 caractéres! ";
-        }elseif(ctype_alpha(str_replace([' ', '', '-'],'', $this->last_name)) === false){
-            $this->errors[] = "prenom du client doit avoir seulement des caractère alphabetique! ";
-        }
-        //adresse client
-        if(is_blank($this->adresse)) {
-            $this->errors[] = "adresse du client ne doit pas être vide.";
-        }
-        //email client
-        if(is_blank($this->email)) {
-            $this->errors[] = "email du client ne doit pas être vide.";
-        }elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
-            $this->errors[] = "email du client non valide.";
-        }elseif($this->check_email($this->email)){
-            $this->errors[] = "email exist deja.";
-        }
-        //numero
-        if(is_blank($this->mobile_phone)) {
-            $this->errors[] = "numero telephone du client ne doit pas être vide.";
-        }elseif(!has_length($this->mobile_phone, array('min' => 10, 'max' => 13))){
-            $this->errors[] = "numero telephone du client  doit avoir au moin 10 nombre! .";   
-        }elseif (preg_match('/[a-z]/', $this->mobile_phone)) {
-            $this->errors[] = "numero telephone du client doit avoir seulement des caractère numerique ";
-          }
-        
+        //nom model
+        if(is_blank($this->name)) {
+            $this->errors[] = "nom du model ne doit pas être vide.";
+        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
+            $this->errors[] = "nom du model doit avoir au moins 4 caractéres! ";  }
           return $this->errors;
     }
     

@@ -13,7 +13,7 @@
 label {
     float: left;
 }
-.open_mar{
+.open_mod{
         border-right:3px solid #119ee7;
         
         }
@@ -45,21 +45,21 @@ if(is_post_request() && isset($_POST['ajouter'])){
 
      // var_dump($args) . "<br>";
       
-      $marque = new marque($args);
-      //var_dump($marque);
+      $model = new model($args);
+      //var_dump($model);
       ///////////////////////////////////////////////
-      $result = $marque->check_validation();
+      $result = $model->check_validation();
       
       if($result === true){
 
         $_SESSION['toast'] = true;
-        $_SESSION['toastType'] = "un ajout d'une marque ";
+        $_SESSION['toastType'] = "un ajout d'une model ";
         redirect_to('index.php');
 
       }else{
         session_start();
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
-        redirect_to('add_marque.php');//bah yweli hna
+        redirect_to('add_model.php');//bah yweli hna
       }
 }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -79,12 +79,12 @@ include("../includes/app_head.php");
                     <h2 class="ui left aligned header"><i class=" icons">
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
-                        </i>&nbsp;Ajouter une marque</h2>
+                        </i>&nbsp;Ajouter une model</h2>
                     <form method="POST" class="ui form">
                         <div class="two fields">
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de marque">
+                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de model">
                             </div>
 
                         </div>

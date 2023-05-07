@@ -158,6 +158,10 @@ if(!isset($page_title)){
               <i class="database large icon"></i>
               <div class="content">marque</div>
             </a>
+            <a class="item open_mod" href="<?php echo url_for('model/index.php'); ?>">
+              <i class="database large icon"></i>
+              <div class="content">model</div>
+            </a>
            
               <a class="item open_fact" href="<?php echo url_for('factures/index.php'); ?>">
               <i class="file alternate outline large icon"></i>

@@ -1,7 +1,9 @@
 <?php 
 
+
 class Category{
-  
+
+
     /////// active record code
     static protected $database;
     
@@ -9,9 +11,10 @@ class Category{
         self::$database = $database;
     }
 
-    static protected $db_columns = [
-       'id',
-       'name'
+    static protected $db_columns =[
+        'id',
+        'name',
+        'id_ad'
     ];
     
     static public function find_by_sql($sql){
@@ -28,20 +31,18 @@ class Category{
             $object_array [] = self::instantiate($record);
         };
        
-       
         $result->free();
 
         return $object_array;
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM category";
+        $sql = "SELECT * FROM category ORDER by id DESC";
        return self::find_by_sql($sql);
     }
 
     static protected function instantiate($record){
         $object = new self;
-        //
         foreach ($record as $property => $value) {
             if(property_exists($object, $property)){
                 $object->$property = $value;
@@ -51,50 +52,45 @@ class Category{
     }
     
     static public function find_by_id($id){
-        $sql = "SELECT name FROM category ";
+        $sql = "SELECT * FROM category ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $result = self::$database->query($sql);
-        $array = $result->fetch_assoc();
-        foreach($array as $key => $value)
-        {
-             return $value;
+        $object_array= self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return array_shift($object_array);
+        }else{
+            return false;
         }
-        //var_dump($array);
     }
-
-   
+    
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
-        //var_dump($attributes);exit;
+
         $sql = "INSERT INTO category(";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
 
-       //echo $sql . "<br>";exit;
-           
-        $result = self::$database->query($sql);
+       // echo $sql . "<br>";
+            
+        $result = self::$database-> query($sql);
 
         if($result){
             $this->id = self::$database->insert_id;
         }else{
-          echo var_dump(self::$database->error_list);
+         // echo var_dump(self::$database->error_list);
         }
         return $result;
     }
 
-    static public function delete($id){
-        $sql = "DELETE FROM category WHERE id =";
-        $sql .= "'" . $id ."';";
-        
-        $result = self::$database->query($sql);
-        if($result){
-           return $result;
-        }else{
-         echo var_dump(self::$database->error_list);
-        }
-
+    public function check_validation(){
+        $validation = $this->validate();
+       if(empty($validation)){
+               
+        return $this->create();
+       }else{
+         return $validation;
+       }     
     }
         
     public function attributes(){
@@ -118,6 +114,54 @@ class Category{
         return $sanitized;
     } 
 
+    static public function delete($id){
+        $sql = "DELETE FROM category WHERE id =";
+        $sql .= "'" . $id ."';";
+        
+        $result = self::$database->query($sql);
+        if($result){
+           return $result;
+        }else{
+         echo var_dump(self::$database->error_list);
+        }
+
+    }
+
+    static public function find_by_name($string){
+        $sql = "SELECT * FROM category WHERE name LIKE ";
+        $sql .= "'" . self::$database->escape_string($string) ."%'";
+        $object_array= self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function update(){
+        $attributes = $this->sanitized_attributes();
+        $attributes_pairs = [];
+        foreach ($attributes as $key => $value) {
+            
+            $attributes_pairs[] = "{$key}='{$value}'";
+        }
+
+        $sql = "UPDATE category SET ";
+        $sql .= join(', ', $attributes_pairs);
+        $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
+        $sql .= "LIMIT 1";
+        echo $sql . "<br>";
+        $result = self::$database->query($sql);
+
+        if($result){
+            $this->id = self::$database->insert_id;
+        }else{
+         echo var_dump(self::$database->error_list);
+        }
+        return $result;
+        
+    }
     public function merge_attributes($args=[]){
 
         foreach ($args as $key => $value) {
@@ -126,55 +170,68 @@ class Category{
             }
         }
     }
+    
+    static public function rows_tot()
+    {
+        $sql = "select*from category";
+        $result = self::$database->query($sql);
+        $row = $result->num_rows;
+        $result->free();
 
-    public function check_validation(){
-       
-        $validation = $this->validate();
-       if(empty($validation)){
-               
-        return $this->create();
-       }else{
-         return $validation;
-       }
-     
+        return $row;
     }
+    
+    // static public function rows_pro()
+    // {
+    //     $sql = "select*from category where type=0";
+    //     $result = self::$database->query($sql);
+    //     $row = $result->num_rows;
+    //     $result->free();
+
+    //     return $row;
+    // }
+
+    // static public function rows_part()
+    // {
+    //     $sql = "select*from category where type=1";
+    //     $result = self::$database->query($sql);
+    //     $row = $result->num_rows;
+    //     $result->free();
+
+    //     return $row;
+    // }
+
     
 
     /////// end record code////////////////////////////
 
     public $id; 
     public $name;
+    public $creation_date;
+    public $id_ad;
+    
     public $errors = [];
-    public $values = [];
-
+    
     public function __construct($args=[])
     {
+        $this->id = $args['id'] ?? '';
         $this->name = $args['name'] ?? '';
-        
-    }
+        $this->creation_date = $args['creation_date'] ?? 1;
+        $this->id_ad = $args['id_ad'] ?? '';
 
-    public function save(){
-        //$validation = $this->validate();
-        if(empty($validation)){
-            $this->set_hashed_password();
-            
-            return $this->create();
-        }else{
-            return $validation;
-        }
-     
     }
-
     protected function validate(){
         $this->errors = [];
-        $this->values = [];
-
+        //nom category
         if(is_blank($this->name)) {
-            $this->errors[] = "nom d'utilisateur ne doit pas être vide.";
-          } elseif (!has_length($this->name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom d'utilisateur doit avoir au moins 4 caractéres! ";
-          }
+            $this->errors[] = "nom du category ne doit pas être vide.";
+        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
+            $this->errors[] = "nom du category doit avoir au moins 4 caractéres! ";  }
+          return $this->errors;
     }
+    
+    
+
     
 
 };
