@@ -14,6 +14,7 @@ class Mark{
     static protected $db_columns =[
         'id',
         'name',
+        'creation_date',
         'id_ad'
     ];
     

@@ -17,6 +17,8 @@ label {
 
 <?php
 $model = Model::find_by_id($id);
+$marks = Mark::find_all();
+//var_dump(($marks));exit;
 ?>
 
         <div class="ui fluid container">
@@ -30,8 +32,22 @@ $model = Model::find_by_id($id);
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
                         </i>&nbsp;modifier le model</h2>
-                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_category.php?id=<?php echo $id ?>">
+                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_model.php?id=<?php echo $id ?>">
                         <div class="two fields">
+                                <div class="field">
+                                <label for="">Mark:</label>
+                                
+                                <select class="ui search dropdown" name="id_mark">
+                                <option value="">Mark..</option>
+                               <?php foreach ($marks as $mark) {
+                                   ?>
+                                <option value="<?php echo $mark->id;?>" <?php if($model->id_mark == $mark->id) echo 'selected'; ?>>  <?php echo $mark->name; ?></option>
+
+                                <?php
+                               }?>
+                                </select>
+
+                            </div>
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" name="name" placeholder="Nom de model">

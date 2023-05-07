@@ -14,6 +14,7 @@ class Model{
     static protected $db_columns =[
         'id',
         'name',
+        'creation_date',
         'id_ad',
         'id_mark'
     ];
@@ -174,12 +175,25 @@ class Model{
     
     static public function rows_tot()
     {
-        $sql = "select*from model";
+        $sql = "select * from model";
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();
 
         return $row;
+    }
+
+    static public function mark_name($id)
+    {
+        $sql = "SELECT name FROM mark ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        $mark= self::find_by_sql($sql);
+        //var_dump(array_shift($mark));exit;
+        if(!empty($mark)){
+            return array_shift($mark);
+        }else{
+            return false;
+        }
     }
     
     // static public function rows_pro()
@@ -210,6 +224,7 @@ class Model{
     public $name;
     public $creation_date;
     public $id_ad;
+    public $id_mark;
     
     public $errors = [];
     
@@ -218,7 +233,8 @@ class Model{
         $this->id = $args['id'] ?? '';
         $this->name = $args['name'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
-        $this->id_ad = $args['id_ad'] ?? '';
+        $this->id_ad = 1;
+        $this->id_mark = $args['id_mark'] ?? '';
 
     }
     protected function validate(){

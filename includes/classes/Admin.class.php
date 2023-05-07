@@ -16,7 +16,8 @@ class Admin{
        'email',
        'mobile_phone',
        'role',
-       'hashed_password'
+       'hashed_password',
+       'creation_date'
     ];
     
     static public function find_by_sql($sql){

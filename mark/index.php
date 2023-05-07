@@ -122,30 +122,10 @@ height: 100%;
                            ?>
                         </tbody>
                     </table>
-
-
-
-
-
                 </div>
-
-
-
-
                 <!-- end row head-->
 
-
-
             </div>
-
-
-
-
-
-
-
-
-
         </div>
         <!--fin page-->
 

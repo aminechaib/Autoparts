@@ -14,6 +14,7 @@ class Category{
     static protected $db_columns =[
         'id',
         'name',
+        'creation_date',
         'id_ad'
     ];
     
@@ -225,7 +226,7 @@ class Category{
         //nom category
         if(is_blank($this->name)) {
             $this->errors[] = "nom du category ne doit pas être vide.";
-        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
+        }elseif(!has_length($this->name, array('min' => 2, 'max' => 255))) {
             $this->errors[] = "nom du category doit avoir au moins 4 caractéres! ";  }
           return $this->errors;
     }

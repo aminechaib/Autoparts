@@ -13,7 +13,7 @@
 label {
     float: left;
 }
-.open_mod{
+.open_mar{
         border-right:3px solid #119ee7;
         
         }
@@ -40,10 +40,11 @@ if(is_post_request() && isset($_POST['ajouter'])){
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
+      $args['id_mark'] = $_POST['id_mark'] ?? NULL;
       $args['id_ad'] = 1;
 
 
-     // var_dump($args) . "<br>";
+     //var_dump($args) . "<br>";exit;
       
       $model = new model($args);
       //var_dump($model);
@@ -71,7 +72,9 @@ include("../includes/app_head.php");
 
         <div class="ui fluid container">
 
-            <?php include('../includes/menu_head.php'); ?>
+            <?php include('../includes/menu_head.php'); 
+            $marks = Mark::find_all();
+            ?>
 
             <div class="ui padded grid">
 
@@ -82,6 +85,20 @@ include("../includes/app_head.php");
                         </i>&nbsp;Ajouter une model</h2>
                     <form method="POST" class="ui form">
                         <div class="two fields">
+                            <div class="field">
+                                <label for="">Mark:</label>
+                                
+                                <select class="ui search dropdown" name="id_mark">
+                                <option value="">Mark..</option>
+                               <?php foreach ($marks as $mark) {
+                                   ?>
+                                <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
+
+                                <?php
+                               }?>
+                                </select>
+
+                            </div>
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de model">

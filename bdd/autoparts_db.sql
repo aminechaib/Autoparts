@@ -76,9 +76,31 @@ INSERT INTO `mark` (`name`, `id_ad`) VALUES ('peugeot', 1);
 
 CREATE TABLE `model` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` text DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_ad` int NOT NULL,
   FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
   `id_mark` int NOT NULL,
   FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Table structure for table `piece`
+--
+
+  CREATE TABLE `piece` (
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` varchar(20) DEFAULT NULL,
+    `quantity` varchar(20) DEFAULT NULL,
+    `photo` varchar(20) DEFAULT NULL,
+    `purchase_price` float DEFAULT NULL,
+    `sale_price` float DEFAULT NULL,
+    `reference` varchar(20) DEFAULT NULL,
+    `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `id_admin` int NOT NULL,
+    FOREIGN KEY (id_admin) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    `id_mark` int NOT NULL,
+    FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    `id_categorie` int NOT NULL,
+    FOREIGN KEY (id_categorie) REFERENCES category (id)  ON UPDATE CASCADE ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

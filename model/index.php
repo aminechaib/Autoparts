@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 require_once("../includes/initialize.php");
 include("../includes/app_head.php");
 include('function_modal.php');
@@ -84,6 +84,7 @@ height: 100%;
                             <tr>
                                 <th>#</th>
                                 <th>Nom</th>
+                                <th>Marque</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -92,29 +93,30 @@ height: 100%;
                            <?php
                                $model = Model::find_all(); 
                                if($model){
-                                   foreach($model as $make){
+                                   foreach($model as $mark){
                                ?>
                                <tr>
-                                   <td><?php echo h($make->id);?></td>
-                                   <td><?php echo h($make->name);?></td>
+                                   <td><?php echo h($mark->id);?></td>
+                                   <td><?php echo h($mark->name);?></td>
+                                   <td><?php echo h($mark->mark_name($mark->id_mark)->name);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($make->id) ?>" data-type="modifier"><i
+                                           data-button_id="<?php echo h($mark->id) ?>" data-type="modifier"><i
                                                class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($make->id, '') ?>">
+                                       <div class="ui modal modifier m<?php echo h($mark->id, '') ?>">
                                            <div class="content">
-                                               <?php modifier_modal($make->id, '') ?>
+                                               <?php modifier_modal($mark->id, '') ?>
                                            </div>
                                        </div>
                                    </td>
                                    
                                    <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($make->id) ?>"
+                                    <button class="ui tiny red button" data-button_id="<?php echo h($mark->id) ?>"
                                         data-type="supprimer">
                                         <i class="user slash icon"></i><span>Supprimer</span></button>
 
-                                    <div class="ui modal supprimer s<?php echo h($make->id) ?>">
-                                        <?php supprimer_modal($make->id, ''); ?>
+                                    <div class="ui modal supprimer s<?php echo h($mark->id) ?>">
+                                        <?php supprimer_modal($mark->id, ''); ?>
                                     </div>
                                 </td>
                                    
