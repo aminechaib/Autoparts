@@ -1,0 +1,30 @@
+	<?php
+$sql="SELECT `id`, `name`, `id_ad`, `creation_date` FROM `category`";
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+  while($row = mysqli_fetch_assoc($result)) {
+?>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.php"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+						</div>
+						<h3><?php echo $row['name']; ?></h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+				
+			</div><?php
+				}
+			} else {
+			  echo "0 results";
+			}
+					
+				
+				?>
