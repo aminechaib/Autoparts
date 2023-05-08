@@ -154,6 +154,11 @@ if(!isset($page_title)){
             <i class="file code large icon"></i>
             <div class="content">Category</div>
           </a>
+
+          <a class="item open_cat" href="<?php echo url_for('moteur/index.php'); ?>">
+            <i class="file code large icon"></i>
+            <div class="content">Moteur</div>
+          </a>
           <a class="item open_mar" href="<?php echo url_for('mark/index.php'); ?>">
               <i class="database large icon"></i>
               <div class="content">marque</div>
@@ -168,9 +173,9 @@ if(!isset($page_title)){
                   <div class="content">piece</div>
                 </a>
                
-        <a class="item open_pack" href="<?php echo url_for('pack/index.php'); ?>">
+        <a class="item open_pack" href="<?php echo url_for('compatible/index.php'); ?>">
         <i class="large boxes icon"></i>
-                  <div class="content">Pack</div>
+                  <div class="content">Compatible</div>
                 </a>
                
       </div>      
