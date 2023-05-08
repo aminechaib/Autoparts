@@ -16,7 +16,8 @@ label {
 
 
 <?php
-$model = Model::find_by_id($id);
+$piece = Piece::find_by_id($id);
+$categorys = Category::find_all();
 $marks = Mark::find_all();
 //var_dump(($marks));exit;
 ?>
@@ -25,14 +26,14 @@ $marks = Mark::find_all();
 
 
             <div class="ui padded grid">
-            <h1>Modifier model N° <?php echo $id ?></h1>
+            <h1>Modifier Piece N° <?php echo $id ?></h1>
 
                 <div class="ui fifteen wide column row centered grid" id="modifier_grid<?php echo $id ?>">
                     <h2 class="ui left aligned header"><i class=" icons">
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
-                        </i>&nbsp;modifier le model</h2>
-                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_model.php?id=<?php echo $id ?>">
+                        </i>&nbsp;modifier la piece</h2>
+                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_piece.php?id=<?php echo $id ?>">
                         <div class="two fields">
                                 <div class="field">
                                 <label for="">Mark:</label>
@@ -41,17 +42,48 @@ $marks = Mark::find_all();
                                 <option value="">Mark..</option>
                                <?php foreach ($marks as $mark) {
                                    ?>
-                                <option value="<?php echo $mark->id;?>" <?php if($model->id_mark == $mark->id) echo 'selected'; ?>>  <?php echo $mark->name; ?></option>
+                                <option value="<?php echo $mark->id;?>" <?php if($piece->id_mark == $mark->id) echo 'selected'; ?>>  <?php echo $mark->name; ?></option>
+
+                                <?php
+                               }?>
+                                </select>
+                                <label for="">Category:</label>
+                                
+                                <select class="ui search dropdown" name="id_categorie">
+                                <option value="">Category..</option>
+                               <?php foreach ($categorys as $category) {
+                                   ?>
+                                <option value="<?php echo $category->id;?>" <?php if($piece->id_categorie == $category->id) echo 'selected'; ?>>  <?php echo $category->name; ?></option>
 
                                 <?php
                                }?>
                                 </select>
 
-                            </div>
+                                
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" name="name" placeholder="Nom de model">
+                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
                             </div>
+                            <div class="field">
+                                <label>Reference</label>
+                                <input type="text" value="<?php if(isset($_POST['reference'])) echo $_POST['reference']; ?>" name="reference" placeholder="reference">
+                            </div>
+                            <div class="field">
+                                <label>quantity</label>
+                                <input type="text" value="<?php if(isset($_POST['quantity'])) echo $_POST['quantity']; ?>" name="quantity" placeholder="quantity">
+                            </div>
+                            <div class="field">
+                                <label>purchase_price</label>
+                                <input type="text" value="<?php if(isset($_POST['purchase_price'])) echo $_POST['purchase_price']; ?>" name="purchase_price" placeholder="purchase_price">
+                            </div>
+                            <div class="field">
+                                <label>sale_price</label>
+                                <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
+                            </div>
+
+
+                            </div>
+                           
                         </div>
                         
                         <div class="one  fields">
@@ -164,8 +196,11 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($model->name); ?>',
-
+    name     : '<?php echo h($piece->name); ?>',
+    reference     : '<?php echo h($piece->reference); ?>',
+    quantity     : '<?php echo h($piece->quantity); ?>',
+    purchase_price     : '<?php echo h($piece->purchase_price); ?>',
+    sale_price     : '<?php echo h($piece->sale_price); ?>', 
     terms      : true
   })
 ;

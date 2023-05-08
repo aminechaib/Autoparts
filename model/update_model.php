@@ -21,7 +21,6 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args['id'] = $_GET['id']?? NULL;
    $args['name'] = $_POST['name'] ?? NULL;
    $args['id_mark'] = $_POST['id_mark'] ?? NULL;
-
    $args['id_ad'] = 1;
    
 

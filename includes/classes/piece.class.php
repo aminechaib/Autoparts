@@ -148,6 +148,7 @@ class Piece{
 
     }
 
+
     public function update(){
         $attributes = $this->sanitized_attributes();
         $attributes_pairs = [];
@@ -254,7 +255,6 @@ class Piece{
     public $creation_date;
     public $id_admin;
     public $id_mark;
-    
     public $errors = [];
     
     public function __construct($args=[])
@@ -270,7 +270,6 @@ class Piece{
         $this->sale_price = $args['sale_price'] ?? '';
         $this->quantity = $args['quantity'] ?? '';
         $this->photo = $args['photo'] ?? '';
-
     }
     protected function validate(){
         $this->errors = [];

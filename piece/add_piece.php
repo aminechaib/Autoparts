@@ -13,7 +13,7 @@
 label {
     float: left;
 }
-.open_mar{
+.open_pie{
         border-right:3px solid #119ee7;
         
         }
@@ -67,7 +67,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       }else{
         session_start();
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
-        redirect_to('add_model.php');//bah yweli hna
+        redirect_to('add_piece.php');//bah yweli hna
       }
 }
 ///////////////////////////////////////////////////////////////////////////////////
