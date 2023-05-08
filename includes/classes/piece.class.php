@@ -263,7 +263,7 @@ class Piece{
         $this->name = $args['name'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_admin = 1;
-        $this->reference = $args['refrence'] ?? '';
+        $this->reference = $args['reference'] ?? '';
         $this->id_mark = $args['id_mark'] ?? '';
         $this->id_categorie = $args['id_categorie'] ?? '';
         $this->purchase_price = $args['purchase_price'] ?? '';

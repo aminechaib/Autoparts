@@ -43,12 +43,12 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['id_mark'] = $_POST['id_mark'] ?? NULL;
       $args['id_admin'] = 1;
       $args['id'] ?? '';
-      $args['refrence'] = $args['refrence'] ?? NULL;
-      $args['id_categorie'] = $args['id_categorie'] ?? NULL;
-      $args['purchase_price'] = $args['purchase_price'] ?? NULL;
-      $args['sale_price'] = $args['sale_price'] ?? NULL;
-      $args['quantity'] = $args['quantity'] ?? NULL;
-      $args['photo'] = $args['photo'] ?? NULL;
+      $args['reference'] = $_POST['reference'] ?? NULL;
+      $args['id_categorie'] = $_POST['id_categorie'] ?? NULL;
+      $args['purchase_price'] = $_POST['purchase_price'] ?? NULL;
+      $args['sale_price'] = $_POST['sale_price'] ?? NULL;
+      $args['quantity'] = $_POST['quantity'] ?? NULL;
+      $args['photo'] = $_POST['photo'] ?? NULL;
 
 
      //var_dump($args) . "<br>";exit;
