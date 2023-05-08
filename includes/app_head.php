@@ -163,9 +163,9 @@ if(!isset($page_title)){
               <div class="content">model</div>
             </a>
            
-              <a class="item open_fact" href="<?php echo url_for('factures/index.php'); ?>">
+              <a class="item open_fact" href="<?php echo url_for('piece/index.php'); ?>">
               <i class="file alternate outline large icon"></i>
-                  <div class="content">Factures</div>
+                  <div class="content">piece</div>
                 </a>
                
         <a class="item open_pack" href="<?php echo url_for('pack/index.php'); ?>">
