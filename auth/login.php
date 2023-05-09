@@ -35,7 +35,7 @@
 	$username = '';
 	$password = '';
 	if(is_post_request() && isset($_POST['ajouter'])){
-		var_dump('it works');
+		
 		$mobile_phone = $_POST['mobile_phone'] ?? '';
 		$password = $_POST['password'] ?? '';
 
@@ -50,13 +50,13 @@
 		// if there were no errors, try to login
 		if(empty($errors)) {
 			$client = Client::find_by_phone($mobile_phone);
-			// var_dump($client);exit;
+			//var_dump($client);exit;
 			// test if admin found and password is correct
 			if($client != false && $client->verify_password($password)) {
 				
 			  // Mark client as logged in
 			  $session->login($client, 'client');
-			  redirect_to(url_for('index.php'));
+			  redirect_to('../index.php');
 			} 
 			else {
 			  // phone_number not found or password does not match
