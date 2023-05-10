@@ -1,0 +1,19 @@
+        <li><a href="404.php">Page 404</a></li>
+        À propos
+     Panier
+        Check-out
+        Contact
+Actualités
+Produit
+
+
+
+
+
+
+
+Description du logo :
+Nous avons conçu et réalisé le logotype de Magasin Auto Parts avec une taille de 454*131 px. Il est constitué :
+
+D'un dessin d'automobile qui représente le domaine de Magasin (la vente de pièces automobiles).
+Du nom de Magasin Auto Parts
