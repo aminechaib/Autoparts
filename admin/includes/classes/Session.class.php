@@ -51,8 +51,8 @@ class Session{
 
 
     private function check_stored_login(){
-        if(isset( $_SESSION['admin'])){
-            $this->admin =  $_SESSION['admin'];
+        if(isset($_SESSION['admin'])){
+            $this->admin = $_SESSION['admin'];
         }
     }
     public function check_one(){
