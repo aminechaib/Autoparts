@@ -36,7 +36,39 @@ require_once("../includes/initialize.php");
 /////////////////////////////////////////////////////////////////////////////
 
 if(is_post_request() && isset($_POST['ajouter'])){
-
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["photo"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    // Check if image file is a actual image or fake image
+    
+    $check = getimagesize($_FILES["photo"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    
+    
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
@@ -48,10 +80,10 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['purchase_price'] = $_POST['purchase_price'] ?? NULL;
       $args['sale_price'] = $_POST['sale_price'] ?? NULL;
       $args['quantity'] = $_POST['quantity'] ?? NULL;
-      $args['photo'] = $_POST['photo'] ?? NULL;
+      $args['photo'] = $_FILES['photo']['name'] ?? NULL;
 
 
-     //var_dump($args) . "<br>";exit;
+     var_dump($args) . "<br>";exit;
       
       $piece = new piece($args);
       //var_dump($piece);
@@ -88,40 +120,38 @@ include("../includes/app_head.php");
 
                 <div class="ui fifteen wide column row centered grid segment">
                     <h2 class="ui left aligned header"><i class=" icons">
-                            <i class="users icon"></i>
-                            <i class="corner add icon"></i>
-                        </i>&nbsp;Ajouter une piece</h2>
-                    <form method="POST" class="ui form">
+                    <i class="users icon"></i>
+                    <i class="corner add icon"></i>
+                    </i>&nbsp;Ajouter une piece</h2>
+                    <form method="POST" class="ui form" enctype="multipart/form-data">
                         <div class="three fields">
                             <div class="field">
-                                <label for="">Mark:</label>
-                                
+                                <label for="">Mark:</label>                                
                                 <select class="ui search dropdown" name="id_mark">
-                                <option value="">Mark..</option>
-                               <?php foreach ($marks as $mark) {
-                                   ?>
-                                <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
-
-                                <?php
-                               }?>
+                                    <option value="">Mark..</option>
+                                    <?php foreach ($marks as $mark) { ?>
+                                    <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
+                                    <?php } ?>
                                 </select>
+                            </div>
+                            <div class="field">
                                 <label for="">category:</label>
-                                
                                 <select class="ui search dropdown" name="id_categorie">
-                                <option value="">category..</option>
-                               <?php foreach ($categorys as $category) {
-                                   ?>
-                                <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
+                                    <option value="">category..</option>
+                                    <?php foreach ($categorys as $category) {
+                                    ?>
+                                    <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
 
-                                <?php
-                               }?>
+                                    <?php
+                                    }?>
                                 </select>
-
                             </div>
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
                             </div>
+                        </div>
+                        <div class="four fields">
                             <div class="field">
                                 <label>Reference</label>
                                 <input type="text" value="<?php if(isset($_POST['reference'])) echo $_POST['reference']; ?>" name="reference" placeholder="reference">
@@ -138,16 +168,17 @@ include("../includes/app_head.php");
                                 <label>sale_price</label>
                                 <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
                             </div>
-                            
+                            <div class="field">
+                                <label>photo</label>
+                                <input type="file" value="<?php if(isset($_POST['photo'])) echo $_POST['photo']; ?>" name="photo" id="photo">
+                            </div>
                         </div>
-                        <div class="one  fields">
+                        <div class="one fields">
                             <div class="field">
                                 <input type="submit" class="ui button" value="ajouter" name="ajouter">
                             </div>
                         </div>
-
                         <!-- <div class="ui error message"><?php echo $php_errormsg ?? ''; ?></div> -->
-                      
                     </form><!-- end form -->
                     <div class="<?php if(isset($_SESSION['errors']) and !empty($_SESSION['errors'])){ echo 'ui error message';} ?>">
                         <ul class="list">
@@ -161,11 +192,8 @@ include("../includes/app_head.php");
                             }
                         
                         ?>
-
                         </ul>
-
                     </div>
-
                 </div><!-- end segment-->
 
 
