@@ -40,3 +40,5 @@
         </div>
     </div>
     <!--PreLoader Ends-->
+
+	<?php require_once('./admin/includes/initialize.php'); ?>

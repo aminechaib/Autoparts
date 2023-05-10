@@ -1,8 +1,10 @@
 	
+
 	<!-- head -->
-	<?php include('layouts/head.php'); ?>					
+	<?php 
+	include('layouts/head.php'); 
+	?>					
 	<!-- end head -->
-	<!-- title -->
 	
 	<!-- header -->
 	<?php include('layouts/header.php'); ?>					
