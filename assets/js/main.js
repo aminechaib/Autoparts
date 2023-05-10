@@ -52,7 +52,7 @@
             }
         });
 
-        // logo carousel
+        // logo_carousel
         $(".logo-carousel-inner").owlCarousel({
             items: 4,
             loop: true,

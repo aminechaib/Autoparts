@@ -124,9 +124,9 @@
 		</div>
 	</div>
 	<!-- end more products -->
-<!-- logo carousel -->
-<?php include('layouts/logo carousel.php'); ?>	
-	<!-- end logo carousel -->
+<!-- logo_carousel -->
+<?php include('layouts/logo_carousel.php'); ?>	
+	<!-- end logo_carousel -->
 	<!-- footer -->
 	<?php include('layouts/footer.php'); ?>					
 	<!-- end footer -->

@@ -1,4 +1,4 @@
-	<!-- logo carousel -->
+	<!-- logo_carousel -->
 	<div class="logo-carousel-section">
 		<div class="container">
 			<div class="row">
@@ -30,4 +30,4 @@
 			</div>
 		</div>
 	</div>
-	<!-- end logo carousel -->
+	<!-- end logo_carousel -->
