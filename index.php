@@ -149,37 +149,25 @@
 			</div>
 
 			<div class="row">
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.php"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-					</div>
-					<h3>Pièce de moteur</h3>
-					<p class="product-price"><span>Prix unitaire</span> 85$ </p>
-					<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.php"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-					</div>
-					<h3>Pièce de freinage</h3>
-					<p class="product-price"><span>Prix unitaire</span> 70$ </p>
-					<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.php"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Pièce d'échappement</h3>
-						<p class="product-price"><span>Prix unitaire</span> 35$ </p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
-					</div>
-
-				</div>
+				<?php 
+					$pieces = Piece::find_all();
+					if($pieces){
+						foreach ($pieces as $key => $piece) {
+						?>
+							<div class="col-lg-4 col-md-6 text-center">
+								<div class="single-product-item">
+									<div class="product-image">
+										<a href="single-product.php"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+									</div>
+									<h3><?php echo $piece->name; ?></h3>
+									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>$ </p>
+									<a href="cart.php?<?php echo $piece->id; ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
+								</div>
+							</div>
+						<?php
+						}	
+					}
+				?>
 			</div>
 		</div>
 	</div>
@@ -357,9 +345,9 @@
 		</div>
 	</div>
 	<!-- end latest news -->
-	<!-- logo carousel -->
-	<?php include('layouts/logo carousel.php'); ?>	
-	<!-- end logo carousel -->
+	<!-- logo_carousel -->
+	<?php include('layouts/logo_carousel.php'); ?>	
+	<!-- end logo_carousel -->
 	<!-- find our location -->
 	<div class="find-location blue-bg">
 		<div class="container">
@@ -373,7 +361,7 @@
 	<!-- end find our location -->
 	<!-- google map section -->
 	<div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199.92373432877062!2d2.9070994869812368!3d36.70383021341734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa57974691587%3A0xa362b34dc5942230!2z2YXYrdmEINmF2YjYs9mJ!5e0!3m2!1sen!2sdz!4v1683746438554!5m2!1sen!2sdz" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
 	</div>
 	<!-- end google map section -->
 	<!-- footer -->
