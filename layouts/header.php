@@ -11,7 +11,7 @@
 							</a>
 						</div>
 						<!-- logo -->
-
+                        <title>Auto Parts</title>
 						<!-- menu start -->
 						<nav class="main-menu">
                             <ul>

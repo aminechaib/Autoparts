@@ -1,6 +1,4 @@
 <?php 
-
-
 class Model{
 
 
@@ -242,8 +240,8 @@ class Model{
         //nom model
         if(is_blank($this->name)) {
             $this->errors[] = "nom du model ne doit pas être vide.";
-        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom du model doit avoir au moins 4 caractéres! ";  }
+        }elseif(!has_length($this->name, array('min' => 1, 'max' => 255))) {
+            $this->errors[] = "nom du model doit avoir au moins 1 caractéres! ";  }
           return $this->errors;
     }
     
