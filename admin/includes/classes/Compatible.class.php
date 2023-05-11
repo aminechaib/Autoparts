@@ -20,6 +20,7 @@ class Compatible{
 
     static public function find_by_sql($sql){
         $result = self::$database->query($sql);
+        
         if(!$result){
             exit("erreur de requête.");
         };
@@ -33,12 +34,11 @@ class Compatible{
         };
        
         $result->free();
-
         return $object_array;
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM compatible ORDER by id DESC";
+        $sql = "SELECT * FROM compatible ORDER by id_model DESC";
        return self::find_by_sql($sql);
     }
 
@@ -183,6 +183,7 @@ class Compatible{
         return $row;
     }
 
+
     static public function mark_name($id)
     {
         $sql = "SELECT name FROM mark ";
@@ -191,6 +192,31 @@ class Compatible{
         //var_dump(array_shift($mark));exit;
         if(!empty($mark)){
             return array_shift($mark);
+        }else{
+            return false;
+        }
+    }
+    static public function moteur_name($id)
+    {
+        $sql = "SELECT * FROM moteur ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+    
+        $moteur= self::find_by_sql($sql);
+        //var_dump(array_shift($moteur));exit;
+        if(!empty($moteur)){
+            return array_shift($moteur);
+        }else{
+            return false;
+        }
+    }
+    static public function model_name($id)
+    {
+        $sql = "SELECT * FROM model ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        $model= self::find_by_sql($sql);
+        //var_dump(array_shift($model));exit;
+        if(!empty($model)){
+            return array_shift($model);
         }else{
             return false;
         }
@@ -207,6 +233,7 @@ class Compatible{
             return false;
         }
     }
+    
     
     // static public function rows_pro()
     // {
@@ -248,7 +275,6 @@ class Compatible{
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_ad = 1;
         $this->id_moteur = $args['id_moteur'] ?? '';
-        
     }
     protected function validate(){
         $this->errors = [];

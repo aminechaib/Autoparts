@@ -135,7 +135,37 @@
 		</div>
 	</div>
 	<!-- end features list section -->
-
+	<!-- contact form -->
+	<div class="contact-from-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="form-title">
+						<h3><span class="orange-text">Identifiez</span> votre véhicule</h3>
+						<p>Identifiez votre véhicule en renseignant le modèle et le moteur pour afficher les pièces compatibles et faciliter la recherche.</p>
+					</div>
+				 	<div id="form_status"></div>
+					<div class="contact-form">
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+						
+							 <p>
+								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+							</p>
+							<p>
+								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+							</p>
+							<p>
+								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+							</p>
+							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><input type="submit" value="Submit"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact form -->
 	<!-- product section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
@@ -151,16 +181,17 @@
 			<div class="row">
 				<?php 
 					$pieces = Piece::find_all();
+					
 					if($pieces){
 						foreach ($pieces as $key => $piece) {
 						?>
 							<div class="col-lg-4 col-md-6 text-center">
 								<div class="single-product-item">
 									<div class="product-image">
-										<a href="single-product.php"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+										<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
 									</div>
 									<h3><?php echo $piece->name; ?></h3>
-									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>$ </p>
+									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>  DZD </p>
 									<a href="cart.php?<?php echo $piece->id; ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
 								</div>
 							</div>

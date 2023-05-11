@@ -83,13 +83,8 @@ height: 100%;
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nom</th>
-                                <th>Reference</th>
-                                <th>quantity</th>
-                                <th>prix d'achat</th>
-                                <th>prix de vent</th>
-                                <th>categorie</th>
-                                <th>Marque</th>
+                                <th>Model</th>
+                                <th>Moteur</th>
                                 <th>date de creation</th>
                                 <th></th>
                                 <th></th>
@@ -97,38 +92,39 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $piece = Piece::find_all(); 
-                               if($piece){
-                                   foreach($piece as $mark){
+                               $compatibles = Compatible::find_all();
+                               //var_dump($compatibles);exit;
+                        
+                               if($compatibles)
+                               {
+                                   foreach($compatibles as $compatible){
+                                    var_dump($compatible->moteur_name($compatible->id_moteur));exit;
                                ?>
                                <tr>
-                                   <td><?php echo h($mark->id);?></td>
-                                   <td><?php echo h($mark->name);?></td>
-                                   <td><?php echo h($mark->reference);?></td>
-                                   <td><?php echo h($mark->quantity);?></td>
-                                   <td><?php echo h($mark->purchase_price);?></td>
-                                   <td><?php echo h($mark->sale_price);?></td>
-                                   <td><?php echo h($mark->category_name($mark->id_categorie)->name);?></td>
-                                   <td><?php echo h($mark->mark_name($mark->id_mark)->name);?></td>
-                                   <td><?php echo h($mark->creation_date);?></td>
+                                   <td><?php echo h($compatible->moteur_name($compatible->id_moteur));
+                                                        //var_dump($compatible); 
+                                                        ?></td>
+                                  
+                                   <td><?php echo h($compatible->model_name($compatible->id_model));?></td>
+                                   <td><?php echo h($compatible->creation_date);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($mark->id) ?>" data-type="modifier"><i
+                                           data-button_id="<?php echo h($compatible->id) ?>" data-type="modifier"><i
                                                class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($mark->id, '') ?>">
+                                       <div class="ui modal modifier m<?php echo h($compatible->id, '') ?>">
                                            <div class="content">
-                                               <?php modifier_modal($mark->id, '') ?>
+                                               <?php modifier_modal($compatible->id, '') ?>
                                            </div>
                                        </div>
                                    </td>
                                    
                                    <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($mark->id) ?>"
+                                    <button class="ui tiny red button" data-button_id="<?php echo h($compatible->id) ?>"
                                         data-type="supprimer">
                                         <i class="user slash icon"></i><span>Supprimer</span></button>
 
-                                    <div class="ui modal supprimer s<?php echo h($mark->id) ?>">
-                                        <?php supprimer_modal($mark->id, ''); ?>
+                                    <div class="ui modal supprimer s<?php echo h($compatible->id) ?>">
+                                        <?php supprimer_modal($compatible->id, ''); ?>
                                     </div>
                                 </td>
                                    

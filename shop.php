@@ -44,81 +44,62 @@
 		<div class="container">
 
 			<div class="row">
-                <div class="col-md-12">
+                <div class="col-md-35">
+
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
+							<?php 
+					$categorys = Category::find_all();
+					$pieces = Piece::find_all();
+					// echo "hhhhhhhherrrrrrrrre";var_dump($categorys);
+					if($categorys){
+						foreach ($categorys as $key => $category) {
+						?>
+							<li data-filter=".<?php echo $category->name;?>"><?php echo $category->name;?></li>
+							<?php
+						}	
+					}
+				?>
                         </ul>
                     </div>
                 </div>
             </div>
+<?php 
+					$pieces = Piece::find_all();?>
+<div class="row product-lists">
 
-			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<p class="product-price"><span>Per Kg</span> 50$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<p class="product-price"><span>Per Kg</span> 45$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 80$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-			</div>
+<?php
 
+
+
+
+
+
+
+
+
+if($pieces){
+	foreach($pieces as $vlue){	
+						?>
+<div class="col-lg-4 col-md-6 text-center <?php echo h($vlue->category_name($vlue->id_categorie)->name);?>">
+	<div class="single-product-item">
+		<div class="product-image">
+			<a href="single-product.html"><img src="admin/uploads/<?php echo $vlue->photo; ?>" alt=""></a>
+		</div>
+		<h3><?php echo h($vlue->name);?></h3>
+		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DZD </p>
+		<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+	</div>
+</div>
+
+<?php
+}	
+}
+?>
+
+</div>
+			
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="pagination-wrap">

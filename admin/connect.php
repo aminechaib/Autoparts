@@ -1,16 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "autopart_db";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-    
+if (!extension_loaded('gd')) {
+    die('The GD extension is not available.');
 }
-
+else{echo "work";}
 ?>

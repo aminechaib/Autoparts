@@ -52,9 +52,12 @@
 				 	<div id="form_status"></div>
 					<div class="contact-form">
 						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-							<p>
-								<input type="text" placeholder="Name" name="name" id="name">
-								<input type="email" placeholder="Email" name="email" id="email">
+						<p>
+								<input type="text" placeholder="Name" name="name" id="na">
+								<input type="email" placeholder="Email" name="email" id="emil"></p><p>
+								<input type="password" placeholder="password" name="password">
+								<select name="asmlù" id=""><option value="">ddddd</option><option value=""></option></select>
+								
 							</p>
 							<p>
 								<input type="tel" placeholder="Phone" name="phone" id="phone">

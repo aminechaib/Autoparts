@@ -40,6 +40,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
+      
       $args['id_ad'] = 1;
 
 

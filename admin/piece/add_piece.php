@@ -36,7 +36,7 @@ require_once("../includes/initialize.php");
 /////////////////////////////////////////////////////////////////////////////
 
 if(is_post_request() && isset($_POST['ajouter'])){
-    $target_dir = "uploads/";
+    $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -83,8 +83,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['photo'] = $_FILES['photo']['name'] ?? NULL;
 
 
-     var_dump($args) . "<br>";exit;
-      
+     
       $piece = new piece($args);
       //var_dump($piece);
       ///////////////////////////////////////////////
