@@ -12,15 +12,15 @@ class Compatible{
     }
 
     static protected $db_columns =[
+        'id',
         'id_model',
-         'id_moteur',
-          'creation_date',
-           'id_ad'
+        'id_moteur',
+        'creation_date',
+        'id_ad'
     ];
 
     static public function find_by_sql($sql){
         $result = self::$database->query($sql);
-        
         if(!$result){
             exit("erreur de requête.");
         };
@@ -34,6 +34,7 @@ class Compatible{
         };
        
         $result->free();
+
         return $object_array;
     }
 
@@ -183,36 +184,26 @@ class Compatible{
         return $row;
     }
 
-
-    static public function mark_name($id)
-    {
-        $sql = "SELECT name FROM mark ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $mark= self::find_by_sql($sql);
-        //var_dump(array_shift($mark));exit;
-        if(!empty($mark)){
-            return array_shift($mark);
-        }else{
-            return false;
-        }
-    }
     static public function moteur_name($id)
     {
+        
         $sql = "SELECT * FROM moteur ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-    
+        //var_dump($sql);exit;
         $moteur= self::find_by_sql($sql);
-        //var_dump(array_shift($moteur));exit;
+        //var_export(array_shift($moteur));exit;
         if(!empty($moteur)){
             return array_shift($moteur);
         }else{
             return false;
         }
     }
+
     static public function model_name($id)
     {
         $sql = "SELECT * FROM model ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        //var_dump($sql);exit;
         $model= self::find_by_sql($sql);
         //var_dump(array_shift($model));exit;
         if(!empty($model)){
@@ -221,48 +212,11 @@ class Compatible{
             return false;
         }
     }
-    static public function category_name($id)
-    {
-        $sql = "SELECT name FROM category ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $category= self::find_by_sql($sql);
-        //var_dump(array_shift($category));exit;
-        if(!empty($category)){
-            return array_shift($category);
-        }else{
-            return false;
-        }
-    }
-    
-    
-    // static public function rows_pro()
-    // {
-    //     $sql = "select*from compatible where type=0";
-    //     $result = self::$database->query($sql);
-    //     $row = $result->num_rows;
-    //     $result->free();
-
-    //     return $row;
-    // }
-
-    // static public function rows_part()
-    // {
-    //     $sql = "select*from compatible where type=1";
-    //     $result = self::$database->query($sql);
-    //     $row = $result->num_rows;
-    //     $result->free();
-
-    //     return $row;
-    // }
-
-    
 
     /////// end record code////////////////////////////
     
-    
-
-    
-
+    public $id;
+    public $name;
     public $id_model;
     public $id_moteur;
     public $creation_date;
@@ -272,23 +226,22 @@ class Compatible{
     public function __construct($args=[])
     {
         $this->id_model = $args['id_model'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? 1;
-        $this->id_ad = 1;
         $this->id_moteur = $args['id_moteur'] ?? '';
+        $this->creation_date = $args['creation_date'] ?? '';
+        $this->id_ad = 1;
     }
+
     protected function validate(){
         $this->errors = [];
         //nom compatible
         if(is_blank($this->id_model)) {
-            $this->errors[] = "nom du compatible ne doit pas être vide.";
+            $this->errors[] = "model du compatible ne doit pas être vide.";
+        }
+        if(is_blank($this->id_moteur)) {
+            $this->errors[] = "moteur du compatible ne doit pas être vide.";
         }
           return $this->errors;
     }
-    
-    
-
-    
-
 };
 
 

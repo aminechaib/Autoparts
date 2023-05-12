@@ -207,36 +207,15 @@ class Piece{
     {
         $sql = "SELECT name FROM category ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        //var_dump($sql);exit;
         $category= self::find_by_sql($sql);
-        //var_dump(array_shift($category));exit;
+        //var_export(array_shift($category));exit;
         if(!empty($category)){
             return array_shift($category);
         }else{
             return false;
         }
     }
-    
-    // static public function rows_pro()
-    // {
-    //     $sql = "select*from piece where type=0";
-    //     $result = self::$database->query($sql);
-    //     $row = $result->num_rows;
-    //     $result->free();
-
-    //     return $row;
-    // }
-
-    // static public function rows_part()
-    // {
-    //     $sql = "select*from piece where type=1";
-    //     $result = self::$database->query($sql);
-    //     $row = $result->num_rows;
-    //     $result->free();
-
-    //     return $row;
-    // }
-
-    
 
     /////// end record code////////////////////////////
     

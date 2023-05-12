@@ -1,8 +1,8 @@
  <?php 
-require_once("../includes/initialize.php");
-include("../includes/app_head.php");
-include('function_modal.php');
-$bool = $_SESSION['toast'] ;
+    require_once("../includes/initialize.php");
+    include("../includes/app_head.php");
+    include('function_modal.php');
+    $bool = $_SESSION['toast'] ;
 ?>
 
  <style>
@@ -48,12 +48,8 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Piece</h1>
-
-
-                  
-
-                                   
+                    <h1 class="ui  header item"><i class="users icon"></i>Compatible</h1>
+            
                     <div class="right item">
                         <a href="add_compatible.php" class="">
                             <i class="big plus circle icon"></i>
@@ -72,13 +68,10 @@ height: 100%;
                 </div>
               
                 <div class="ui bottom attached tab  active limits" data-tab="first">
-
-
                     <?php 
 /////////////////////////////////////////////////////////////////////:::
 
 ?>
-
                     <table class="ui striped  table" id="tabAll">
                         <thead>
                             <tr>
@@ -94,42 +87,35 @@ height: 100%;
                            <?php
                                $compatibles = Compatible::find_all();
                                //var_dump($compatibles);exit;
-                        
                                if($compatibles)
                                {
                                    foreach($compatibles as $compatible){
-                                    var_dump($compatible->moteur_name($compatible->id_moteur));exit;
                                ?>
                                <tr>
-                                   <td><?php echo h($compatible->moteur_name($compatible->id_moteur));
-                                                        //var_dump($compatible); 
-                                                        ?></td>
+                                   <td><?php echo h($compatible->id); ?></td>
                                   
-                                   <td><?php echo h($compatible->model_name($compatible->id_model));?></td>
-                                   <td><?php echo h($compatible->creation_date);?></td>
-                                   <td>
-                                       <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($compatible->id) ?>" data-type="modifier"><i
-                                               class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($compatible->id, '') ?>">
-                                           <div class="content">
-                                               <?php modifier_modal($compatible->id, '') ?>
-                                           </div>
-                                       </div>
-                                   </td>
-                                   
-                                   <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($compatible->id) ?>"
-                                        data-type="supprimer">
-                                        <i class="user slash icon"></i><span>Supprimer</span></button>
+                                    <td><?php echo h($compatible->model_name($compatible->id_model)->name); ?></td>
+                                    <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name); ?></td>
+                                    <td>
+                                        <button class="ui tiny yellow  button"
+                                            data-button_id="<?php echo h($compatible->id) ?>" data-type="modifier"><i
+                                                class="edit outline icon"></i><span>Modifier</span></button>
+                                        <div class="ui modal modifier m<?php echo h($compatible->id, '') ?>">
+                                            <div class="content">
+                                                <?php modifier_modal($compatible->id, '') ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="ui tiny red button" data-button_id="<?php echo h($compatible->id) ?>"
+                                            data-type="supprimer">
+                                            <i class="user slash icon"></i><span>Supprimer</span>
+                                        </button>
 
-                                    <div class="ui modal supprimer s<?php echo h($compatible->id) ?>">
-                                        <?php supprimer_modal($compatible->id, ''); ?>
-                                    </div>
-                                </td>
-                                   
-
-                                   
+                                        <div class="ui modal supprimer s<?php echo h($compatible->id) ?>">
+                                            <?php supprimer_modal($compatible->id, ''); ?>
+                                        </div>
+                                    </td>
                                </tr>
                                <?php
                                    }
@@ -143,24 +129,8 @@ height: 100%;
 
 
                 </div>
-
-
-
-
                 <!-- end row head-->
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
         </div>
         <!--fin page-->
 
@@ -258,15 +228,8 @@ $_SESSION['toast'] = false;
             $('.menu .item')
                 .tab();
 
-
-
-
-
-
         }) //fin ready
         </script>
-
-
         <?php 
 require_once("../includes/app_foot.php");
 ?>

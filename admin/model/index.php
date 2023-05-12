@@ -91,32 +91,32 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $model = Model::find_all(); 
-                               if($model){
-                                   foreach($model as $mark){
+                               $models = Model::find_all(); 
+                               if($models){
+                                   foreach($models as $model){
                                ?>
                                <tr>
-                                   <td><?php echo h($mark->id);?></td>
-                                   <td><?php echo h($mark->name);?></td>
-                                   <td><?php echo h($mark->mark_name($mark->id_mark)->name);?></td>
+                                   <td><?php echo h($model->id);?></td>
+                                   <td><?php echo h($model->name);?></td>
+                                   <td><?php echo h($model->mark_name($model->id_mark)->name);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($mark->id) ?>" data-type="modifier"><i
+                                           data-button_id="<?php echo h($model->id) ?>" data-type="modifier"><i
                                                class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($mark->id, '') ?>">
+                                       <div class="ui modal modifier m<?php echo h($model->id, '') ?>">
                                            <div class="content">
-                                               <?php modifier_modal($mark->id, '') ?>
+                                               <?php modifier_modal($model->id, '') ?>
                                            </div>
                                        </div>
                                    </td>
                                    
                                    <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($mark->id) ?>"
+                                    <button class="ui tiny red button" data-button_id="<?php echo h($model->id) ?>"
                                         data-type="supprimer">
                                         <i class="user slash icon"></i><span>Supprimer</span></button>
 
-                                    <div class="ui modal supprimer s<?php echo h($mark->id) ?>">
-                                        <?php supprimer_modal($mark->id, ''); ?>
+                                    <div class="ui modal supprimer s<?php echo h($model->id) ?>">
+                                        <?php supprimer_modal($model->id, ''); ?>
                                     </div>
                                 </td>
                                    

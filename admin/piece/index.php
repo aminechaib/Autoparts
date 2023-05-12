@@ -97,38 +97,38 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $piece = Piece::find_all(); 
-                               if($piece){
-                                   foreach($piece as $mark){
+                               $pieces = Piece::find_all(); 
+                               if($pieces){
+                                   foreach($pieces as $piece){
                                ?>
                                <tr>
-                                   <td><?php echo h($mark->id);?></td>
-                                   <td><?php echo h($mark->name);?></td>
-                                   <td><?php echo h($mark->reference);?></td>
-                                   <td><?php echo h($mark->quantity);?></td>
-                                   <td><?php echo h($mark->purchase_price);?></td>
-                                   <td><?php echo h($mark->sale_price);?></td>
-                                   <td><?php echo h($mark->category_name($mark->id_categorie)->name);?></td>
-                                   <td><?php echo h($mark->mark_name($mark->id_mark)->name);?></td>
-                                   <td><?php echo h($mark->creation_date);?></td>
+                                   <td><?php echo h($piece->id);?></td>
+                                   <td><?php echo h($piece->name);?></td>
+                                   <td><?php echo h($piece->reference);?></td>
+                                   <td><?php echo h($piece->quantity);?></td>
+                                   <td><?php echo h($piece->purchase_price);?></td>
+                                   <td><?php echo h($piece->sale_price);?></td>
+                                   <td><?php echo h($piece->category_name($piece->id_categorie)->name);?></td>
+                                   <td><?php echo h($piece->mark_name($piece->id_mark)->name);?></td>
+                                   <td><?php echo h($piece->creation_date);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($mark->id) ?>" data-type="modifier"><i
+                                           data-button_id="<?php echo h($piece->id) ?>" data-type="modifier"><i
                                                class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($mark->id, '') ?>">
+                                       <div class="ui modal modifier m<?php echo h($piece->id, '') ?>">
                                            <div class="content">
-                                               <?php modifier_modal($mark->id, '') ?>
+                                               <?php modifier_modal($piece->id, '') ?>
                                            </div>
                                        </div>
                                    </td>
                                    
                                    <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($mark->id) ?>"
+                                    <button class="ui tiny red button" data-button_id="<?php echo h($piece->id) ?>"
                                         data-type="supprimer">
                                         <i class="user slash icon"></i><span>Supprimer</span></button>
 
-                                    <div class="ui modal supprimer s<?php echo h($mark->id) ?>">
-                                        <?php supprimer_modal($mark->id, ''); ?>
+                                    <div class="ui modal supprimer s<?php echo h($piece->id) ?>">
+                                        <?php supprimer_modal($piece->id, ''); ?>
                                     </div>
                                 </td>
                                    

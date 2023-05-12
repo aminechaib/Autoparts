@@ -89,7 +89,7 @@ include("../includes/app_head.php");
                             <div class="field">
                                 <label for="">Model:</label>
                                 
-                                <select class="ui search dropdown" name="id_mark">
+                                <select class="ui search dropdown" name="id_model">
                                 <option value="">Model..</option>
                                <?php foreach ($models as $model) {
                                    ?>
@@ -100,7 +100,7 @@ include("../includes/app_head.php");
                                 </select>
                                 <label for="">Moteur:</label>
                                 
-                                <select class="ui search dropdown" name="id_categorie">
+                                <select class="ui search dropdown" name="id_moteur">
                                 <option value="">Moteur..</option>
                                <?php foreach ($moteur as $category) {
                                    ?>
