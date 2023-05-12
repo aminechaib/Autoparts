@@ -96,6 +96,7 @@ height: 100%;
                                   
                                     <td><?php echo h($compatible->model_name($compatible->id_model)->name); ?></td>
                                     <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name); ?></td>
+                                    <td><?php echo h($compatible->creation_date);?></td>
                                     <td>
                                         <button class="ui tiny yellow  button"
                                             data-button_id="<?php echo h($compatible->id) ?>" data-type="modifier"><i

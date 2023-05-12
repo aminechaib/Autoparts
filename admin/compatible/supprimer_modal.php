@@ -6,7 +6,7 @@ require_login();
 
 
 
-<div class="ui centered grid" id="delete_grid<?php echo $id . $type_piece;; ?>">
+<div class="ui centered grid" id="delete_grid<?php echo $id . $type_compatible;; ?>">
         <div class="one column row">
             <div class="column">
                 <i class="huge icons">
@@ -17,10 +17,10 @@ require_login();
         <div class="row">
 
             <div class="column">
-                <form action="supp_page.php?id=<?php echo $id . $type_piece;; ?>" class="ui form" method="POST" id="supp_form<?php echo $id . $type_piece;; ?>">
+                <form action="supp_page.php?id=<?php echo $id . $type_compatible;; ?>" class="ui form" method="POST" id="supp_form<?php echo $id . $type_compatible;; ?>">
 
-                    <h2>Voulez vous supprimer cete Piece N° <?php echo $id . $type_piece;; ?>?</h2>
-                    <input type="submit" value="OUI" class="ui huge right floated red button" name="oui" id="supp_refresh_button<?php echo $id . $type_piece;; ?>">
+                    <h2>Voulez vous supprimer cete Piece N° <?php echo $id . $type_compatible;; ?>?</h2>
+                    <input type="submit" value="OUI" class="ui huge right floated red button" name="oui" id="supp_refresh_button<?php echo $id . $type_compatible;; ?>">
                 </form>
             </div>
 
@@ -34,7 +34,7 @@ require_login();
 </div>
 
 
-<div id="supp_success<?php echo $id . $type_piece;; ?>" hidden>
+<div id="supp_success<?php echo $id . $type_compatible;; ?>" hidden>
 
 
    
@@ -44,7 +44,7 @@ require_login();
                 <div class="ui big success message">
                     <div class="sixteen wide column">
                         <i class="check big icon"></i>
-                        <h2> Jazat el requete ta3 id = <?php echo $id . $type_piece;; ?></h2>
+                        <h2> Jazat el requete ta3 id = <?php echo $id . $type_compatible;; ?></h2>
                        
                     </div>
                     <br>
@@ -71,20 +71,20 @@ require_login();
 <script>
 $(function() {
     
-    $('#supp_form<?php echo $id . $type_piece;; ?>').on('submit', function(e) {
+    $('#supp_form<?php echo $id . $type_compatible;; ?>').on('submit', function(e) {
         e.preventDefault();
         $.ajax({
-            url: "supp_page.php?id=<?php echo $id . $type_piece;; ?>", //this is the submit URL
+            url: "supp_page.php?id=<?php echo $id . $type_compatible;; ?>", //this is the submit URL
             type: 'POST', //or POST
             data: $(this).serialize(),
             success: function(data) {
                 
-                $('#delete_grid<?php echo $id . $type_piece;; ?>').transition({
+                $('#delete_grid<?php echo $id . $type_compatible;; ?>').transition({
                     
                     animation: 'fade out',
                     interval: 500
                 })
-                $('#supp_success<?php echo $id . $type_piece;; ?>').transition({
+                $('#supp_success<?php echo $id . $type_compatible;; ?>').transition({
                     animation: 'fade in',
                     interval: 700
                 })
@@ -95,7 +95,7 @@ $(function() {
 
     });
 });
-$('#supp_refresh_button<?php echo $id . $type_piece;; ?>').click(() => {
+$('#supp_refresh_button<?php echo $id . $type_compatible;; ?>').click(() => {
     location.reload();
 })
 

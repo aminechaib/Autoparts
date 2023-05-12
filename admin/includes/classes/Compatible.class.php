@@ -146,24 +146,20 @@ class Compatible{
         $attributes = $this->sanitized_attributes();
         $attributes_pairs = [];
         foreach ($attributes as $key => $value) {
-            
             $attributes_pairs[] = "{$key}='{$value}'";
         }
-
         $sql = "UPDATE compatible SET ";
         $sql .= join(', ', $attributes_pairs);
         $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
         $sql .= "LIMIT 1";
         echo $sql . "<br>";
         $result = self::$database->query($sql);
-
         if($result){
             $this->id = self::$database->insert_id;
         }else{
          echo var_dump(self::$database->error_list);
         }
         return $result;
-        
     }
     public function merge_attributes($args=[]){
 
