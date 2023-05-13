@@ -23,7 +23,7 @@ padding-left: 80px;
                               
               <div class="ui top fixed  fluid menu">
                 <div class="header item">
-                 <a href="<?php echo url_for('dashboard.php'); ?>">   <img src="<?php echo url_for('images/logo.png');?>" alt=""></a>
+                 <a href="<?php echo url_for('dashboard.php'); ?>">   <img src="<?php echo url_for('../assets/img/logo AP.png');?>" alt=""></a>
                 </div>
                 
                 
