@@ -192,7 +192,17 @@
 									</div>
 									<h3><?php echo $piece->name; ?></h3>
 									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>  DZD </p>
-									<a href="cart.php?<?php echo $piece->id; ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
+									<!-- <a href="" class="cart-btn"><i class="fas fa-shopping-cart"></i> -->
+										<form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST">
+											<?php 
+											if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))){
+												echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+											}else{
+												echo '<input type="submit" name="" value="deja ajouter">';
+											}
+											?>
+										</form>
+									<!-- </a> -->
 								</div>
 							</div>
 						<?php

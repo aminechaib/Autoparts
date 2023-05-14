@@ -39,6 +39,7 @@ Model::set_database($database);
 Moteur::set_database($database);
 Piece::set_database($database);
 Compatible::set_database($database);
+Cart::set_database($database);
 
 //Hebergement::set_database($database);
 //Facture::set_database($database);

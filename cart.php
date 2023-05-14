@@ -6,6 +6,14 @@
 	<?php include('layouts/header.php'); ?>					
 	<!-- end header -->
 
+	<?php
+	
+	// search and get on piece table by ids
+	// select from piece where IN $_SESSION['cart] 
+	// object of pices nom, prix, photo
+	// foreach on pices object 
+	?>
+
 	<!-- search area -->
 	<div class="search-area">
 		<div class="container">
@@ -58,30 +66,21 @@
 								</tr>
 							</thead>
 							<tbody>
+                            <?php
+							$pieces = Piece::find_all(); 
+                               if($pieces){
+                                   foreach($pieces as $piece){
+                               ?>
+                              
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
+									<td class="product-name"><?php echo h($piece->name);?></td>
 									<td class="product-price">$85</td>
 									<td class="product-quantity"><input type="number" placeholder="0"></td>
 									<td class="product-total">1</td>
 								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
+								  <?php }}?>
 							</tbody>
 						</table>
 					</div>

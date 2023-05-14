@@ -70,7 +70,7 @@ class Piece{
             return false;
         }
     }
-    
+
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
 

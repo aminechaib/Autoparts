@@ -34,11 +34,33 @@
 <body>
 	
 	<!--PreLoader-->
-    <div class="loader">
+    <!-- <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
-    </div>
+    </div> -->
     <!--PreLoader Ends-->
 
 	<?php require_once('./admin/includes/initialize.php'); ?>
+
+	<?php
+	// add to cart
+	// => function isset(add_to_cart)
+	if(isset($_POST['add_to_cart'])){
+		// check if session(cart) exist
+		if(!isset($_SESSION['cart']))
+			$_SESSION['cart'] = array();
+		
+		// get the piece id
+		$id = $_GET['piece_id'];
+
+		// push the id to session(cart) array
+		array_push($_SESSION['cart'], $id);
+		//echo 'here';exit;
+	}
+	//$cart_count = 0;
+	if(isset($_SESSION['cart']))
+		var_dump($_SESSION['cart']);
+//unset($_SESSION['cart']);
+	$cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : '0';
+	?>

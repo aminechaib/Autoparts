@@ -45,7 +45,10 @@
                             </li>
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="shopping-cart" href="cart.php">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span style="background-color:brown;padding:0px 2px;"><?php echo $cart_count; ?></span>
+                                    </a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                     <?php
                                         if(isset($_SESSION['client']))
