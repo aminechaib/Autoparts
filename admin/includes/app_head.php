@@ -151,12 +151,12 @@ if(!isset($page_title)){
           <div class="content">Client</div>
         </a>
         <a class="item open_cat" href="<?php echo url_for('categories/index.php'); ?>">
-            <i class="file code large icon"></i>
+            <i class="cogs icon large icon"></i>
             <div class="content">Category</div>
           </a>
 
           <a class="item open_cat" href="<?php echo url_for('moteur/index.php'); ?>">
-            <i class="file code large icon"></i>
+            <i class="car icon large icon"></i>
             <div class="content">Moteur</div>
           </a>
           <a class="item open_mar" href="<?php echo url_for('mark/index.php'); ?>">

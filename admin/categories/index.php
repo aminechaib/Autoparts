@@ -48,7 +48,7 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Category</h1>
+                    <h1 class="ui  header item"><i class="cogs icon"></i>Category</h1>
 
 
                   
