@@ -53,7 +53,7 @@
                                             echo '<a href="#">'. $_SESSION['client']->first_name.' '.$_SESSION['client']->last_name .'</a>';
                                             echo '<a href="./auth/logout.php">logout</a>';
                                         }else{
-                                            echo '<a href="auth/login.php">Connexion</a>';
+                                            echo '<a href="login.php">Connexion</a>';
                                             echo '<a href="auth/register.php">Inscription</a>';
                                         }
                                     ?>

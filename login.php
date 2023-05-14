@@ -1,11 +1,6 @@
-	<!-- head -->
-	<?php include('layouts/head.php'); ?>					
-	<!-- end head -->
+<?php include('layouts/head.php'); ?>	
 	
-	<!-- header -->
-	<?php include('layouts/header.php'); ?>					
-	<!-- end header -->
-
+<?php require_once("admin/includes/initialize.php"); ?>
 	<?php 
 	$errors = [];
 	$username = '';
@@ -32,7 +27,8 @@
 				
 			  // Mark client as logged in
 			  $session->login($client, 'client');
-			  redirect_to('index.php');
+			//   echo("jazet.php");
+			   redirect_to('index.php');
 			} 
 			else {
 			  // phone_number not found or password does not match
@@ -97,7 +93,7 @@
 							
 							
 							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="connecter"></p>
+							<p><input type="submit" name="ajouter" value="connecter"></p>
 							<div class="<?php if(!empty($errors)){ echo 'ui negative message'; ?>">
 						<i class="close icon"></i>
 						<div class="header">
