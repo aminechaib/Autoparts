@@ -60,7 +60,7 @@
 	}
 	//$cart_count = 0;
 	if(isset($_SESSION['cart']))
-		var_dump($_SESSION['cart']);
+		var_dump(array_values($_SESSION['cart']));
 //unset($_SESSION['cart']);
 	$cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : '0';
 	?>

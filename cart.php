@@ -67,7 +67,7 @@
 							</thead>
 							<tbody>
                             <?php
-							$pieces = Piece::find_all(); 
+							$pieces = Piece::find_by_id_in(); 
                                if($pieces){
                                    foreach($pieces as $piece){
                                ?>
