@@ -67,20 +67,45 @@
 							</thead>
 							<tbody>
                             <?php
-							$pieces = Piece::find_by_id_in(); 
-                               if($pieces){
-                                   foreach($pieces as $piece){
-                               ?>
-                              
+							// $pieces = Piece::find_by_id_in(); 
+							// var_dump($pieces);exit;
+                            //    if($pieces){ var_dump($pieces);
+                                //    foreach($pieces as $piece){
+									if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+									foreach($_SESSION['cart'] as $id){
+										$piece = Piece::find_by_id($id);
+										if($piece){
+                              ?>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name"><?php echo h($piece->name);?></td>
-									<td class="product-price">$85</td>
+								<td class="product-remove"><a href="cart.php?action=remove&id=<?php echo $piece->id; ?>"><i class="far fa-window-close"></i></a></td>	
+								<?php
+								if(isset($_GET['action']) && $_GET['action'] == 'remove' && isset($_GET['id'])){
+									$id_to_remove = $_GET['id'];
+									if(Piece::delete_from_cart($id_to_remove)){
+										echo "ID " . $id_to_remove . " removed from cart.";
+									}else{
+										echo "ID " . $id_to_remove . " not found in cart.";
+									}
+								}
+								
+								?>
+								<td class="product-image">
+										<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
+									<td class="product-name"><?php echo $piece->name;?></td>
+									<td class="product-price"><?php echo $piece->quantity ; ?></td>
 									<td class="product-quantity"><input type="number" placeholder="0"></td>
 									<td class="product-total">1</td>
+									<?php
+								}else{
+									echo "Piece with ID " . $id . " not found.";
+								}
+							}}else{
+								echo "Cart is empty.";
+							}
+								?>									
 								</tr>
-								  <?php }}?>
+								  <?php 
+								?>
 							</tbody>
 						</table>
 					</div>

@@ -70,16 +70,19 @@ class Piece{
             return false;
         }
     }
-    static public function find_by_id_in(){
-        $sql = "SELECT * FROM piece ";
-        $sql .="WHERE id IN ". $_SESSION['cart'];
-        $object_array= self::find_by_sql($sql);
-        if(!empty($object_array)){
-            return array_shift($object_array);
-        }else{
-            return false;
+    static public function delete_from_cart($id){
+        if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+            $key = array_search($id, $_SESSION['cart']);
+            if($key !== false){
+                unset($_SESSION['cart'][$key]);
+                return true;
+            }
         }
+        return false;
     }
+    
+    
+
 
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
