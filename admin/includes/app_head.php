@@ -126,7 +126,7 @@ if(!isset($page_title)){
       <div class="ui middle aligned link list">
         
         <a class="" id="leftbar-toggle" href="#">
-          <i class="sidebar Medium icon"></i>
+          <i class="sidebar small icon"></i>
         </a>
         
     
@@ -134,7 +134,7 @@ if(!isset($page_title)){
         if($_SESSION['admin']->role == 'super-admin') 
         { echo '
             <a class="item open_ad bar" href="';?><?php echo url_for("admins/index.php"); ?><?php echo '">';?>
-              <?php echo '<i class="user Medium icon"></i>
+              <?php echo '<i class="user small icon"></i>
               <div class="content">Admins</div>
             </a>
         ';
@@ -143,38 +143,38 @@ if(!isset($page_title)){
         
         
         <a class="item open_dash bar" href="<?php echo url_for('dashboard.php'); ?>">
-          <i class="home Medium icon"></i>
+          <i class="home small icon"></i>
           <div class="content">Accueil</div>
         </a>
         <a class="item open_cl" href="<?php echo url_for('clients/index.php'); ?>">
-          <i class="users Medium icon"></i>
+          <i class="users small icon"></i>
           <div class="content">Client</div>
         </a>
         <a class="item open_cat" href="<?php echo url_for('categories/index.php'); ?>">
-            <i class="cogs icon Medium icon"></i>
+            <i class="cogs icon small icon"></i>
             <div class="content">Category</div>
           </a>
 
           <a class="item open_mot" href="<?php echo url_for('moteur/index.php'); ?>">
-            <i class="car icon Medium icon"></i>
+            <i class="car icon small icon"></i>
             <div class="content">Moteur</div>
           </a>
           <a class="item open_mar" href="<?php echo url_for('mark/index.php'); ?>">
-              <i class="database Medium icon"></i>
+              <i class="database small icon"></i>
               <div class="content">marque</div>
             </a>
             <a class="item open_mod" href="<?php echo url_for('model/index.php'); ?>">
-              <i class="database Medium icon"></i>
+              <i class="database small icon"></i>
               <div class="content">model</div>
             </a>
            
               <a class="item open_piece" href="<?php echo url_for('piece/index.php'); ?>">
-              <i class="file alternate outline Medium icon"></i>
+              <i class="file alternate outline small icon"></i>
                   <div class="content">piece</div>
                 </a>
                
         <a class="item open_comp" href="<?php echo url_for('compatible/index.php'); ?>">
-        <i class="Medium boxes icon"></i>
+        <i class="small boxes icon"></i>
                   <div class="content">Compatible</div>
                 </a>
                
