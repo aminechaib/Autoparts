@@ -47,7 +47,7 @@
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.php">
                                         <i class="fas fa-shopping-cart"></i>
-                                        <span style="background-color:brown;padding:0px 2px;"><?php echo $cart_count; ?></span>
+                                        <span style="background-color:brown;padding:0px 2px;"><?php if(isset($cart_count)){ echo $cart_count;}else{echo"0";} ?></span>
                                     </a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                     <?php

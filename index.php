@@ -1,4 +1,3 @@
-	
 
 	<!-- head -->
 	<?php 
@@ -103,8 +102,8 @@
 							<i class="fas fa-shipping-fast"></i>
 						</div>
 						<div class="content">
-							<h3>Free Shipping</h3>
-							<p>When order over $75</p>
+							<h3>Livraison à domicile</h3>
+							<p>Pour toute commande de plus de 5000da</p>
 						</div>
 					</div>
 				</div>
@@ -114,8 +113,12 @@
 							<i class="fas fa-phone-volume"></i>
 						</div>
 						<div class="content">
-							<h3>24/7 Support</h3>
-							<p>Get support all day</p>
+							<h3>Assistance 24/7</h3>
+							<p>Obtenez une assistance à toute heure de la journée</p>
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -125,8 +128,8 @@
 							<i class="fas fa-sync"></i>
 						</div>
 						<div class="content">
-							<h3>Refund</h3>
-							<p>Get refund within 3 days!</p>
+						<h3>Remboursement</h3>
+						<p>Obtenez un remboursement dans les 3 jours !</p>
 						</div>
 					</div>
 				</div>
@@ -221,7 +224,7 @@
             	
                 <!--Content Column-->
                 <div class="content-column col-lg-6">
-					<h3><span class="orange-text">Deal</span> of the month</h3>
+					<h3><span class="orange-text">Offre</span> du mois</h3>
                     <h4>Hikan Strwaberry</h4>
                     <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
                     <!--Countdown Timer-->
