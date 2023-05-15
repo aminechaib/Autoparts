@@ -193,7 +193,7 @@
 									<div class="product-image">
 										<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
 									</div>
-									<h3><?php echo $piece->name; ?></h3>
+									<h3><?php echo $piece->name." ".$piece->reference; ?></h3>
 									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>  DZD </p>
 									<!-- <a href="" class="cart-btn"><i class="fas fa-shopping-cart"></i> -->
 										<form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST">
