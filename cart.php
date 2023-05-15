@@ -65,6 +65,7 @@
 									<th class="product-total">Total</th>
 								</tr>
 							</thead>
+							<form action="" method="POST">
 							<tbody>
                             <?php
 							// $pieces = Piece::find_by_id_in(); 
@@ -92,9 +93,14 @@
 								<td class="product-image">
 										<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
 									<td class="product-name"><?php echo $piece->name;?></td>
-									<td class="product-price"><?php echo $piece->quantity ; ?></td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
+									<td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
+									<td class="product-quantity"><input type="number" name="qte" placeholder="0"></td>
+									<?php 
+									if(isset($_POST['calc']) && isset($_POST['qte'])){
+									$qte=$_POST['qte']*$piece->sale_price;
+									}
+									?>
+									<td class="product-total"><?php echo $qte." DZD"; ?></td>
 									<?php
 								}else{
 									echo "Piece with ID " . $id . " not found.";
@@ -108,6 +114,11 @@
 								?>
 							</tbody>
 						</table>
+						
+						</p>
+							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><input type="submit" name="calc" value="Submit"></p>
+						</form>
 					</div>
 				</div>
 
