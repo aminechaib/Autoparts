@@ -155,7 +155,7 @@ if(!isset($page_title)){
             <div class="content">Category</div>
           </a>
 
-          <a class="item open_cat" href="<?php echo url_for('moteur/index.php'); ?>">
+          <a class="item open_mot" href="<?php echo url_for('moteur/index.php'); ?>">
             <i class="car icon Medium icon"></i>
             <div class="content">Moteur</div>
           </a>
