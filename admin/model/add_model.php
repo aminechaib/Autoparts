@@ -41,6 +41,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
       $args['id_mark'] = $_POST['id_mark'] ?? NULL;
+      $args['id_moteur'] = $_POST['id_moteur'] ?? NULL;
+    
       $args['id_ad'] = 1;
 
 
@@ -74,6 +76,7 @@ include("../includes/app_head.php");
 
             <?php include('../includes/menu_head.php'); 
             $marks = Mark::find_all_voiture();
+            $moteurs = Moteur :: find_all();
             ?>
 
             <div class="ui padded grid">
@@ -94,6 +97,19 @@ include("../includes/app_head.php");
                                    ?>
                                 <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
 
+                                <?php
+                               }?>
+                                </select>
+
+                            </div>
+                            <div class="field">
+                                <label for="">Moteur:</label>
+                                
+                                <select class="ui search dropdown" name="id_moteur">
+                                <option value="">Moteur..</option>
+                               <?php foreach ($moteurs as $moteur) {
+                                   ?>
+                                <option value="<?php echo $moteur->id; ?>">  <?php echo $moteur->name; ?></option>
                                 <?php
                                }?>
                                 </select>

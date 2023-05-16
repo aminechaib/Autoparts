@@ -85,6 +85,7 @@ height: 100%;
                                 <th>#</th>
                                 <th>Nom</th>
                                 <th>Marque</th>
+                                <th>Moteur</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -99,6 +100,7 @@ height: 100%;
                                    <td><?php echo h($model->id);?></td>
                                    <td><?php echo h($model->name);?></td>
                                    <td><?php echo h($model->mark_name($model->id_mark)->name);?></td>
+                                   <td><?php echo h($model->moteur_name($model->id_moteur)->name);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
                                            data-button_id="<?php echo h($model->id) ?>" data-type="modifier"><i

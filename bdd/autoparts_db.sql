@@ -86,7 +86,9 @@
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
     `id_mark` int NOT NULL,
-    FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    `id_moteur` int NOT NULL,
+    FOREIGN KEY (id_moteur) REFERENCES moteur (id)  ON UPDATE CASCADE ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
   --

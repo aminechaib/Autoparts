@@ -18,6 +18,7 @@ label {
 <?php
 $model = Model::find_by_id($id);
 $marks = Mark::find_all_voiture();
+$moteur = Moteur::find_all();
 //var_dump(($marks));exit;
 ?>
 
