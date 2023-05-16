@@ -66,6 +66,7 @@
 										<th class="product-price">Price</th>
 										<th class="product-quantity">Quantity</th>
 										<th class="product-total">Total</th>
+										<p><input type="submit" name="sub"></p>
 									</tr>
 								</thead>
 								<tbody>
@@ -79,7 +80,8 @@
 												$piece = Piece::find_by_id($id);
 												if($piece){
 									?>
-									<input type="text" name="piece_id"  value="<?php echo $piece->id ?>">
+										
+									
 										<tr class="table-body-row">
 										<td class="product-remove"><a href="cart.php?action=remove&id=<?php echo $piece->id; ?>"><i class="far fa-window-close"></i></a></td>
 											
@@ -92,35 +94,68 @@
 												echo "ID " . $id_to_remove . " not found in cart.";
 											}
 										}
-										if(isset($_GET['action']) && $_GET['action'] == 'cancel'){
-											unset($_SESSION['cart']);
-										}
-										if(isset($_GET['action']) && $_GET['action'] == 'update'){
-											$piece_id = $_POST['piece_id'] ?? '';
-											$quantity = $_POST['quantity'] ?? '';
 
-											var_dump($piece_id, $quantity);
-										}
 										
 										?>
 										<p>
-										<input type="hidden" name="price" value="<?php echo $piece->sale_price; ?>">
+										<input type="text" name="piece_id[]" value="<?php echo $piece->id ?>">
+										<input type="number" name="quantity[]" placeholder="0">
+										<input type="text" name="price[]" value="<?php echo $piece->sale_price; ?>">
 										</p>
+										<?php
+if (isset($_POST['sub']) && isset($_POST['piece_id']) && isset($_POST['quantity']) && isset($_POST['price'])) {
+    $piece_ids = $_POST['piece_id'];
+    $quantities = $_POST['quantity'];
+    $prices = $_POST['price'];
+
+    if (is_array($piece_ids) && is_array($quantities) && is_array($prices)) {
+        $totalValues = [];
+
+        for ($i = 0; $i < count($piece_ids); $i++) {
+            $piece_id = $piece_ids[$i];
+            $quantity = $quantities[$i];
+            $price = $prices[$i];
+
+            $totalValue = $quantity * $price;
+
+            $totalValues[$piece_id] = $totalValue;
+        }
+
+ ?>
+
+
+										
 										<td class="product-image">
 												<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
 											<td class="product-name"><?php echo $piece->name;?></td>
-											<td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
-											<td class="product-price"><input type="number" name="quantity" placeholder=""></td>
-
+											<td class="product-price" name="sale"><?php echo $piece->sale_price."  DZD" ; ?></td>
 											<?php
+										} else {
+        echo "Invalid input data. Please make sure the form fields are submitted as arrays.";
+    }
+}
+?>
+											<?php
+											
 											}else{
 												echo "Piece with ID " . $id . " not found.";
 											}
-											echo "<td><p id='prix_total'></p>DZD</td>"; 
+										
+
+											  
+											
 									}}else{
 										echo "Cart is empty.";
 									}
-										?>									
+										?>
+											<td class="product-price">vide</td>
+											<?php       // Output total values for each piece
+        foreach ($totalValues as $piece_id => $totalValue) {
+            ?>
+											<td class="product-price"><?php echo $totalValue ?></td>
+											<?php
+        }
+?>									
 										</tr>
 										<?php 
 									?>
