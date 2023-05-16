@@ -66,7 +66,7 @@
 										<th class="product-price">Price</th>
 										<th class="product-quantity">Quantity</th>
 										<th class="product-total">Total</th>
-										<p><input type="submit" name="sub"></p>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -99,10 +99,20 @@
 										?>
 										<p>
 										<input type="text" name="piece_id[]" value="<?php echo $piece->id ?>">
-										<input type="number" name="quantity[]" placeholder="0">
+										
 										<input type="text" name="price[]" value="<?php echo $piece->sale_price; ?>">
 										</p>
-										<?php
+										
+
+
+										
+										<td class="product-image">
+												<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
+											<td class="product-name"><?php echo $piece->name;?></td>
+											<td class="product-price" name="sale"><?php echo $piece->sale_price."  DZD" ; ?></td>
+											<td><input type="number" name="quantity[]" placeholder="1"></td>
+											
+											<?php
 if (isset($_POST['sub']) && isset($_POST['piece_id']) && isset($_POST['quantity']) && isset($_POST['price'])) {
     $piece_ids = $_POST['piece_id'];
     $quantities = $_POST['quantity'];
@@ -122,13 +132,6 @@ if (isset($_POST['sub']) && isset($_POST['piece_id']) && isset($_POST['quantity'
         }
 
  ?>
-
-
-										
-										<td class="product-image">
-												<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
-											<td class="product-name"><?php echo $piece->name;?></td>
-											<td class="product-price" name="sale"><?php echo $piece->sale_price."  DZD" ; ?></td>
 											<?php
 										} else {
         echo "Invalid input data. Please make sure the form fields are submitted as arrays.";
@@ -163,7 +166,7 @@ if (isset($_POST['sub']) && isset($_POST['piece_id']) && isset($_POST['quantity'
 							</table>
 							
 							</p>
-								
+							<p><input type="submit" name="sub"></p>	
 						
 					</div>
 				</div>
