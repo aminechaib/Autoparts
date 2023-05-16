@@ -17,7 +17,7 @@ label {
 
 <?php
 $model = Model::find_by_id($id);
-$marks = Mark::find_all();
+$marks = Mark::find_all_voiture();
 //var_dump(($marks));exit;
 ?>
 

@@ -42,6 +42,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['id_moteur'] = $_POST['id_moteur'] ?? NULL;
       $args['id_ad'] = 1;
       $args['id_model'] = $_POST['id_model'] ?? NULL;
+      $args['id_piece'] = $_POST['id_piece'] ?? NULL;
       
 
      //var_dump($args) . "<br>";exit;
@@ -75,6 +76,7 @@ include("../includes/app_head.php");
             <?php include('../includes/menu_head.php'); 
             $models = Model::find_all();
             $moteur = Moteur::find_all();
+            $pieces = Piece::find_all();
             ?>
 
             <div class="ui padded grid">
@@ -94,6 +96,18 @@ include("../includes/app_head.php");
                                <?php foreach ($models as $model) {
                                    ?>
                                 <option value="<?php echo $model->id; ?>">  <?php echo $model->name; ?></option>
+
+                                <?php
+                               }?>
+                               </select>
+                                <div class="field">
+                                <label for="">Piece:</label>
+                                
+                                <select class="ui search dropdown" name="id_piece">
+                                <option value="">Piece..</option>
+                               <?php foreach ($pieces as $piece) {
+                                   ?>
+                                <option value="<?php echo $piece->id; ?>">  <?php echo $piece->name; ?></option>
 
                                 <?php
                                }?>

@@ -14,6 +14,7 @@ class Mark{
     static protected $db_columns =[
         'id',
         'name',
+        'type',
         'creation_date',
         'id_ad'
     ];
@@ -36,9 +37,16 @@ class Mark{
 
         return $object_array;
     }
-
     static public function find_all(){
         $sql = "SELECT * FROM mark ORDER by id DESC";
+       return self::find_by_sql($sql);
+    }
+    static public function find_all_voiture(){
+        $sql = "SELECT * FROM mark WHERE type = 'voiture' ORDER by id DESC";
+       return self::find_by_sql($sql);
+    }
+    static public function find_all_piece(){
+        $sql = "SELECT * FROM mark WHERE type = 'piece' ORDER by id DESC";
        return self::find_by_sql($sql);
     }
 
@@ -208,6 +216,7 @@ class Mark{
 
     public $id; 
     public $name;
+    public $type;
     public $creation_date;
     public $id_ad;
     
@@ -217,6 +226,7 @@ class Mark{
     {
         $this->id = $args['id'] ?? '';
         $this->name = $args['name'] ?? '';
+        $this->type = $args['type'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_ad = $args['id_ad'] ?? '';
 

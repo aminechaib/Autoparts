@@ -19,6 +19,7 @@ label {
 $compatible = Compatible::find_by_id($id);
 $models = Model::find_all();
 $moteurs = Moteur::find_all();
+$pieces = Piece::find_all();
 //var_dump(($marks));exit;
 ?>
 
@@ -43,6 +44,18 @@ $moteurs = Moteur::find_all();
                                <?php foreach ($models as $model) {
                                    ?>
                                 <option value="<?php echo $model->id;?>" <?php if($compatible->id_model == $model->id) echo 'selected'; ?>>  <?php echo $model->name; ?></option>
+
+                                <?php
+                               }?>
+                                </select>
+                                <div class="field">
+                                <label for="">Piece:</label>
+                                
+                                <select class="ui search dropdown" name="id_piece">
+                                <option value="">Piece..</option>
+                               <?php foreach ($pieces as $piece) {
+                                   ?>
+                                <option value="<?php echo $piece->id;?>" <?php if($compatible->id_piece == $piece->id) echo 'selected'; ?>>  <?php echo $piece->name; ?></option>
 
                                 <?php
                                }?>

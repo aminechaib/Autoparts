@@ -61,6 +61,7 @@
   CREATE TABLE `mark` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` varchar(20) NOT NULL,
+    `type` varchar(20) NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
@@ -130,11 +131,13 @@
   CREATE TABLE `compatible` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_model` int NOT NULL,
+    `id_piece` int NOT NULL,
     `id_moteur` int NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (id_model) REFERENCES model (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_piece) REFERENCES piece (id)  ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (id_moteur) REFERENCES moteur (id)  ON UPDATE CASCADE ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

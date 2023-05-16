@@ -36,6 +36,16 @@ $mark = Mark::find_by_id($id);
                                 <label>Nom</label>
                                 <input type="text" name="name" placeholder="Nom de marque">
                             </div>
+                            <div class="field">
+                                <label for="">type:</label>
+                                
+                                <select class="ui search dropdown" name="type">
+                                <option value="">Type..</option>
+                                <option value="voiture">Voiture</option>
+                                <option value="piece">Piece</option>
+                                </select>
+
+                            </div>
                         </div>
                         
                         <div class="one  fields">

@@ -40,7 +40,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
-      
+      $args['type'] = $_POST['type'] ?? NULL;
       $args['id_ad'] = 1;
 
 
@@ -87,6 +87,14 @@ include("../includes/app_head.php");
                                 <label>Nom</label>
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de marque">
                             </div>
+                            <div class="field">
+                                <label for="">Type_mark:</label>
+                                
+                                <select class="ui search dropdown" name="type">
+                                <option value="">Type..</option>
+                                <option value="voiture">Voiture</option>
+                                <option value="piece">Piece</option>
+                                </select>
 
                         </div>
                         <div class="one  fields">

@@ -73,7 +73,7 @@ include("../includes/app_head.php");
         <div class="ui fluid container">
 
             <?php include('../includes/menu_head.php'); 
-            $marks = Mark::find_all();
+            $marks = Mark::find_all_voiture();
             ?>
 
             <div class="ui padded grid">

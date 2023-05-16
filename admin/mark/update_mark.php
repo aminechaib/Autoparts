@@ -20,6 +20,7 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args = [];
    $args['id'] = $_GET['id']?? NULL;
    $args['name'] = $_POST['name'] ?? NULL;
+   $args['type'] = $_POST['type'] ?? NULL;
    $args['id_ad'] = 1;
    
 

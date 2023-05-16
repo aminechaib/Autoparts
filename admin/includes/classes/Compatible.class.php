@@ -14,6 +14,7 @@ class Compatible{
     static protected $db_columns =[
         'id',
         'id_model',
+        'id_piece',
         'id_moteur',
         'creation_date',
         'id_ad'
@@ -195,6 +196,21 @@ class Compatible{
         }
     }
 
+    static public function piece_name($id)
+    {
+        
+        $sql = "SELECT * FROM piece ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        //var_dump($sql);exit;
+        $moteur= self::find_by_sql($sql);
+        //var_export(array_shift($moteur));exit;
+        if(!empty($moteur)){
+            return array_shift($moteur);
+        }else{
+            return false;
+        }
+    }
+
     static public function model_name($id)
     {
         $sql = "SELECT * FROM model ";
@@ -214,6 +230,7 @@ class Compatible{
     public $id;
     public $name;
     public $id_model;
+    public $id_piece;
     public $id_moteur;
     public $creation_date;
     public $id_ad;
@@ -223,6 +240,7 @@ class Compatible{
     {
         $this->id_model = $args['id_model'] ?? '';
         $this->id_moteur = $args['id_moteur'] ?? '';
+        $this->id_piece = $args['id_piece'] ?? '';
         $this->creation_date = $args['creation_date'] ?? '';
         $this->id_ad = 1;
     }
@@ -235,6 +253,9 @@ class Compatible{
         }
         if(is_blank($this->id_moteur)) {
             $this->errors[] = "moteur du compatible ne doit pas être vide.";
+        }
+        if(is_blank($this->id_piece)) {
+            $this->errors[] = "piece du compatible ne doit pas être vide.";
         }
           return $this->errors;
     }

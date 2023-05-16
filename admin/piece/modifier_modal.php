@@ -18,7 +18,7 @@ label {
 <?php
 $piece = Piece::find_by_id($id);
 $categorys = Category::find_all();
-$marks = Mark::find_all();
+$marks = Mark::find_all_piece();
 //var_dump(($marks));exit;
 ?>
 

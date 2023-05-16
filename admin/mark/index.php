@@ -92,6 +92,7 @@ height: 100%;
                                <tr>
                                    <td><?php echo h($make->id);?></td>
                                    <td><?php echo h($make->name);?></td>
+                                   <td><?php echo h($make->type);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
                                            data-button_id="<?php echo h($make->id) ?>" data-type="modifier"><i
