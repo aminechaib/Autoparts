@@ -94,6 +94,14 @@ height: 100%;
                                ?>
                                <tr>
                                     <td><?php echo h($compatible->id); ?></td>
+                                    <?php
+//                                      $result = $compatible->piece_name($compatible->id_piece);
+// if ($result !== false) {
+//     var_dump($result);
+// } else {
+//     echo "No matching piece found.";
+// }exit;
+?>
                                     <td><?php echo h($compatible->piece_name($compatible->id_piece)->reference);?></td>       
                                     <td><?php echo h($compatible->piece_name($compatible->id_piece)->name);?></td>
                                     <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name."  ".$compatible->moteur_puissance($compatible->id_moteur)->puissance)." ch"; ?></td>
