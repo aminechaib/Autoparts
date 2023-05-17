@@ -13,7 +13,6 @@ class Compatible{
 
     static protected $db_columns =[
         'id',
-        'id_model',
         'id_piece',
         'id_moteur',
         'creation_date',
@@ -40,7 +39,7 @@ class Compatible{
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM compatible ORDER by id_model DESC";
+        $sql = "SELECT * FROM compatible ";
        return self::find_by_sql($sql);
     }
 
@@ -195,7 +194,18 @@ class Compatible{
             return false;
         }
     }
-
+    static public function moteur_puissance($id)
+    {
+        $sql = "SELECT puissance FROM moteur ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        $moteur= self::find_by_sql($sql);
+        //var_dump(array_shift($moteur));exit;
+        if(!empty($moteur)){
+            return array_shift($moteur);
+        }else{
+            return false;
+        }
+    }
     static public function piece_name($id)
     {
         
@@ -210,26 +220,12 @@ class Compatible{
             return false;
         }
     }
-
-    static public function model_name($id)
-    {
-        $sql = "SELECT * FROM model ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        //var_dump($sql);exit;
-        $model= self::find_by_sql($sql);
-        //var_dump(array_shift($model));exit;
-        if(!empty($model)){
-            return array_shift($model);
-        }else{
-            return false;
-        }
-    }
-
     /////// end record code////////////////////////////
     
     public $id;
     public $name;
-    public $id_model;
+    public $puissance;
+    public $reference;
     public $id_piece;
     public $id_moteur;
     public $creation_date;
@@ -238,7 +234,7 @@ class Compatible{
     
     public function __construct($args=[])
     {
-        $this->id_model = $args['id_model'] ?? '';
+
         $this->id_moteur = $args['id_moteur'] ?? '';
         $this->id_piece = $args['id_piece'] ?? '';
         $this->creation_date = $args['creation_date'] ?? '';
@@ -248,9 +244,7 @@ class Compatible{
     protected function validate(){
         $this->errors = [];
         //nom compatible
-        if(is_blank($this->id_model)) {
-            $this->errors[] = "model du compatible ne doit pas être vide.";
-        }
+
         if(is_blank($this->id_moteur)) {
             $this->errors[] = "moteur du compatible ne doit pas être vide.";
         }

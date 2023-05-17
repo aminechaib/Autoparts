@@ -74,8 +74,7 @@ include("../includes/app_head.php");
         <div class="ui fluid container">
 
             <?php include('../includes/menu_head.php'); 
-            $models = Model::find_all();
-            $moteur = Moteur::find_all();
+            $moteurs = Moteur::find_all();
             $pieces = Piece::find_all();
             ?>
 
@@ -88,18 +87,6 @@ include("../includes/app_head.php");
                         </i>&nbsp;Ajouter une compatible</h2>
                     <form method="POST" class="ui form">
                         <div class="three fields">
-                            <div class="field">
-                                <label for="">Model:</label>
-                                
-                                <select class="ui search dropdown" name="id_model">
-                                <option value="">Model..</option>
-                               <?php foreach ($models as $model) {
-                                   ?>
-                                <option value="<?php echo $model->id; ?>">  <?php echo $model->name; ?></option>
-
-                                <?php
-                               }?>
-                               </select>
                                 <div class="field">
                                 <label for="">Piece:</label>
                                 
@@ -107,7 +94,7 @@ include("../includes/app_head.php");
                                 <option value="">Piece..</option>
                                <?php foreach ($pieces as $piece) {
                                    ?>
-                                <option value="<?php echo $piece->id; ?>">  <?php echo $piece->name; ?></option>
+                                <option value="<?php echo $piece->id; ?>">  <?php echo $piece->reference."  ".$piece->name; ?></option>
 
                                 <?php
                                }?>
@@ -116,9 +103,9 @@ include("../includes/app_head.php");
                                 
                                 <select class="ui search dropdown" name="id_moteur">
                                 <option value="">Moteur..</option>
-                               <?php foreach ($moteur as $category) {
+                               <?php foreach ($moteurs as $moteur) {
                                    ?>
-                                <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
+                                <option value="<?php echo $moteur->id; ?>">  <?php echo $moteur->name."  ".$moteur->puissance."ch"; ?></option>
                                 <?php
                                }?>
                                 </select>

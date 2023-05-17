@@ -76,8 +76,8 @@ height: 100%;
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Piece</th>
-                                <th>Model</th>
+                                <th>Reference</th>
+                                <th>Nom Piece</th>
                                 <th>Moteur</th>
                                 <th>date de creation</th>
                                 <th></th>
@@ -94,9 +94,9 @@ height: 100%;
                                ?>
                                <tr>
                                     <td><?php echo h($compatible->id); ?></td>
-                                    <td><?php echo h($compatible->piece_name($compatible->id_piece)->name); ?></td>
-                                    <td><?php echo h($compatible->model_name($compatible->id_model)->name); ?></td>
-                                    <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name); ?></td>
+                                    <td><?php echo h($compatible->piece_name($compatible->id_piece)->reference);?></td>       
+                                    <td><?php echo h($compatible->piece_name($compatible->id_piece)->name);?></td>
+                                    <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name."  ".$compatible->moteur_puissance($compatible->id_moteur)->puissance)." ch"; ?></td>
                                     <td><?php echo h($compatible->creation_date);?></td>
                                     <td>
                                         <button class="ui tiny yellow  button"

@@ -22,7 +22,6 @@ if(is_post_request() && isset($_POST['modifier'])){
    
    $args = [];
    $args['id'] = $_GET['id']?? NULL;
-   $args['id_model'] = $_POST['id_model'] ?? NULL;
    $args['id_ad'] = 1;
    $args['id_moteur'] = $_POST['id_moteur'] ?? NULL;
    $compatible->merge_attributes($args);

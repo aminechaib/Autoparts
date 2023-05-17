@@ -17,7 +17,6 @@ label {
 
 <?php
 $compatible = Compatible::find_by_id($id);
-$models = Model::find_all();
 $moteurs = Moteur::find_all();
 $pieces = Piece::find_all();
 //var_dump(($marks));exit;
@@ -36,18 +35,6 @@ $pieces = Piece::find_all();
                         </i>&nbsp;modifier la compatible</h2>
                     <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_compatible.php?id=<?php echo $id ?>">
                         <div class="two fields">
-                                <div class="field">
-                                <label for="">Model:</label>
-                                
-                                <select class="ui search dropdown" name="id_model">
-                                <option value="">Model..</option>
-                               <?php foreach ($models as $model) {
-                                   ?>
-                                <option value="<?php echo $model->id;?>" <?php if($compatible->id_model == $model->id) echo 'selected'; ?>>  <?php echo $model->name; ?></option>
-
-                                <?php
-                               }?>
-                                </select>
                                 <div class="field">
                                 <label for="">Piece:</label>
                                 

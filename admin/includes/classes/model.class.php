@@ -207,6 +207,7 @@ class Model{
         }
     }
     
+    
     // static public function rows_pro()
     // {
     //     $sql = "select*from model where type=0";
