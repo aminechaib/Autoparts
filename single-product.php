@@ -50,8 +50,17 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-					<?php $pieces = Piece::find_all(); 
-var_dump($pieces);
+					<?php 
+					// 
+					if (isset($_GET['piece_id'])) {
+						$pieceId = $_GET['piece_id'];
+						$pieces = Piece::find_by_id($pieceId); 
+						if($pieces){echo $pieces->name;
+						// var_dump($pieces);
+						}
+					} else {
+						echo "Piece ID not specified in the URL.";
+					}
 		?>
 						<img src="admin/uploads/<?php echo "nothing"; ?>" alt=""><?php ?>
 					</div>
