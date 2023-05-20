@@ -18,7 +18,6 @@ label {
 <?php
 $model = Model::find_by_id($id);
 $marks = Mark::find_all_voiture();
-$moteurs = Moteur::find_all();
 //var_dump(($marks));exit;
 ?>
 
@@ -49,20 +48,7 @@ $moteurs = Moteur::find_all();
                                 </select>
 
                             </div>
-                            <div class="field">
-                                <label for="">Moteur:</label>
-                                
-                                <select class="ui search dropdown" name="id_moteur">
-                                <option value="">Moteur..</option>
-                               <?php foreach ($moteurs as $moteur) {
-                                   ?>
-                                <option value="<?php echo $moteur->id;?>" <?php if($model->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name."  ".$moteur->puissance."ch"; ?></option>
 
-                                <?php
-                               }?>
-                                </select>
-
-                            </div>
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" name="name" placeholder="Nom de model">

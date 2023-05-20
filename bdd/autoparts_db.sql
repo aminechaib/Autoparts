@@ -76,22 +76,7 @@
   -- --------------------------------------------------------
 
   --
-  -- Table structure for table `model`
-  --
 
-  CREATE TABLE `model` (
-    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20) DEFAULT NULL,
-    `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-    `id_ad` int NOT NULL,
-    FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
-    `id_mark` int NOT NULL,
-    FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE,
-    `id_moteur` int NOT NULL,
-    FOREIGN KEY (id_moteur) REFERENCES moteur (id)  ON UPDATE CASCADE ON DELETE CASCADE
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-  --
   -- Table structure for table `piece`
   --
 
@@ -127,19 +112,49 @@
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
   --
+  -- Table structure for table `model`
+  --
+
+  CREATE TABLE `model` (
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` varchar(20) DEFAULT NULL,
+    `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `id_ad` int NOT NULL,
+    FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    `id_mark` int NOT NULL,
+    FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+  --
+
+
   -- Table structure for table `compatible`
   --
 
   CREATE TABLE `compatible` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    
     `id_piece` int NOT NULL,
     `id_moteur` int NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
-   
     FOREIGN KEY (id_piece) REFERENCES piece (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_moteur) REFERENCES moteur (id)  ON UPDATE CASCADE ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+  --
+
+   -- Table structure for table `voiture`
+  --
+
+  CREATE TABLE `voiture` (
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_model` int NOT NULL,
+    `id_moteur` int NOT NULL,
+    `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `id_ad` int NOT NULL,
+    FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_model) REFERENCES model (id)  ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (id_moteur) REFERENCES moteur (id)  ON UPDATE CASCADE ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

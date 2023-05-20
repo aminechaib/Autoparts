@@ -14,8 +14,7 @@ class Model{
         'name',
         'creation_date',
         'id_ad',
-        'id_mark',
-        'id_moteur'
+        'id_mark'
     ];
     
     static public function find_by_sql($sql){
@@ -194,18 +193,7 @@ class Model{
             return false;
         }
     }
-    static public function moteur_name($id)
-    {
-        $sql = "SELECT name FROM moteur ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $moteur= self::find_by_sql($sql);
-        //var_dump(array_shift($moteur));exit;
-        if(!empty($moteur)){
-            return array_shift($moteur);
-        }else{
-            return false;
-        }
-    }
+   
     
     
     // static public function rows_pro()
@@ -237,7 +225,7 @@ class Model{
     public $creation_date;
     public $id_ad;
     public $id_mark;
-    public $id_moteur;
+   
     
     public $errors = [];
     
@@ -248,7 +236,6 @@ class Model{
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_ad = 1;
         $this->id_mark = $args['id_mark'] ?? '';
-        $this->id_moteur = $args['id_moteur'] ?? '';
 
     }
     protected function validate(){
