@@ -179,6 +179,17 @@ class Mark{
             }
         }
     }
+    static public function find_model_where_mark($id){
+        // $sql = "SELECT * FROM model";
+        // $sql .="WHERE id_mark='". self::$database->escape_string($id) ."'";
+        // $object_array= self::find_by_sql($sql);
+        // if(!empty($object_array)){
+        //     return array_shift($object_array);
+        // }else{
+        //     return false;
+        // }
+        echo "hellllllllo".$id;
+    }
     
     static public function rows_tot()
     {

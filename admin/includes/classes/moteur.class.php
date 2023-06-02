@@ -183,6 +183,23 @@ class Moteur{
 
         return $row;
     }
+
+    static function find_Motors_by_model_id($id)
+    {
+        $sql = "SELECT m.*
+        FROM moteur m
+        JOIN voiture v ON v.id_moteur = m.id
+        JOIN model mo ON mo.id = v.id_model ";
+        $sql .="WHERE mo.id='". self::$database->escape_string($id) ."'";
+        $motors= self::find_by_sql($sql);
+        //var_dump(array_shift($motors));exit;
+        if(!empty($motors)){
+            //var_dump($motors);
+            return $motors;
+        }else{
+            return false;
+        }
+    }
     
     // static public function rows_pro()
     // {

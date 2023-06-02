@@ -41,6 +41,7 @@ class Model{
        return self::find_by_sql($sql);
     }
 
+
     static protected function instantiate($record){
         $object = new self;
         foreach ($record as $property => $value) {
@@ -50,6 +51,9 @@ class Model{
         }
         return $object;
     }
+    // 
+
+
     
     static public function find_by_id($id){
         $sql = "SELECT * FROM model ";
@@ -189,6 +193,20 @@ class Model{
         //var_dump(array_shift($mark));exit;
         if(!empty($mark)){
             return array_shift($mark);
+        }else{
+            return false;
+        }
+    }
+
+    static function find_Models_by_mark_id($id)
+    {
+        $sql = "SELECT * FROM model ";
+        $sql .="WHERE id_mark='". self::$database->escape_string($id) ."'";
+        $models= self::find_by_sql($sql);
+        //var_dump(array_shift($models));exit;
+        if(!empty($models)){
+            //var_dump($models);
+            return $models;
         }else{
             return false;
         }

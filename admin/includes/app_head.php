@@ -90,6 +90,8 @@ if(!isset($page_title)){
       
       body.opened .leftbar {
         width: 200px;
+        max-height: 100vh;
+        overflow: scroll;
       }
       .ui.card {
           

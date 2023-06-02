@@ -8,7 +8,7 @@
 	<!-- header -->
 	<?php include('layouts/header.php'); ?>					
 	<!-- end header -->
-	
+		
 	<!-- search area -->
 	<div class="search-area">
 		<div class="container">
@@ -147,27 +147,76 @@
 						<h3><span class="orange-text">Identifiez</span> votre véhicule</h3>
 						<p>Identifiez votre véhicule en renseignant le modèle et le moteur pour afficher les pièces compatibles et faciliter la recherche.</p>
 					</div>
+					<?php
+					$marks = Mark::find_all_voiture();
+					$models = Model::find_all();
+					$moteurs = Moteur::find_all();
+					$count = Mark::rows_tot();
+					
+					?>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-						
-							 <p>
-								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+						<form method="POST" type="POST"> 
+							<p>
+								<select name="mark" id="mark">
+									<option value="">---SELECT Mark FIRST---</option>           
+									<?php
+									if($marks)
+									{						
+										foreach($marks as $mark){
+											echo '<option value="'.$mark->id.'">'.$mark->name.'</option>';
+										}
+									}   			
+									?>
+								</select>
 							</p>
 							<p>
-								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+								<select name="model" id="model">
+									<option value="">---SELECT Model FIRST---</option>           
+									<?php
+									
+									?>
+								</select>
 							</p>
+
 							<p>
-								<select name="asmlù" id=""><option value="">Mrque</option><option value=""></option></select>
+								<select name="moteur" id="moteur">
+									<option value="">---SELECT Moteur FIRST---</option>           
+									<?php
+									
+									?>
+								</select>
 							</p>
+
 							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="Submit"></p>
+							<p><input type="submit" value="search" name="sub_moteur" ></p>
+						
+							<?php 
+								if(isset($_POST['am']) && isset($_POST['sub_moteur'])){
+									echo "great thing we have<br>".$mark->name;
+								}
+								// foreach($marks as $mark){	
+								// 	$find= Mark :: find_model_where_mark($mark->id);
+								// 					var_dump($find) ;}
+							?>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+<?php
+if(isset($_POST['search']))
+{
+	// eb3at rekosssssssssssssss ta3 pieces 
+	// rah yjiblek Object
+
+}else{
+	$pieces = Piece::find_all();
+}
+?>
+
 	<!-- end contact form -->
 	<!-- product section -->
 	<div class="product-section mt-150 mb-150">
@@ -183,7 +232,7 @@
 
 			<div class="row">
 				<?php 
-					$pieces = Piece::find_all();
+					
 					
 					if($pieces){
 						foreach ($pieces as $key => $piece) {

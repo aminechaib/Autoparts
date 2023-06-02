@@ -81,5 +81,54 @@
 	<!-- main js -->
 	<script src="assets/js/main.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    
+	$(document).ready(function(){
+		$('#mark').on('change',function(){
+			var markID = $(this).val();
+			if(markID){
+				$.ajax({
+					type:'POST',
+					url:'fetch_model.php',
+					data:'id='+markID,
+					success:function(html){
+						$('#model').html(html);
+					
+					}
+				}); 
+			}else{
+				$('#model').html('<option value="">Select category first</option>');
+				
+			}
+		});
+		
+		
+	});
+
+	$(document).ready(function(){
+		$('#model').on('change',function(){
+			//console.log('ok');
+			var modelID = $(this).val();
+			if(modelID){
+				$.ajax({
+					type:'POST',
+					url:'fetch_motor.php',
+					data:'id='+modelID,
+					success:function(html){
+						$('#moteur').html(html);
+					
+					}
+				}); 
+			}else{
+				$('#moteur').html('<option value="">Select category first</option>');
+				
+			}
+		});
+		
+		
+	});
+	</script>
+
 </body>
 </html>
