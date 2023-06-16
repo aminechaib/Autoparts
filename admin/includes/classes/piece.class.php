@@ -58,8 +58,8 @@ class Piece{
             }
         }
         return $object;
-    }
-    
+    } 
+
     static public function find_by_id($id){
         $sql = "SELECT * FROM piece ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";

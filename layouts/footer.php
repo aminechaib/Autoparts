@@ -128,6 +128,30 @@
 		
 		
 	});
+
+
+	$(document).ready(function(){
+		$('#moteur').on('change',function(){
+			//console.log('ok');
+			var compatibleID = $(this).val();
+			if(compatibleID){
+				$.ajax({
+					type:'POST',
+					url:'fetch_piece.php',
+					data:'id='+compatibleID,
+					success:function(html){
+						$('#compatible').html(html);
+					
+					}
+				}); 
+			}else{
+				$('#moteur').html('<option value="">Select category first</option>');
+				
+			}
+		});
+		
+		
+	});
 	</script>
 
 </body>

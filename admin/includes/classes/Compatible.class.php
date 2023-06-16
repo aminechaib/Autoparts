@@ -179,7 +179,22 @@ class Compatible{
 
         return $row;
     }
-
+    static public function find_piece_by_moteur_id($id){
+        {
+            $sql = "SELECT p.name,p.photo,p.sale_price,p.reference FROM piece p
+            JOIN compatible c ON p.id = c.id_piece
+            JOIN moteur m ON m.id = c.id_moteur ";
+            $sql .="WHERE m.id='". self::$database->escape_string($id) ."'";
+            // var_dump($sql);exit;
+            $compatible= self::find_by_sql($sql);
+            //var_dump(array_shift($compatible));exit;
+            if(!empty($compatible)){
+                //var_dump($compatible);
+                return $compatible;
+            }else{
+                return false;
+            }
+        }}
     static public function moteur_name($id)
     {
         
@@ -220,24 +235,7 @@ class Compatible{
             return false;
         }
     }
-    public static function get_compatible($id)
-    {
-        $sql = "SELECT p.name AS piece_name, p.reference, GROUP_CONCAT(DISTINCT m.name SEPARATOR ', ') AS compatible_models, mo.name AS engine_name, mo.puissance
-                FROM piece p
-                INNER JOIN compatible c ON p.id = c.id_piece
-                INNER JOIN model m ON c.id_moteur = m.id_moteur
-                INNER JOIN moteur mo ON m.id_moteur = mo.id
-                WHERE p.id='" . self::$database->escape_string($id) . "'
-                GROUP BY p.name, p.reference, mo.name, mo.puissance";
-    
-        $result = self::find_by_sql($sql);
-    
-        if (!empty($result)) {
-            return $result[0];
-        } else {
-            return false;
-        }
-    }
+
     
     /////// end record code////////////////////////////
     
