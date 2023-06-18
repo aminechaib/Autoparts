@@ -42,108 +42,59 @@
 							<table class="cart-table">
 								<thead class="cart-table-head">
 									<tr class="table-head-row">
-										<th class="product-remove"></th>
-										<th class="product-image">Product Image</th>
-										<th class="product-name">Name</th>
-										<th class="product-price">Price</th>
-										<th class="product-quantity">Quantity</th>
-										<th class="product-total">Total</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									// $pieces = Piece::find_by_id_in(); 
-									// var_dump($pieces);exit;
-									//    if($pieces){ var_dump($pieces);
-										//    foreach($pieces as $piece){
-											if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
-											foreach($_SESSION['cart'] as $id){
-												$piece = Piece::find_by_id($id);
-												if($piece){
-									?>
-										
-									
-										<tr class="table-body-row">
-										<td class="product-remove"><a href="cart.php?action=remove&id=<?php echo $piece->id; ?>"><i class="far fa-window-close"></i></a></td>
-											
-										<?php
-										if(isset($_GET['action']) && $_GET['action'] == 'remove' && isset($_GET['id'])){
-											$id_to_remove = $_GET['id'];
-											if(Piece::delete_from_cart($id_to_remove)){
-												echo "ID " . $id_to_remove . " removed from cart.";
-											}else{
-												echo "ID " . $id_to_remove . " not found in cart.";
-											}
-										}
-
-										
-										?>
-										<p>
-										<input type="text" name="piece_id[]" value="<?php echo $piece->id ?>">
-										
-										<input type="text" name="price[]" value="<?php echo $piece->sale_price; ?>">
-										</p>
-										
-
-
-										
-										<td class="product-image">
-												<a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a></td>
-											<td class="product-name"><?php echo $piece->name;?></td>
-											<td class="product-price" name="sale"><?php echo $piece->sale_price."  DZD" ; ?></td>
-											<td><input type="number" name="quantity[]" placeholder="1"></td>
-											
-											<?php
-if (isset($_POST['sub']) && isset($_POST['piece_id']) && isset($_POST['quantity']) && isset($_POST['price'])) {
-    $piece_ids = $_POST['piece_id'];
-    $quantities = $_POST['quantity'];
-    $prices = $_POST['price'];
-
-    if (is_array($piece_ids) && is_array($quantities) && is_array($prices)) {
-        $totalValues = [];
-
-        for ($i = 0; $i < count($piece_ids); $i++) {
-            $piece_id = $piece_ids[$i];
-            $quantity = $quantities[$i];
-            $price = $prices[$i];
-
-            $totalValue = $quantity * $price;
-
-            $totalValues[$piece_id] = $totalValue;
+									<th class="product-remove"></th>
+<th class="product-image">Product Image</th>
+<th class="product-name">Name</th>
+<th class="product-price">Price</th>
+<th class="product-quantity">Quantity</th>
+<th class="product-total">Total</th>
+</tr>
+</thead>
+<tbody>
+<?php
+if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+    foreach($_SESSION['cart'] as $id){
+        $piece = Piece::find_by_id($id);
+        if($piece){
+?>
+<tr class="table-body-row">
+    <td class="product-remove"><a href="cart.php?action=remove&id=<?php echo $piece->id; ?>"><i class="far fa-window-close"></i></a></td>
+    <?php
+    if(isset($_GET['action']) && $_GET['action'] == 'remove' && isset($_GET['id'])){
+        $id_to_remove = $_GET['id'];
+        if(Piece::delete_from_cart($id_to_remove)){
+            echo "ID " . $id_to_remove . " removed from cart.";
+        } else {
+            echo "ID " . $id_to_remove . " not found in cart.";
         }
-
- ?>
-											<?php
-										} else {
-        echo "Invalid input data. Please make sure the form fields are submitted as arrays.";
+    }
+    ?>
+    <td class="product-image">
+        <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+    </td>
+    <td class="product-name"><?php echo $piece->name;?></td>
+    <td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
+    <td>
+        <input type="number" name="quantity[]" class="inputQuantity" oninput="myFunction(this)" placeholder="1">
+    </td>
+    <td class="product-total">0</td>
+</tr>
+<?php
+        }
     }
 }
 ?>
-											<?php
-											
-											}else{
-												echo "Piece with ID " . $id . " not found.";
-											}
-										
+<script>
+function myFunction(input) {
+    var row = input.parentNode.parentNode;
+    var priceString = row.querySelector('.product-price').innerText;
+    var price = parseFloat(priceString.replace(/[^\d.]/g, ''));
+    var quantity = input.value;
+    var total = price * quantity;
+    row.querySelector('.product-total').innerText = total;
+}
+</script>
 
-											  
-											
-									}}else{
-										echo "Cart is empty.";
-									}
-										?>
-											<td class="product-price">vide</td>
-											<?php       // Output total values for each piece
-        foreach ($totalValues as $piece_id => $totalValue) {
-            ?>
-											<td class="product-price"><?php echo $totalValue ?></td>
-											<?php
-        }
-?>									
-										</tr>
-										<?php 
-									?>
 								</tbody>
 							</table>
 							

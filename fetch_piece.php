@@ -1,7 +1,4 @@
-<script>
-      console.log('9asso');
-
-</script><?php
+<?php
 require_once('./admin/includes/initialize.php');
 if(!empty($_POST["id"])){
     $objectModels = Compatible::find_piece_by_moteur_id($_POST["id"]);
