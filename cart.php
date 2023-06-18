@@ -76,7 +76,6 @@
               ?>
             </tbody>
           </table>
-          <p><input type="submit" name="sub"></p>
         </div>
       </div>
       <div class="total-section">
