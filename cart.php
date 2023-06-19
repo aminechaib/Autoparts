@@ -46,25 +46,34 @@
             </thead>
             <tbody>
 
-<!-- Add this script to your HTML file -->
-<script>
-  function removeFromCart(id) {
-    // Make an AJAX request to the server to remove the item from the cart
-    fetch('remove_from_cart.php?id=' + id, { method: 'POST' })
-      .then(response => {
-        // Handle the response from the server, if needed
-        // For example, you can update the UI or display a success message
-        console.log('Item removed from cart');
-        
-        // Reload the current page to update the cart display
-        location.reload();
-      })
-      .catch(error => {
-        // Handle any errors that occurred during the request
-        console.error('Error removing item from cart:', error);
-      });
-  }
-</script>
+
+            
+
+
+  <script>
+    function removeFromCart(id) {
+      // Store the current scroll position
+      var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Make an AJAX request to the server to remove the item from the cart
+      fetch('remove_from_cart.php?id=' + id, { method: 'POST' })
+        .then(response => {
+          // Handle the response from the server, if needed
+          // For example, you can update the UI or display a success message
+          console.log('Item removed from cart');
+          
+          // Reload the current page to update the cart display
+          window.scrollTo(0, scrollPosition);
+          location.reload();
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the request
+          console.error('Error removing item from cart:', error);
+        });
+    }
+  </script>
+
+
 
 
 

@@ -222,37 +222,56 @@ if(isset($_POST['search']))
 				</div>
 			</div>
 
-			<div class="row">
-				<?php 
-					
-					
-					if($pieces){
-						foreach ($pieces as $key => $piece) {
-						?>
-							<div class="col-lg-4 col-md-6 text-center">
-								<div class="single-product-item">
-									<div class="product-image">
-										<a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
-									</div>
-									<h3><?php echo $piece->name." ".$piece->reference; ?></h3>
-									<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?>  DZD </p>
-									<!-- <a href="" class="cart-btn"><i class="fas fa-shopping-cart"></i> -->
-										<form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST">
-											<?php 
-											if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))){
-												echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
-											}else{
-												echo '<input type="submit" name="" value="deja ajouter">';
-											}
-											?>
-										</form>
-									<!-- </a> -->
-								</div>
-							</div>
-						<?php
-						}	
-					}
-				?>
+			<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="row">
+  <?php 
+    if($pieces) {
+      foreach ($pieces as $key => $piece) {
+  ?>
+  <div class="col-lg-4 col-md-6 text-center">
+    <div class="single-product-item">
+      <div class="product-image">
+        <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+      </div>
+      <h3><?php echo $piece->name." ".$piece->reference; ?></h3>
+      <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
+      <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
+        <?php 
+          if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
+            echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+          } else {
+            echo '<input type="submit" name="" value="Déjà ajouté">';
+          }
+        ?>
+      </form>
+    </div>
+  </div>
+  <?php
+      }	
+    }
+  ?>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Store the current scroll position when the form is submitted
+    $('.add-to-cart-form').on('submit', function() {
+      var scrollPosition = $(window).scrollTop();
+      sessionStorage.setItem('scrollPosition', scrollPosition);
+    });
+
+    // Restore the scroll position on page load
+    var storedScrollPosition = sessionStorage.getItem('scrollPosition');
+    if (storedScrollPosition) {
+      $(window).scrollTop(storedScrollPosition);
+      sessionStorage.removeItem('scrollPosition');
+    }
+  });
+</script>
+
+			
 			</div>
 		</div>
 	</div>
