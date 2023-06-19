@@ -70,16 +70,30 @@ class Piece{
             return false;
         }
     }
+
+
+
+    // static public function delete_from_cart($id){
+    //     if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+    //         $key = array_search($id, $_SESSION['cart']);
+    //         if($key !== false){
+    //             unset($_SESSION['cart'][$key]);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
     static public function delete_from_cart($id){
         if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
             $key = array_search($id, $_SESSION['cart']);
             if($key !== false){
                 unset($_SESSION['cart'][$key]);
-                return true;
+                return $_SESSION['cart']; // Return the updated cart
             }
         }
         return false;
     }
+    
     
     
 

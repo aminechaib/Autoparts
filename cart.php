@@ -45,6 +45,29 @@
               </tr>
             </thead>
             <tbody>
+
+<!-- Add this script to your HTML file -->
+<script>
+  function removeFromCart(id) {
+    // Make an AJAX request to the server to remove the item from the cart
+    fetch('remove_from_cart.php?id=' + id, { method: 'POST' })
+      .then(response => {
+        // Handle the response from the server, if needed
+        // For example, you can update the UI or display a success message
+        console.log('Item removed from cart');
+        
+        // Reload the current page to update the cart display
+        location.reload();
+      })
+      .catch(error => {
+        // Handle any errors that occurred during the request
+        console.error('Error removing item from cart:', error);
+      });
+  }
+</script>
+
+
+
               <?php
               if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
                 foreach($_SESSION['cart'] as $id){
@@ -52,13 +75,10 @@
                   if($piece){
               ?>
               <tr class="table-body-row">
-                <td class="product-remove"><a href="cart.php?action=remove&id=<?php echo $piece->id; ?>"><i class="far fa-window-close"></i></a></td>
-                <?php
-                if(isset($_GET['action']) && $_GET['action'] == 'remove' && isset($_GET['id'])){
-                  $id_to_remove = $_GET['id'];
-                 Piece::delete_from_cart($id_to_remove);
-                }
-                ?>
+              <td class="product-remove"><a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)"><i class="far fa-window-close"></i></a></td>
+
+        
+
                 <td class="product-image">
                   <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
                 </td>
