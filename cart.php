@@ -72,11 +72,6 @@
         });
     }
   </script>
-
-
-
-
-
               <?php
               if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
                 foreach($_SESSION['cart'] as $id){
@@ -107,7 +102,7 @@
           </table>
         </div>
       </div>
-      <div class="total-section">
+      <div class="col-lg-4 col-md-12">
         <table class="total-table">
           <thead class="total-table-head">
             <tr class="table-total-row">
