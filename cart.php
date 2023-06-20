@@ -50,28 +50,7 @@
             
 
 
-  <script>
-    function removeFromCart(id) {
-      // Store the current scroll position
-      var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Make an AJAX request to the server to remove the item from the cart
-      fetch('remove_from_cart.php?id=' + id, { method: 'POST' })
-        .then(response => {
-          // Handle the response from the server, if needed
-          // For example, you can update the UI or display a success message
-          console.log('Item removed from cart');
-          
-          // Reload the current page to update the cart display
-          window.scrollTo(0, scrollPosition);
-          location.reload();
-        })
-        .catch(error => {
-          // Handle any errors that occurred during the request
-          console.error('Error removing item from cart:', error);
-        });
-    }
-  </script>
+
               <?php
               if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
                 foreach($_SESSION['cart'] as $id){
@@ -88,9 +67,13 @@
                 </td>
                 <td class="product-name"><?php echo $piece->name;?></td>
                 <td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
-                <td>
-                  <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
-                </td>
+         
+              <td>
+              <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
+              </td>
+
+
+
                 <td class="product-total"><?php echo $piece->sale_price."  DZD" ; ?></td>
               </tr>
               <?php
@@ -136,7 +119,36 @@
   </div>
 </div>
 
+
+<!-- ... previous HTML code ... -->
+
 <script>
+
+function removeFromCart(id) {
+    // Store the current scroll position
+    var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Remove the item from the cart in the server
+    fetch('remove_from_cart.php?id=' + id, { method: 'POST' })
+      .then(response => {
+        // Handle the response from the server, if needed
+        // For example, you can update the UI or display a success message
+        console.log('Item removed from cart');
+
+        // Remove the corresponding quantity value from local storage
+        localStorage.removeItem('quantity_' + id);
+
+        // Reload the current page to update the cart display
+        window.scrollTo(0, scrollPosition);
+        location.reload();
+      })
+      .catch(error => {
+        // Handle any errors that occurred during the request
+        console.error('Error removing item from cart:', error);
+      });
+  }
+
+
   function myFunction(input) {
     var row = input.parentNode.parentNode;
     var priceString = row.querySelector('.product-price').innerText;
@@ -145,6 +157,7 @@
     var total = price * quantity;
     row.querySelector('.product-total').innerText = total.toFixed(2) + " DZD";
     updateTotal();
+    storeQuantity(input); // Store the updated quantity in local storage
   }
 
   function updateTotal() {
@@ -169,9 +182,35 @@
     document.getElementById('total').innerText = total.toFixed(2) + " DZD";
   }
 
+  // Store the quantity value in local storage
+  function storeQuantity(input) {
+    var row = input.parentNode.parentNode;
+    var id = row.querySelector('.product-remove a').getAttribute('onclick').match(/\d+/)[0];
+    localStorage.setItem('quantity_' + id, input.value);
+  }
+
+  // Retrieve the quantity values from local storage
+  function retrieveQuantity() {
+    var inputs = document.querySelectorAll('.inputQuantity');
+    inputs.forEach(function(input) {
+      var row = input.parentNode.parentNode;
+      var id = row.querySelector('.product-remove a').getAttribute('onclick').match(/\d+/)[0];
+      var storedQuantity = localStorage.getItem('quantity_' + id);
+      if (storedQuantity) {
+        input.value = storedQuantity;
+        myFunction(input); // Update the product total based on the stored quantity
+      }
+    });
+  }
+
   // Calculate the initial total
   updateTotal();
+  
+  // Retrieve the quantity values when the page loads
+  retrieveQuantity();
 </script>
+
+<!-- ... remaining HTML code ... -->
 
 		
 			</form>

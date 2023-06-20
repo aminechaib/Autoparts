@@ -239,11 +239,15 @@ if(isset($_POST['search']))
       <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
       <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
         <?php 
-          if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
-            echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
-          } else {
-            echo '<input type="submit" name="" value="Déjà ajouté">';
-          }
+if(isset($_SESSION['client'])){
+	if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
+		echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+	  } else {
+		echo '<input type="submit" name="" value="Déjà ajouté">';
+	  }
+}else{?>
+<p>connect</p><?php
+}
         ?>
       </form>
     </div>

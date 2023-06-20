@@ -1,3 +1,5 @@
+
+
 <?php include('layouts/head.php'); ?>	
 <?php require_once("admin/includes/initialize.php"); ?>
 	<?php 
