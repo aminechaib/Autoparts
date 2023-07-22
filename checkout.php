@@ -27,7 +27,7 @@
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8">
+				<!-- <div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
 						<div class="accordion" id="accordionExample">
 						  <div class="card single-accordion">
@@ -88,25 +88,56 @@
 						</div>
 
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<div class="order-details-wrap">
 						<table class="order-details">
 							<thead>
 								<tr>
-									<th>Your order Details</th>
-									<th>Price</th>
+								    <th>reference</th>
+									<th>pieces</th>
+									<th>Prix</th>
+									<th>quantity</th>
+									<th>total</th>
 								</tr>
 							</thead>
 							<tbody class="order-details-body">
-								<tr>
-									<td>Product</td>
-									<td>Total</td>
-								</tr>
-								<tr>
+							<?php
+if (isset($_SESSION['cart']) && is_array($_SESSION['cart']) && (isset($_POST['sm']) && isset($_POST['quantity']))) {
+  foreach ($_SESSION['cart'] as $id){
+    
+    $piece = Piece::find_by_id($id);
+    if ($piece) {
+?>
+
+<tr>
+  <td><?php echo $piece->reference; ?></td>
+  <td><?php echo $piece->name; ?></td>
+  <td><?php echo $piece->sale_price; ?></td>
+<?php  }
+  } ?>
+  <?php
+  $results = $_POST['quantity'];
+  foreach ($results as $result) {
+	?><td><?php
+	
+ var_dump($result) ; 
+  }?></td>
+
+	<td>Product</td>					
+	</tr>	
+
+<?php
+   
+}
+?>
+
+
+
+	<!-- <tr>
 									<td>Strawberry</td>
-									<td>$85.00</td>
+								<td>$85.00</td>
 								</tr>
 								<tr>
 									<td>Berry</td>
@@ -129,7 +160,7 @@
 								<tr>
 									<td>Total</td>
 									<td>$240</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 						<a href="#" class="boxed-btn">Place Order</a>
@@ -138,6 +169,29 @@
 			</div>
 		</div>
 	</div>
+	
+<?php
+if(isset($_POST['sm']) && isset($_POST['total_p']) && isset($_POST['subtotal_p']) && isset($_POST['shipping_p']) ){
+  echo "herrrrrrrrrre"."<br>". $_POST['total_p']."<br>". $_POST['subtotal_p']."<br>". $_POST['shipping_p'];
+}else{echo"nothing to show"; }
+
+if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+  foreach($_SESSION['cart'] as $id){
+    echo "<br>the id is:". $id."and the quantity ->";}}
+
+    if(isset($_SESSION['client'])){
+      // var_dump($_SESSION['client']);exit;
+      echo "<br>".$_SESSION['client']->first_name;
+    }
+
+
+	
+
+
+
+
+		
+?>
 	<!-- end check out section -->
 <!-- logo_carousel -->
 <?php include('layouts/logo_carousel.php'); ?>	

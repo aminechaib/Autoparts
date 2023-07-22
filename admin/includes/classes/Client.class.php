@@ -114,7 +114,7 @@ class Client{
     public function check_validation(){
         $validation = $this->validate();
        if(empty($validation)){
-        
+        $this->set_hashed_password();
         
         
 
@@ -263,6 +263,7 @@ class Client{
     public $last_name; 
     public $mobile_phone;
     public $hashed_password;
+    public $password;
     public $email; 
     public $adresse; 
     public $creation_date;
@@ -277,6 +278,7 @@ class Client{
         $this->last_name = $args['last_name'] ?? '';
         $this->mobile_phone = $args['mobile_phone'] ?? '';
         $this->hashed_password = $args['hashed_password'] ?? '';
+        $this->password = $args['password'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->adresse = $args['adresse'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
@@ -355,11 +357,11 @@ class Client{
         }elseif (preg_match('/[a-z]/', $this->mobile_phone)) {
             $this->errors[] = "numero telephone du client doit avoir seulement des caractère numerique ";
         }
-        // if(is_blank($this->password)) {
-        // $this->errors[] = "le mot de passe ne doit pas être vide!";
-        // } elseif (!has_length($this->password, array('min' => 8))) {
-        // $this->errors[] = "le mot de passe doit contenir au moins 8 caractéres ou plus!";
-        // } 
+        if(is_blank($this->password)) {
+        $this->errors[] = "le mot de passe ne doit pas être vide!";
+        } elseif (!has_length($this->password, array('min' => 8))) {
+        $this->errors[] = "le mot de passe doit contenir au moins 8 caractéres ou plus!";
+        } 
     
         // if(is_blank($this->confirm_password)) {
         // $this->errors[] = "la confirmation du mot de passe ne doit pas être vide!";

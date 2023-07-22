@@ -41,6 +41,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['first_name'] = $_POST['first_name'] ?? NULL;
       $args['last_name'] = $_POST['last_name'] ?? NULL;
       $args['mobile_phone'] = $_POST['mobile_phone'] ?? NULL;
+      $args['hashed_password'] = $_POST['hashed_password'] ?? NULL;
+      $args['password'] = $_POST['password'] ?? NULL;
       $args['email'] = $_POST['email'] ?? NULL;  
       $args['adresse'] = $_POST['adresse'] ?? NULL;
       $args['id_ad'] = 1;
@@ -121,6 +123,14 @@ include("../includes/app_head.php");
                             <div class="field">
                                 <label>E-mail</label>
                                 <input type="Email" name="email" placeholder="exemple@gmail.com" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <input type="Password" name="hashed_password" >
+                            </div>
+                            <div class="field">
+                                <label>confirm_password</label>
+                                <input type="Password" name="password" >
                             </div>
                             <div class="field">
                                 <label>Adresse</label>

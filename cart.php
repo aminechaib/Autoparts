@@ -69,6 +69,7 @@
                 <td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
          
               <td>
+              <form action="checkout.php" method="POST">
               <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
               </td>
 
@@ -109,10 +110,13 @@
             
           </tbody>
         </table>
+        
+      <input type="submit" name="sm" value="checkout">
+      </form>
         <div class="cart-buttons">
           <a href="cart.php?action=cancel" class="boxed-btn">Cancel</a>
           <a href="cart.php?action=update" class="boxed-btn">Update Cart</a>
-          <a href="checkout.php" class="boxed-btn black">Check Out</a>
+          
         </div>
       </div>
     </div>
@@ -180,7 +184,10 @@ function removeFromCart(id) {
     document.getElementById('subtotal').innerText = subtotal.toFixed(2) + " DZD";
     document.getElementById('shipping').innerText = shipping.toFixed(2) + " DZD";
     document.getElementById('total').innerText = total.toFixed(2) + " DZD";
-  }
+    document.getElementById('total_p').value = total.toFixed(2) + " DZD";
+    document.getElementById('shipping_p').value = shipping.toFixed(2) + " DZD";
+    document.getElementById('subtotal_p').value = subtotal.toFixed(2) + " DZD";
+   }
 
   // Store the quantity value in local storage
   function storeQuantity(input) {
