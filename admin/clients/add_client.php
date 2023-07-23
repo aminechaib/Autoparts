@@ -125,11 +125,11 @@ include("../includes/app_head.php");
                                 <input type="Email" name="email" placeholder="exemple@gmail.com" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
                             </div>
                             <div class="field">
-                                <label>Password</label>
+                                <label>Mot de pass</label>
                                 <input type="Password" name="hashed_password" >
                             </div>
                             <div class="field">
-                                <label>confirm_password</label>
+                                <label>Confirmation du mot de passe</label>
                                 <input type="Password" name="password" >
                             </div>
                             <div class="field">
@@ -138,12 +138,7 @@ include("../includes/app_head.php");
                             </div>
 
                         </div>
-                        <div class="one  fields">
-                            <div class="field" id="myfield" hidden>
-                                <label>Nom de l'entreprise</label>
-                                <input type="text"  name="entreprise" placeholder="Entreprise" id="myCheck" disabled>
-                            </div>
-                        </div>
+                  
                         <div class="one  fields">
                             <div class="field">
 

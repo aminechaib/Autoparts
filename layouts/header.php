@@ -57,7 +57,7 @@
                                             echo '<a href="./auth/logout.php">logout</a>';
                                         }else{
                                             echo '<a href="login.php">Connexion</a>';
-                                            echo '<a href="auth/register.php">Inscription</a>';
+                                            echo '<a href="register.php">Inscription</a>';
                                         }
                                     ?>
                                     
