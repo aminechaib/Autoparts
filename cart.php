@@ -36,6 +36,7 @@
           <table class="cart-table">
             <thead class="cart-table-head">
               <tr class="table-head-row">
+              <form action="checkout.php" method="POST">
                 <th class="product-remove"></th>
                 <th class="product-image">Image</th>
                 <th class="product-name">Nom</th>
@@ -69,7 +70,7 @@
                 <td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
          
               <td>
-              <form action="checkout.php" method="POST">
+             
               <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
               </td>
 
@@ -111,7 +112,7 @@
           </tbody>
         </table>
         
-      <input type="submit" name="sm" value="checkout">
+ <input type="submit" name="sm" value="checkout">
       </form>
         <div class="cart-buttons">
           <a href="cart.php?action=cancel" class="boxed-btn">Cancel</a>
