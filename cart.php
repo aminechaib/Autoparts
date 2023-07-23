@@ -111,9 +111,9 @@
             
           </tbody>
         </table>
-        <input type="text" name="total_p" id="total_p">
-        <input type="text" name="subtotal_p" id="subtotal_p">
-        <input type="text" name="shipping_p" id="shipping_p">
+        <input type="hidden" name="total_p" id="total_p">
+        <input type="hidden" name="subtotal_p" id="subtotal_p">
+        <input type="hidden" name="shipping_p" id="shipping_p">
  <input type="submit" name="sm" value="checkout">
       </form>
         <div class="cart-buttons">
