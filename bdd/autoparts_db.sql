@@ -205,3 +205,15 @@ ALTER TABLE `order_piece`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_order` (`id_order`),
   ADD KEY `id_piece` (`id_piece`);
+
+    -- Table structure for table `admin_offre`
+  --
+
+  CREATE TABLE `admin_offre` (
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nom_offre` varchar(20) NOT NULL,
+    `temp_de_offre` time(20) NOT NULL,
+    `description_offre` varchar(255) NOT NULL,
+    `id_piece` int NOT NULL,
+    FOREIGN KEY (id_piece) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

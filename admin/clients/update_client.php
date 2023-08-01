@@ -24,6 +24,7 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args['last_name'] = $_POST['last_name'] ?? NULL;
    $args['mobile_phone'] = $_POST['mobile_phone'] ?? NULL;
    $args['email'] = $_POST['email'] ?? NULL;
+   $args['hashed_password'] = $_POST['hashed_password'] ?? NULL;
    $args['adresse'] = $_POST['adresse'] ?? NULL;
   
    $args['id_ad'] = 1;

@@ -179,6 +179,14 @@ if(!isset($page_title)){
         <i class="small boxes icon"></i>
                   <div class="content">Compatible</div>
                 </a>
+                <a class="item open_comp" href="<?php echo url_for('voiture/index.php'); ?>">
+        <i class="small boxes icon"></i>
+                  <div class="content">Voiture</div>
+                </a>
+                <a class="item open_comp" href="<?php echo url_for('admin_offre/index.php'); ?>">
+        <i class="small boxes icon"></i>
+                  <div class="content">offre</div>
+                </a>
                
       </div>      
     </div>

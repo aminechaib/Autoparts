@@ -23,11 +23,8 @@ $marks = Mark::find_all_piece();
 ?>
 
         <div class="ui fluid container">
-
-
             <div class="ui padded grid">
             <h1>Modifier Piece N° <?php echo $id ?></h1>
-
                 <div class="ui fifteen wide column row centered grid" id="modifier_grid<?php echo $id ?>">
                     <h2 class="ui left aligned header"><i class=" icons">
                             <i class="users icon"></i>
@@ -79,6 +76,10 @@ $marks = Mark::find_all_piece();
                             <div class="field">
                                 <label>sale_price</label>
                                 <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
+                            </div>
+                            <div class="field">
+                                <label>photo</label>
+                                <input type="file" value="<?php if(isset($_POST['photo'])) echo $_POST['photo']; ?>" name="photo" id="photo">
                             </div>
 
 
@@ -201,6 +202,7 @@ $('#modifier_form<?php echo $id ?>')
     quantity     : '<?php echo h($piece->quantity); ?>',
     purchase_price     : '<?php echo h($piece->purchase_price); ?>',
     sale_price     : '<?php echo h($piece->sale_price); ?>', 
+    photo    : '<?php echo h($piece->photo); ?>', 
     terms      : true
   })
 ;

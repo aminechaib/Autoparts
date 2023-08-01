@@ -49,6 +49,10 @@ class Piece{
         $sql = "SELECT * FROM piece ORDER by id DESC";
        return self::find_by_sql($sql);
     }
+    static public function find_by_status(){
+        $sql = "SELECT * FROM piece where status=1";
+       return self::find_by_sql($sql);
+    }
 
     static protected function instantiate($record){
         $object = new self;

@@ -5,16 +5,16 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 					<h2 class="widget-title">À propos de nous</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p>Nous sommes une entreprise dédiée à la vente de pièces automobiles de qualité en Algérie. Notre objectif principal est de fournir à nos clients des pièces détachées pour véhicules de haute qualité et fiables, afin de garantir la sécurité et la performance de leurs voitures.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Entrer en contact</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
+							<li>Rue cem med Boudiaf souidania.</li>
+							<li>ccamine4@gmail.com</li>
+							<li>+213 675 56 10 07</li>
 						</ul>
 					</div>
 				</div>

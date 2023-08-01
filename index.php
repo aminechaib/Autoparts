@@ -292,8 +292,45 @@ if(isset($_SESSION['client'])){
                     <h4>Hikan Strwaberry</h4>
                     <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
                     <!--Countdown Timer-->
-                    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
-                	<a href="cart.php" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+
+<?php
+    $targetTime = time() + 3600;
+?>
+
+
+
+
+                    <div class="time-counter"><div class="time-countdown clearfix" ><div class="counter-column"><div class="inner"><span class="count" id="ss"></span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count" id="ee"></span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count" id="ii"></span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
+                
+					<script>
+        // Set the target time from PHP
+        var targetTime = <?php echo json_encode($targetTime * 1000); ?>;
+
+                // Update the countdown every second
+                var countdown = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = targetTime - now;
+            // Calculate remaining time
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById('ss').innerText = seconds;
+            document.getElementById('ee').innerText = minutes;
+            document.getElementById('ii').innerText = days;
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = "Countdown: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "Countdown expired.";
+            }
+        }, 1000);
+    </script>
+					
+					
+					<a href="cart.php" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -469,8 +506,8 @@ if(isset($_SESSION['client'])){
 	<!-- end find our location -->
 	<!-- google map section -->
 	<div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199.92373432877062!2d2.9070994869812368!3d36.70383021341734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa57974691587%3A0xa362b34dc5942230!2z2YXYrdmEINmF2YjYs9mJ!5e0!3m2!1sen!2sdz!4v1683746438554!5m2!1sen!2sdz" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
-	</div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.776745996894!2d2.904647674313292!3d36.7039023731245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa553cd88f7f3%3A0xe9898bd7bdef7ba4!2sPieces%20Auto!5e0!3m2!1sfr!2sdz!4v1690289316712!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>	
+</div>
 	<!-- end google map section -->
 	<!-- footer -->
 	<?php include('layouts/footer.php'); ?>					

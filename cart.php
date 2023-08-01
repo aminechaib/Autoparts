@@ -2,9 +2,7 @@
 	<?php include('layouts/head.php'); ?>					
 	<!-- end head -->
 
-	<!-- header -->
-	<?php include('layouts/header.php'); ?>					
-	<!-- end header -->
+
 
 	<?php
 	
@@ -36,55 +34,83 @@
           <table class="cart-table">
             <thead class="cart-table-head">
               <tr class="table-head-row">
-              <form action="checkout.php" method="POST">
-                <th class="product-remove"></th>
-                <th class="product-image">Image</th>
-                <th class="product-name">Nom</th>
-                <th class="product-price">Prix</th>
-                <th class="product-quantity">Quantité</th>
-                <th class="product-total">Total</th>
-              </tr>
+
+              <?php
+
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $inputs = array();
+
+    // Loop through the submitted inputs
+    if (isset($_POST['pr_name']) && is_array($_POST['pr_name'])) {
+        foreach ($_POST['pr_name'] as $index => $name) {
+            // Assuming the other arrays (sa_price and quantity) are also received in the same order
+            $price = $_POST['sa_price'][$index];
+            $quantity = $_POST['quantity'][$index];
+
+            $input = array(
+                'name' => $name,
+                'price' => $price,
+                'quantity' => $quantity,
+            );
+
+            $inputs[] = $input;
+        }
+    }
+
+    $_SESSION['form_inputs'] = $inputs;
+    header("Location: checkout.php"); // Redirect to the display page
+    exit();
+}
+?>
+
+
+    <form action="" method="POST">
+                    <th class="product-remove"></th>
+                    <th class="product-image">Image</th>
+                    <th class="product-name">Nom</th>
+                    <th class="product-price">Prix</th>
+                    <th class="product-quantity">Quantité</th>
+                    <th class="product-total">Total</th>
+                </tr>
             </thead>
             <tbody>
-
-
-            
-
-
-
-              <?php
-              if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
-                foreach($_SESSION['cart'] as $id){
-                  $piece = Piece::find_by_id($id);
-                  if($piece){
-              ?>
-              <tr class="table-body-row">
-              <td class="product-remove"><a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)"><i class="far fa-window-close"></i></a></td>
-
-        
-
-                <td class="product-image">
-                  <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
-                </td>
-                <td class="product-name"><?php echo $piece->name;?></td>
-                <td class="product-price"><?php echo $piece->sale_price."  DZD" ; ?></td>
-         
-              <td>
-             
-              <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
-              </td>
-
-
-
-                <td class="product-total"><?php echo $piece->sale_price."  DZD" ; ?></td>
-              </tr>
-              <?php
-                  }
+                <?php
+                if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+                    foreach ($_SESSION['cart'] as $id) {
+                        $piece = Piece::find_by_id($id);
+                        if ($piece) {
+                            ?>
+                            <tr class="table-body-row">
+                                <td class="product-remove"><a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)"><i class="far fa-window-close"></i></a></td>
+                                <td class="product-image">
+                                    <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+                                </td>
+                                <td class="product-name">
+                                    <?php echo $piece->name; ?>
+                                    <input type="hidden" value="<?php echo $piece->name; ?>" name="pr_name[]">
+                                </td>
+                                <td class="product-price">
+                                    <?php echo $piece->sale_price . "  DZD"; ?>
+                                    <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
+                                </td>
+                                <td>
+                                    <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
+                                </td>
+                                <td class="product-total"><?php echo $piece->sale_price . "  DZD"; ?></td>
+                            </tr>
+                            <?php
+                        }
+                    }
                 }
-              }
-              ?>
+                ?>
             </tbody>
-          </table>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
         </div>
       </div>
       <div class="col-lg-4 col-md-12">
@@ -125,7 +151,9 @@
     </div>
   </div>
 </div>
-
+	<!-- header -->
+	<?php include('layouts/header.php'); ?>					
+	<!-- end header -->
 
 <!-- ... previous HTML code ... -->
 

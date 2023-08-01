@@ -1,4 +1,4 @@
- <?php 
+<?php 
     require_once("../includes/initialize.php");
     include("../includes/app_head.php");
     include('function_modal.php');
@@ -51,7 +51,7 @@ height: 100%;
                     <h1 class="ui  header item"><i class="users icon"></i>Voiture</h1>
             
                     <div class="right item">
-                        <a href="add_compatible.php" class="">
+                        <a href="add_voiture.php" class="">
                             <i class="big plus circle icon"></i>
 
                         </a>
@@ -76,8 +76,7 @@ height: 100%;
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Reference</th>
-                                <th>Nom Piece</th>
+                                <th>model</th>
                                 <th>Moteur</th>
                                 <th>date de creation</th>
                                 <th></th>
@@ -102,6 +101,29 @@ height: 100%;
 //     echo "No matching piece found.";
 // }exit;
 ?>
+                                    <td><?php echo h($voiture->model_name($voiture->id_model)->name);?></td>       
+                                    <td><?php echo h($voiture->moteur_name($voiture->id_moteur)->name."  ".$voiture->moteur_puissance($voiture->id_moteur)->puissance)." ch"; ?></td>
+                                    <td><?php echo h($voiture->creation_date);?></td>
+                                    <td>
+                                        <button class="ui tiny yellow  button"
+                                            data-button_id="<?php echo h($voiture->id) ?>" data-type="modifier"><i
+                                                class="edit outline icon"></i><span>Modifier</span></button>
+                                        <div class="ui modal modifier m<?php echo h($voiture->id, '') ?>">
+                                            <div class="content">
+                                                <?php modifier_modal($voiture->id, '') ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="ui tiny red button" data-button_id="<?php echo h($voiture->id) ?>"
+                                            data-type="supprimer">
+                                            <i class="user slash icon"></i><span>Supprimer</span>
+                                        </button>
+
+                                        <div class="ui modal supprimer s<?php echo h($voiture->id) ?>">
+                                            <?php supprimer_modal($voiture->id, ''); ?>
+                                        </div>
+                                    </td>
                                </tr>
                                <?php
                                    }

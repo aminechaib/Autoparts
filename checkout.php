@@ -89,7 +89,11 @@
 
 					</div>
 				</div> -->
-
+<?php
+if (isset($_SESSION['form_inputs']) && is_array($_SESSION['form_inputs']) && isset($_SESSION['client'])) {
+    
+	var_dump($_SESSION['client']);
+	?>
 				<div class="col-lg-6">
 					<div class="order-details-wrap">
 						<table class="order-details">
@@ -103,35 +107,28 @@
 								</tr>
 							</thead>
 							<tbody class="order-details-body">
-							<?php
-if (isset($_SESSION['cart']) && is_array($_SESSION['cart']) && (isset($_POST['sm']) && isset($_POST['quantity']))) {
-  foreach ($_SESSION['cart'] as $id){
-    
-    $piece = Piece::find_by_id($id);
-    if ($piece) {
-?>
+							
 
 <tr>
-  <td><?php echo $piece->reference; ?></td>
-  <td><?php echo $piece->name; ?></td>
-  <td><?php echo $piece->sale_price; ?></td>
-<?php  }
-  } ?>
-  <?php
-  $results = $_POST['quantity'];
-  foreach ($results as $result) {
-	?><td><?php
-	
- var_dump($result) ; 
-  }?></td>
+<?php foreach ($_SESSION['form_inputs'] as $input) { ?>
+                <tr>
+                    <td><?php echo $input['name']; ?></td>
+                    <td><?php echo $input['price']; ?></td>
+                    <td><?php echo $input['quantity']; ?></td>
+                    <td><?php echo $input['quantity'] * $input['price']; ?></td>
+                </tr>
+            <?php } ?>
 
-	<td>Product</td>					
-	</tr>	
-
+			<form action="" method="POST">
+				<input type="submit" name="clear">
+			</form>
 <?php
-   
+if (isset($_POST['clear'])) {
+    unset($_SESSION['form_inputs']);
 }
-?>
+?>   
+
+
 
 
 
@@ -163,6 +160,11 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart']) && (isset($_POST['sm
 								</tr> -->
 							</tbody>
 						</table>
+						<?php
+} else {
+    echo "No inputs found in the session.";
+}
+?>
 						<a href="#" class="boxed-btn">Place Order</a>
 					</div>
 				</div>

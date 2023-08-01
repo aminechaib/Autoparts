@@ -1,4 +1,3 @@
-
 <style>
 #search {
     background: inherit !important;
@@ -33,42 +32,12 @@ label {
     <?php 
 require_once("../includes/initialize.php");
 
+
+
 /////////////////////////////////////////////////////////////////////////////
 
 if(is_post_request() && isset($_POST['ajouter'])){
-    $target_dir = "../uploads/";
-    $target_file = $target_dir . basename($_FILES["photo"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
-    
-    $check = getimagesize($_FILES["photo"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-    
-    
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
+   
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
@@ -80,10 +49,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['purchase_price'] = $_POST['purchase_price'] ?? NULL;
       $args['sale_price'] = $_POST['sale_price'] ?? NULL;
       $args['quantity'] = $_POST['quantity'] ?? NULL;
-      $args['photo'] = $_FILES['photo']['name'] ?? NULL;
+      $args['photo'] = $_POST['photo'] ?? NULL;
 
-
-     
       $piece = new piece($args);
       //var_dump($piece);
       ///////////////////////////////////////////////
@@ -122,6 +89,59 @@ include("../includes/app_head.php");
                     <i class="users icon"></i>
                     <i class="corner add icon"></i>
                     </i>&nbsp;Ajouter une piece</h2>
+                    <div class="field">
+                     <label>photo</label>     
+  <input type="file" id="fileInput"/>
+  <button onclick="uploadImage()">Upload</button>
+  <img id="image" />
+  </div>
+  <script>
+  function uploadImage() {
+      
+      var file = document.getElementById("fileInput").files[0];
+      var reader = new FileReader();
+      reader.onload = function () {
+        var imageData = reader.result;
+        var image = new Image();
+        image.src = imageData;
+        image.onload = function () {
+          var width = image.width;
+          var height = image.height;
+          var resizedImage = resizeImage(image, 1200, 1000);
+          document.getElementById("image").src = resizedImage;
+          saveImageToServer(resizedImage); // Call the function to save the image on the server
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resizeImage(image, width, height) {
+  var canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(image, 0, 0, width, height);
+
+  // Specify the image format explicitly (JPEG)
+  return canvas.toDataURL('image/jpeg', 0.8); // You can adjust the quality (0.0 to 1.0)
+}
+
+function saveImageToServer(imageData) {
+    var fileExtension = imageData.split(';')[0].split('/')[1];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText); // Optional: Display the server response
+      }
+    };
+    xhttp.open("POST", "save_image.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("imageData=" + encodeURIComponent(imageData) + "&extension=" + fileExtension);
+  
+
+}
+
+  </script>
                     <form method="POST" class="ui form" enctype="multipart/form-data">
                         <div class="three fields">
                             <div class="field">
@@ -145,6 +165,12 @@ include("../includes/app_head.php");
                                     }?>
                                 </select>
                             </div>
+              
+                                <div class="field">
+                                <label>photo</label>
+                                <input type="text" value="<?php   ?>" name="photo" placeholder="Nom de piece">
+                            </div>
+
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
@@ -166,11 +192,7 @@ include("../includes/app_head.php");
                             <div class="field">
                                 <label>sale_price</label>
                                 <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
-                            </div>
-                            <div class="field">
-                                <label>photo</label>
-                                <input type="file" value="<?php if(isset($_POST['photo'])) echo $_POST['photo']; ?>" name="photo" id="photo">
-                            </div>
+                            </div>                    
                         </div>
                         <div class="one fields">
                             <div class="field">

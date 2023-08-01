@@ -55,6 +55,10 @@ $client = Client::find_by_id($id);
                                 <label>Telephon</label>
                                 <input type="text" name="mobile_phone" placeholder="">
                             </div>
+                            <div class="field">
+                                <label>Mot de pass</label>
+                                <input type="password" name="hashed_password" placeholder="">
+                            </div>
 
                         </div>
                         
@@ -195,6 +199,15 @@ $(function() {
                         },
 
                     ]
+                },
+                hashed_password: {
+                    identifier: 'hashed_password',
+                    rules: [{
+                            type: 'emptyr',
+                            prompt: 'manque un mot de pass'
+                        },
+
+                    ]
                 }
               
 
@@ -210,6 +223,7 @@ $('#modifier_form<?php echo $id ?>')
     adresse    : '<?php echo h($client->adresse); ?>',
     email      : '<?php echo h($client->email); ?>',
     mobile_phone   : '<?php echo h($client->mobile_phone); ?>',
+    hashed_password : '<?php echo h($client->hashed_password); ?>',
     terms      : true
   })
 ;

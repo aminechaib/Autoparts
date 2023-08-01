@@ -16,9 +16,9 @@ label {
 
 
 <?php
-$compatible = Compatible::find_by_id($id);
+$voiture = Voiture::find_by_id($id);
 $moteurs = Moteur::find_all();
-$pieces = Piece::find_all();
+$models = Model::find_all();
 //var_dump(($marks));exit;
 ?>
 
@@ -26,23 +26,23 @@ $pieces = Piece::find_all();
 
 
             <div class="ui padded grid">
-            <h1>Modifier Compatible N° <?php echo $id ?></h1>
+            <h1>Modifier Voiture N° <?php echo $id ?></h1>
 
                 <div class="ui fifteen wide column row centered grid" id="modifier_grid<?php echo $id ?>">
                     <h2 class="ui left aligned header"><i class=" icons">
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
-                        </i>&nbsp;modifier la compatible</h2>
-                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_compatible.php?id=<?php echo $id ?>">
+                        </i>&nbsp;modifier la voiture</h2>
+                    <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_voiture.php?id=<?php echo $id ?>">
                         <div class="two fields">
                                 <div class="field">
-                                <label for="">Piece:</label>
+                                <label for="">Model:</label>
                                 
-                                <select class="ui search dropdown" name="id_piece">
-                                <option value="">Piece..</option>
-                               <?php foreach ($pieces as $piece) {
+                                <select class="ui search dropdown" name="id_model">
+                                <option value="">Model..</option>
+                               <?php foreach ($models as $model) {
                                    ?>
-                                <option value="<?php echo $piece->id;?>" <?php if($compatible->id_piece == $piece->id) echo 'selected'; ?>>  <?php echo $piece->name; ?></option>
+                                <option value="<?php echo $model->id;?>" <?php if($voiture->id_model == $model->id) echo 'selected'; ?>>  <?php echo $model->name; ?></option>
 
                                 <?php
                                }?>
@@ -52,7 +52,7 @@ $pieces = Piece::find_all();
                                 <option value="">Moteur..</option>
                                <?php foreach ($moteurs as $moteur) {
                                    ?>
-                                <option value="<?php echo $moteur->id;?>" <?php if($compatible->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name; ?></option>
+                                <option value="<?php echo $moteur->id;?>" <?php if($voiture->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name; ?></option>
                                 <?php
                                }?>
                                 </select>
@@ -172,11 +172,11 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($compatible->name); ?>',
-    reference     : '<?php echo h($compatible->reference); ?>',
-    quantity     : '<?php echo h($compatible->quantity); ?>',
-    purchase_price     : '<?php echo h($compatible->purchase_price); ?>',
-    sale_price     : '<?php echo h($compatible->sale_price); ?>', 
+    name     : '<?php echo h($voiture->name); ?>',
+    reference     : '<?php echo h($voiture->reference); ?>',
+    quantity     : '<?php echo h($voiture->quantity); ?>',
+    purchase_price     : '<?php echo h($voiture->purchase_price); ?>',
+    sale_price     : '<?php echo h($voiture->sale_price); ?>', 
     terms      : true
   })
 ;
