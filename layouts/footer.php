@@ -82,6 +82,7 @@
 	<script src="assets/js/main.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="toast/toast.js"></script>
 	<script type="text/javascript">
     
 	$(document).ready(function(){
@@ -153,9 +154,32 @@
 		
 	});
 
-
-	
-	
+	<?php
+		if($_SESSION['addedToCart'])
+		{
+	?>
+	toastr.options = {
+		'closeButton': false,
+		'debug': false,
+		'newestOnTop': false,
+		'progressBar': false,
+		'positionClass':'toast-bottom-right',
+		'preventDuplicates': false,
+		'onclick': null,
+		'showDuration':'2000',
+		'hideDuration':'100',
+		'timeOut':'2000',
+		'extendedTimeOut':'100',
+		'showEasing':'swing',
+		'hideEasing':'linear',
+		'showMethod':'fadeIn',
+		'hideMethod':'fadeOut'
+	}
+	toastr.success('piece ajouté!');	
+	<?php
+		}
+		$_SESSION['addedToCart'] = false;
+	?>
 	</script>
 
 </body>

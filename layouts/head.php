@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="toast/toast.css">
 
 </head>
 <body>
@@ -57,6 +58,7 @@
 		// push the id to session(cart) array
 		array_push($_SESSION['cart'], $id);
 		//echo 'here';exit;
+		$_SESSION['addedToCart'] = true;
 	}
 	//$cart_count = 0;
 	if(isset($_SESSION['cart']))
