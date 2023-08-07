@@ -1,15 +1,6 @@
 	<!-- head -->
 	<?php include('layouts/head.php'); ?>					
 	<!-- end head -->
-
-
-
-	<?php
-	
-
-	?>
-
-	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -24,7 +15,6 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-
 	<!-- cart -->
 	<div class="cart-section mt-150 mb-150">
   <div class="container">
@@ -34,22 +24,19 @@
           <table class="cart-table">
             <thead class="cart-table-head">
               <tr class="table-head-row">
-
               <?php
-
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $inputs = array();
-
     // Loop through the submitted inputs
-    if (isset($_POST['pr_name']) && is_array($_POST['pr_name'])) {
+    if (isset($_POST['checkout']) && ($_POST['pr_name']) && is_array($_POST['pr_name'])) {
         foreach ($_POST['pr_name'] as $index => $name) {
             // Assuming the other arrays (sa_price and quantity) are also received in the same order
             $price = $_POST['sa_price'][$index];
             $quantity = $_POST['quantity'][$index];
-
+            $reference = $_POST['pr_reference'][$index];
             $input = array(
                 'name' => $name,
+                'reference' => $reference,
                 'price' => $price,
                 'quantity' => $quantity,
             );
@@ -57,18 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $inputs[] = $input;
         }
     }
-
     $_SESSION['form_inputs'] = $inputs;
     header("Location: checkout.php"); // Redirect to the display page
     exit();
 }
 ?>
-
-
     <form action="" method="POST">
                     <th class="product-remove"></th>
                     <th class="product-image">Image</th>
                     <th class="product-name">Nom</th>
+                    <th class="product-reference">reference</th>
+                   
                     <th class="product-price">Prix</th>
                     <th class="product-quantity">Quantité</th>
                     <th class="product-total">Total</th>
@@ -79,7 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     foreach ($_SESSION['cart'] as $id) {
                         $piece = Piece::find_by_id($id);
-                        if ($piece) {
+                  
+                         if ($piece) {      
+                     //     var_dump($piece);
                             ?>
                             <tr class="table-body-row">
                                 <td class="product-remove"><a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)"><i class="far fa-window-close"></i></a></td>
@@ -87,9 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
                                 </td>
                                 <td class="product-name">
-                                    <?php echo $piece->name; ?>
-                                    <input type="hidden" value="<?php echo $piece->name; ?>" name="pr_name[]">
+                                    <?php echo $piece->piece_name; ?>
+                                    <input type="hidden" value="<?php  echo $piece->piece_name;  ?>" name="pr_name[]">
                                 </td>
+                                <td class="product-reference">
+                                    <?php echo $piece->reference; ?> 
+                                    <input type="hidden" value="<?php  echo $piece->reference;  ?>" name="pr_reference[]">
+                               </td>
                                 <td class="product-price">
                                     <?php echo $piece->sale_price . "  DZD"; ?>
                                     <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
@@ -106,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ?>
             </tbody>
         </table>
-        <input type="submit" value="Submit">
-    </form>
+        <input type="submit" value="Submit" name="checkout">
+  
 </body>
 </html>
 
@@ -141,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="hidden" name="subtotal_p" id="subtotal_p">
         <input type="hidden" name="shipping_p" id="shipping_p">
  <input type="submit" name="sm" value="checkout">
-      </form>
+    
         <div class="cart-buttons">
           <a href="cart.php?action=cancel" class="boxed-btn">Cancel</a>
           <a href="cart.php?action=update" class="boxed-btn">Update Cart</a>

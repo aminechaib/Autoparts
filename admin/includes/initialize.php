@@ -40,6 +40,8 @@ Compatible::set_database($database);
 Cart::set_database($database);
 Voiture::set_database($database);
 Admin_offre::set_database($database);
+Order::set_database($database);
+piece_name::set_database($database);
 //Hebergement::set_database($database);
 //Facture::set_database($database);
 $session = new Session;

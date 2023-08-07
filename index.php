@@ -172,8 +172,7 @@
 								</select>
 							</p>
 							<p>
-								<select name="compatible" id="compatible">
-									<option value="">---SELECT Moteur FIRST---</option>           
+					     
 									<?php
 									
 									?>
@@ -206,6 +205,8 @@ if(isset($_POST['search']))
 
 }else{
 	$pieces = Piece::find_all();
+	
+	//var_dump($pieces);
 }
 ?>
 
@@ -225,17 +226,18 @@ if(isset($_POST['search']))
 			<!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div class="row">
+<div class="row" id="compatible">
   <?php 
     if($pieces) {
       foreach ($pieces as $key => $piece) {
+		
   ?>
   <div class="col-lg-4 col-md-6 text-center">
     <div class="single-product-item">
       <div class="product-image">
         <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
       </div>
-      <h3><?php echo $piece->name." ".$piece->reference; ?></h3>
+      <h3><?php echo $piece->piece_name." ".$piece->reference; ?></h3>
       <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
       <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
         <?php 

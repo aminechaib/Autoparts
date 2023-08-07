@@ -11,6 +11,8 @@ if(!isset($page_title)){
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="classes/favico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $page_title; ?></title>
@@ -169,7 +171,10 @@ if(!isset($page_title)){
               <i class="database small icon"></i>
               <div class="content">model</div>
             </a>
-           
+            <a class="item open_piece_name" href="<?php echo url_for('piece_name/index.php'); ?>">
+              <i class="file alternate outline small icon"></i>
+                  <div class="content">piece_name</div>
+                </a>
               <a class="item open_piece" href="<?php echo url_for('piece/index.php'); ?>">
               <i class="file alternate outline small icon"></i>
                   <div class="content">piece</div>

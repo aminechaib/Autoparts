@@ -1,6 +1,5 @@
 <?php 
 
-
 class Piece{
 
 
@@ -12,18 +11,17 @@ class Piece{
     }
 
     static protected $db_columns =[
+
         'id',
-        'name',
-        'reference',
-        'creation_date',
         'quantity',
-        'photo',
         'purchase_price',
         'sale_price',
-        'sale_price',
+        'reference',
+        'creation_date',
         'id_admin',
-        'id_categorie',
-        'id_mark'
+        'id_mark',
+        'id_name'
+       
     ];
 
     static public function find_by_sql($sql){
@@ -45,8 +43,16 @@ class Piece{
         return $object_array;
     }
 
+    static public function find_names(){
+        $sql = "SELECT name FROM piece_name";
+       return self::find_by_sql($sql);
+    }
+
     static public function find_all(){
-        $sql = "SELECT * FROM piece ORDER by id DESC";
+        $sql = "SELECT c.name AS category_name, photo ,pn.name AS piece_name, p.*
+        FROM piece p
+        JOIN piece_name pn ON p.id_name = pn.id
+        JOIN category c ON pn.id_categorie = c.id ORDER by id DESC";
        return self::find_by_sql($sql);
     }
     static public function find_by_status(){
@@ -64,16 +70,23 @@ class Piece{
         return $object;
     } 
 
+    
     static public function find_by_id($id){
-        $sql = "SELECT * FROM piece ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $object_array= self::find_by_sql($sql);
-        if(!empty($object_array)){
+        $sql = "SELECT c.name AS category_name, photo, pn.name AS piece_name, p.* ";
+        $sql .= "FROM piece p ";
+        $sql .= "JOIN piece_name pn ON p.id_name = pn.id ";
+        $sql .= "JOIN category c ON pn.id_categorie = c.id ";
+        $sql .= "WHERE p.id='". self::$database->escape_string($id) ."' ";
+        $sql .= "ORDER by p.id DESC";
+    
+        $object_array = self::find_by_sql($sql);
+        if (!empty($object_array)) {
             return array_shift($object_array);
-        }else{
+        } else {
             return false;
         }
     }
+    
 
 
 
@@ -178,7 +191,19 @@ class Piece{
         }
 
     }
-
+    
+    static public function piece_name($id)
+    {
+        $sql = "SELECT name FROM piece_name ";
+        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
+        $piece_name= self::find_by_sql($sql);
+        //var_dump(array_shift($piece_name));exit;
+        if(!empty($piece_name)){
+            return array_shift($piece_name);
+        }else{
+            return false;
+        }
+    }
 
     public function update(){
         $attributes = $this->sanitized_attributes();
@@ -221,7 +246,6 @@ class Piece{
 
         return $row;
     }
-
     static public function mark_name($id)
     {
         $sql = "SELECT name FROM mark ";
@@ -247,17 +271,17 @@ class Piece{
             return false;
         }
     }
-
     /////// end record code////////////////////////////
     
-    
-    
-    
+
 
     public $quantity;
     public $photo;
+    public $category_name;
     public $purchase_price;
     public $sale_price;
+    public $id_name;
+    public $piece_name;
     public $id_categorie;
     public $id; 
     public $name;
@@ -270,24 +294,27 @@ class Piece{
     public function __construct($args=[])
     {
         $this->id = $args['id'] ?? '';
-        $this->name = $args['name'] ?? '';
+        $this->piece_name = $args['piece_name'] ?? '';
+        $this->id_name = $args['id_name'] ?? '';
         $this->creation_date = $args['creation_date'] ?? 1;
         $this->id_admin = 1;
+        $this->category_name = $args['category_name'] ?? '';
         $this->reference = $args['reference'] ?? '';
         $this->id_mark = $args['id_mark'] ?? '';
         $this->id_categorie = $args['id_categorie'] ?? '';
         $this->purchase_price = $args['purchase_price'] ?? '';
         $this->sale_price = $args['sale_price'] ?? '';
         $this->quantity = $args['quantity'] ?? '';
-        $this->photo = $args['photo'] ?? '';
+     
     }
     protected function validate(){
+        echo "goooooood morning";
         $this->errors = [];
         //nom piece
-        if(is_blank($this->name)) {
-            $this->errors[] = "nom du piece ne doit pas être vide.";
-        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom du piece doit avoir au moins 4 caractéres! ";  }
+        // if(is_blank($this->id_name)) {
+        //     $this->errors[] = "nom du piece ne doit pas être vide.";
+        // }elseif(!has_length($this->id_name, array('min' => 4, 'max' => 255))) {
+        //     $this->errors[] = "nom du piece doit avoir au moins 4 caractéres! ";  }
           return $this->errors;
     }
     

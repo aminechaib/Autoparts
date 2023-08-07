@@ -241,10 +241,12 @@ class Compatible{
     
     public $id;
     public $name;
+    public $photo;
     public $puissance;
     public $reference;
     public $id_piece;
     public $id_moteur;
+    public $sale_price;
     public $creation_date;
     public $id_ad;
     public $errors = [];

@@ -97,18 +97,26 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $pieces = Piece::find_all(); 
-                               if($pieces){
+                        //    $piece_n = Piece_name::find_all();
+                        //    if($piece_n){
+                        //     foreach($piece_n as $pie){
+                        //         echo h($pie->category_name($pie->id_categorie)->name);
+                        //     }
+                        
+                        // };
+                              
+                        $pieces = Piece::find_all();
+                                 if($pieces){
                                    foreach($pieces as $piece){
                                ?>
-                               <tr>
+                                   <tr>
                                    <td><?php echo h($piece->id);?></td>
-                                   <td><?php echo h($piece->name);?></td>
+                                   <td><?php echo h($piece->piece_name);?></td>
                                    <td><?php echo h($piece->reference);?></td>
                                    <td><?php echo h($piece->quantity);?></td>
                                    <td><?php echo h($piece->purchase_price);?></td>
                                    <td><?php echo h($piece->sale_price);?></td>
-                                   <td><?php echo h($piece->category_name($piece->id_categorie)->name);?></td>
+                                   <td><?php echo h($piece->category_name);?></td>
                                    <td><?php echo h($piece->mark_name($piece->id_mark)->name);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
                                    <td>

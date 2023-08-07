@@ -74,6 +74,20 @@
   INSERT INTO `mark` (`name`, `id_ad`) VALUES ('peugeot', 1);
 
   -- --------------------------------------------------------
+  -- Table structure for table `piece_name`
+  --
+
+    CREATE TABLE `piece_name` (
+      `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      `name` varchar(20) NOT NULL,
+      `photo` varchar(20) NOT NULL,
+      `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+      `id_admin` int NOT NULL,
+      FOREIGN KEY (id_admin) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
+      `id_categorie` int NOT NULL,
+      FOREIGN KEY (id_categorie) REFERENCES category (id)  ON UPDATE CASCADE ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
   --
 
@@ -82,9 +96,7 @@
 
     CREATE TABLE `piece` (
       `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      `name` varchar(20) DEFAULT NULL,
       `quantity` varchar(20) DEFAULT NULL,
-      `photo` varchar(20) DEFAULT NULL,
       `purchase_price` float DEFAULT NULL,
       `sale_price` float DEFAULT NULL,
       `reference` varchar(20) DEFAULT NULL,
@@ -93,8 +105,8 @@
       FOREIGN KEY (id_admin) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
       `id_mark` int NOT NULL,
       FOREIGN KEY (id_mark) REFERENCES mark (id)  ON UPDATE CASCADE ON DELETE CASCADE,
-      `id_categorie` int NOT NULL,
-      FOREIGN KEY (id_categorie) REFERENCES category (id)  ON UPDATE CASCADE ON DELETE CASCADE
+       `id_name` int NOT NULL,
+      FOREIGN KEY (id_name) REFERENCES piece_name (id)  ON UPDATE CASCADE ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
@@ -209,11 +221,11 @@ ALTER TABLE `order_piece`
     -- Table structure for table `admin_offre`
   --
 
-  CREATE TABLE `admin_offre` (
-    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nom_offre` varchar(20) NOT NULL,
-    `temp_de_offre` time(20) NOT NULL,
-    `description_offre` varchar(255) NOT NULL,
-    `id_piece` int NOT NULL,
-    FOREIGN KEY (id_piece) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  -- CREATE TABLE `admin_offre` (
+  --   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  --   `nom_offre` varchar(20) NOT NULL,
+  --   `temp_de_offre` time(20) NOT NULL,
+  --   `description_offre` varchar(255) NOT NULL,
+  --   `id_piece` int NOT NULL,
+  --   FOREIGN KEY (id_piece) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
+  -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

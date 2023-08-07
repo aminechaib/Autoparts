@@ -92,7 +92,7 @@
 <?php
 if (isset($_SESSION['form_inputs']) && is_array($_SESSION['form_inputs']) && isset($_SESSION['client'])) {
     
-	var_dump($_SESSION['client']);
+	// var_dump($_SESSION['client']);
 	?>
 				<div class="col-lg-6">
 					<div class="order-details-wrap">
@@ -110,8 +110,10 @@ if (isset($_SESSION['form_inputs']) && is_array($_SESSION['form_inputs']) && iss
 							
 
 <tr>
-<?php foreach ($_SESSION['form_inputs'] as $input) { ?>
+<?php foreach ($_SESSION['form_inputs'] as $input) {  ?>
+	
                 <tr>
+					<td><?php echo $input['reference']; ?></td>
                     <td><?php echo $input['name']; ?></td>
                     <td><?php echo $input['price']; ?></td>
                     <td><?php echo $input['quantity']; ?></td>
@@ -121,6 +123,7 @@ if (isset($_SESSION['form_inputs']) && is_array($_SESSION['form_inputs']) && iss
 
 			<form action="" method="POST">
 				<input type="submit" name="clear">
+				
 			</form>
 <?php
 if (isset($_POST['clear'])) {

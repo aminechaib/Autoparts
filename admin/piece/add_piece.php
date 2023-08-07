@@ -40,16 +40,14 @@ if(is_post_request() && isset($_POST['ajouter'])){
    
     //création et préparation de données pour les convertirs en objets 
       $args = [];
-      $args['name'] = $_POST['name'] ?? NULL;
+      $args['id_name'] = $_POST['id_name'] ?? NULL;
       $args['id_mark'] = $_POST['id_mark'] ?? NULL;
       $args['id_admin'] = 1;
       $args['id'] ?? '';
       $args['reference'] = $_POST['reference'] ?? NULL;
-      $args['id_categorie'] = $_POST['id_categorie'] ?? NULL;
       $args['purchase_price'] = $_POST['purchase_price'] ?? NULL;
       $args['sale_price'] = $_POST['sale_price'] ?? NULL;
       $args['quantity'] = $_POST['quantity'] ?? NULL;
-      $args['photo'] = $_POST['photo'] ?? NULL;
 
       $piece = new piece($args);
       //var_dump($piece);
@@ -79,7 +77,8 @@ include("../includes/app_head.php");
 
             <?php include('../includes/menu_head.php'); 
             $marks = Mark::find_all_piece();
-            $categorys = Category::find_all();
+       $names = piece_name::find_all_names();
+    //    var_dump($names);exit;
             ?>
 
             <div class="ui padded grid">
@@ -154,27 +153,19 @@ function saveImageToServer(imageData) {
                                 </select>
                             </div>
                             <div class="field">
-                                <label for="">category:</label>
-                                <select class="ui search dropdown" name="id_categorie">
-                                    <option value="">category..</option>
-                                    <?php foreach ($categorys as $category) {
+                                <label for="">name:</label>
+                                <select class="ui search dropdown" name="id_name">
+                                    <option value="">name..</option>
+                                    <?php foreach ($names as $name) {
                                     ?>
-                                    <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
+                                    <option value="<?php echo $name->id; ?>">  <?php echo $name->name;?></option>
 
                                     <?php
                                     }?>
                                 </select>
                             </div>
               
-                                <div class="field">
-                                <label>photo</label>
-                                <input type="text" value="<?php   ?>" name="photo" placeholder="Nom de piece">
-                            </div>
-
-                            <div class="field">
-                                <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
-                            </div>
+                              
                         </div>
                         <div class="four fields">
                             <div class="field">
