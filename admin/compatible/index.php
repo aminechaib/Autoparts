@@ -86,11 +86,12 @@ height: 100%;
                         </thead>
                         <tbody>
                            <?php
-                               $compatibles = Compatible::find_all();
-                               //var_dump($compatibles);exit;
+                               $compatibles = Compatible::find_all_get_name();
+                               //
                                if($compatibles)
                                {
                                    foreach($compatibles as $compatible){
+                                    // var_dump($compatible);exit;
                                ?>
                                <tr>
                                     <td><?php echo h($compatible->id); ?></td>
@@ -102,8 +103,8 @@ height: 100%;
 //     echo "No matching piece found.";
 // }exit;
 ?>
-                                    <td><?php echo h($compatible->piece_name($compatible->id_piece)->reference);?></td>       
-                                    <td><?php echo h($compatible->piece_name($compatible->id_piece)->name);?></td>
+                                    <td><?php echo h($compatible->reference);?></td>       
+                                    <td><?php echo h($compatible->name);?></td>
                                     <td><?php echo h($compatible->moteur_name($compatible->id_moteur)->name."  ".$compatible->moteur_puissance($compatible->id_moteur)->puissance)." ch"; ?></td>
                                     <td><?php echo h($compatible->creation_date);?></td>
                                     <td>

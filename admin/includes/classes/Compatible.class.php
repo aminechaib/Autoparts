@@ -43,6 +43,14 @@ class Compatible{
        return self::find_by_sql($sql);
     }
 
+    static public function find_all_get_name(){
+        $sql = "SELECT piece_name.name, piece.reference, compatible.id_moteur
+        FROM piece
+        INNER JOIN piece_name ON piece.id_name = piece_name.id
+        INNER JOIN compatible ON piece.id = compatible.id_piece ";
+       return self::find_by_sql($sql);
+    }
+
     static protected function instantiate($record){
         $object = new self;
         foreach ($record as $property => $value) {
@@ -181,9 +189,10 @@ class Compatible{
     }
     static public function find_piece_by_moteur_id($id){
         {
-            $sql = "SELECT p.name,p.photo,p.sale_price,p.reference FROM piece p
-            JOIN compatible c ON p.id = c.id_piece
-            JOIN moteur m ON m.id = c.id_moteur ";
+            $sql = "SELECT piece_name.name, piece.reference, compatible.id_moteur
+            FROM piece
+            INNER JOIN piece_name ON piece.id_name = piece_name.id
+            INNER JOIN compatible ON piece.id = compatible.id_piece ";
             $sql .="WHERE m.id='". self::$database->escape_string($id) ."'";
             // var_dump($sql);exit;
             $compatible= self::find_by_sql($sql);
