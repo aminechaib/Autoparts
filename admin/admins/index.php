@@ -1,10 +1,10 @@
 <?php 
 require_once("../includes/initialize.php");
-if(require_login() && ! $session->check_one()){
-    redirect_to(url_for('dashboa.php'));
-    }else{
-        
-    }
+if(require_login() && !$session->check_one()){
+    redirect_to(url_for('dashboard.php'));
+}else{
+    
+}
 include("../includes/app_head.php");
 
 ?>
