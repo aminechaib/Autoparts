@@ -172,7 +172,7 @@
 								</select>
 							</p>
 							<p>
-								<select name="compatible" id="compatible">
+								<select name="compatible" id="compatibles">
 									<option value="">---SELECT Moteur FIRST---</option>           
 									<?php
 									
@@ -241,15 +241,15 @@ if(isset($_POST['search']))
       <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
       <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
         <?php 
-if(isset($_SESSION['client'])){
-	if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
-		echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
-	  } else {
-		echo '<input type="submit" name="" value="Déjà ajouté">';
-	  }
-}else{?>
-<p>connect</p><?php
-}
+			if(isset($_SESSION['client'])){
+				if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
+					echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+				} else {
+					echo '<input type="submit" name="" value="Déjà ajouté">';
+				}
+			}else{?>
+			<p>connect</p><?php
+			}
         ?>
       </form>
     </div>
@@ -340,95 +340,43 @@ if(isset($_SESSION['client'])){
     <!-- end cart banner section -->
 
 	<!-- testimonail-section -->
-	<div class="testimonail-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="testimonial-sliders">
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar1.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Saira Hakim <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar2.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>David Niph <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar3.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Jacob Sikim <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!-- end testimonail-section -->
 	
 	<!-- advertisement section -->
-	<div class="abt-section mb-150">
+	<!-- <div class="abt-section mb-150">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
-					</div>
+					<video width="640" height="360" controls>
+        <source src="ad.mp4" type="video/mp4">	
+				</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-text">
-						<p class="top-sub">Since Year 1999</p>
-						<h2>We are <span class="orange-text">Fruitkha</span></h2>
-						<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-						<a href="about.php" class="boxed-btn mt-4">know more</a>
-					</div>
+						<p class="top-sub">Depuis l'année 2019</p>
+						<h3>Nous sommes<span class="orange-text">AutoParts</span></h3>
+						<p>Bienvenue chez AutoPart ! Depuis 2019, nous sommes votre destination privilégiée pour des pièces automobiles de qualité supérieure. Notre engagement envers l'industrie automobile et notre gamme exhaustive de produits font de nous le partenaire idéal pour entretenir et réparer votre véhicule</p>
+						</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- end advertisement section -->
 	
 	<!-- shop banner -->
-	<section class="shop-banner">
+	<!-- <section class="shop-banner">
     	<div class="container">
         	<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
             <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
             <a href="shop.php" class="cart-btn btn-lg">Shop Now</a>
         </div>
-    </section>
+    </section> -->
 	<!-- end shop banner -->
 
 	<!-- latest news -->
-	<div class="latest-news pt-150 pb-150">
+	<!-- <div class="latest-news pt-150 pb-150">
 		<div class="container">
 
 			<div class="row">
@@ -490,7 +438,7 @@ if(isset($_SESSION['client'])){
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- end latest news -->
 	<!-- logo_carousel -->
 	<?php include('layouts/logo_carousel.php'); ?>	

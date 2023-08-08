@@ -51,7 +51,7 @@ class Compatible{
        return self::find_by_sql($sql);
     }
     static public function test($id){
-        $sql = "SELECT piece_name.name,piece_name.photo, piece.reference, compatible.id_moteur
+        $sql = "SELECT piece.id, piece.sale_price, piece_name.name,piece_name.photo, piece.reference, compatible.id_moteur
         FROM piece
         INNER JOIN piece_name ON piece.id_name = piece_name.id
         INNER JOIN compatible ON piece.id = compatible.id_piece where id_moteur=$id";

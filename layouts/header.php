@@ -19,7 +19,7 @@
                             <li><a href="about.php">À propos</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="404.php">Page 404</a></li>
+                                    <!-- <li><a href="404.php">Page 404</a></li> -->
                                     <li><a href="about.php">À propos</a></li>
                                     <li><a href="cart.php">Panier</a></li>
                                     <li><a href="checkout.php">Check-out</a></li>
@@ -28,12 +28,7 @@
                                     <li><a href="shop.php">Produit</a></li>
                                 </ul>
                             </li>
-                            <li><a href="news.php">Actualités</a>
-                                <ul class="sub-menu">
-                                    <li><a href="news.php">Actualités</a></li>
-                                    <li><a href="single-news.php">Actualité unique</a></li>
-                                </ul>
-                            </li>
+                         <li><a href="news.php">Actualités</a></li>
                             <li><a href="contact.php">Contact</a></li>
                             <li><a href="shop.php">Produit</a>
                                 <ul class="sub-menu">
