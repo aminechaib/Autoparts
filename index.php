@@ -140,7 +140,7 @@
 					?>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form method="POST" type="POST"> 
+					<form method="POST" type="POST"> 
 							<p>
 								<select name="mark" id="mark">
 									<option value="">---SELECT Mark FIRST---</option>           
@@ -172,13 +172,13 @@
 								</select>
 							</p>
 							<p>
-					     
+								<select name="compatible" id="compatible">
+									<option value="">---SELECT Moteur FIRST---</option>           
 									<?php
 									
 									?>
 								</select>
 							</p>
-
 							<input type="hidden" name="token" value="FsWga4&@f6aw" />
 							<p><input type="submit" value="search" name="sub_moteur" ></p>
 						

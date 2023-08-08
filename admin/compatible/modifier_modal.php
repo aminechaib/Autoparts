@@ -19,6 +19,7 @@ label {
 $compatible = Compatible::find_by_id($id);
 $moteurs = Moteur::find_all();
 $pieces = Piece::find_all();
+
 //var_dump(($marks));exit;
 ?>
 

@@ -55,7 +55,7 @@ height: 100%;
 
                                    
                     <div class="right item">
-                        <a href="add_piece.php" class="">
+                        <a href="add_piece_name.php" class="">
                             <i class="big plus circle icon"></i>
 
                         </a>

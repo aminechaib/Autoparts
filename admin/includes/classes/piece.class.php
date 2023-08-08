@@ -78,7 +78,6 @@ class Piece{
         $sql .= "JOIN category c ON pn.id_categorie = c.id ";
         $sql .= "WHERE p.id='". self::$database->escape_string($id) ."' ";
         $sql .= "ORDER by p.id DESC";
-    
         $object_array = self::find_by_sql($sql);
         if (!empty($object_array)) {
             return array_shift($object_array);
