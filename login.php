@@ -58,7 +58,9 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-	<?php include('layouts/header.php'); ?>	
+	<?php 
+	include('layouts/header.php');
+	 ?>	
 	<!-- contact form -->
 	<div class="contact-from-section mt-150 mb-150">
 		<div class="container">

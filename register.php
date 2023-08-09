@@ -1,9 +1,11 @@
 	<!-- head -->
-	<?php include('layouts/head.php'); 
+
+<?php 
+  include('layouts/head.php'); 
 	?>
-		
+
 	<?php
-	require_once("admin/includes/initialize.php");
+	//require_once("admin/includes/initialize.php");
 	
 	/////////////////////////////////////////////////////////////////////////////
 
@@ -40,10 +42,14 @@ if(is_post_request() && isset($_POST['ajouter'])){
       //////////////////////////////////////////////
 	?>					
 	<!-- end head -->
-	
+  <?php 
+	include('layouts/header.php');
+	 ?>	
 
 
-	<?php include('admin/includes/menu_head.php'); ?>
+	<?php 
+  //include('admin/includes/menu_head.php'); 
+  ?>
 	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -59,7 +65,6 @@ if(is_post_request() && isset($_POST['ajouter'])){
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-
 	<div class="contact-from-section mt-150 mb-150">
   <div class="container">
     <div class="row">
@@ -112,6 +117,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
                         </ul>
 
                     </div>
+    
         </div>
       </div>
       <div class="col-lg-4">
