@@ -63,14 +63,16 @@
 
 
 if($pieces){
-	foreach($pieces as $vlue){	
-						?>
-<div class="col-lg-4 col-md-6 text-center <?php echo h($vlue->category_name($vlue->id_categorie)->name);?>">
+	foreach($pieces as $vlue){	?>
+
+<div class="col-lg-4 col-md-6 text-center <?php echo h($vlue->category_name);?>">
 	<div class="single-product-item">
 		<div class="product-image">
+		<?php echo $vlue->photo; ?>
 			<a href="single-product.html"><img src="admin/uploads/<?php echo $vlue->photo; ?>" alt=""></a>
 		</div>
-		<h3><?php echo h($vlue->name);?></h3>
+	
+		<h3><?php echo h($vlue->piece_name);?></h3>
 		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DZD </p>
 		<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 	</div>

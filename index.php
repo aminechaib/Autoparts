@@ -171,17 +171,6 @@
 									?>
 								</select>
 							</p>
-							<p>
-								<select name="compatible" id="compatibles">
-									<option value="">---SELECT Moteur FIRST---</option>           
-									<?php
-									
-									?>
-								</select>
-							</p>
-							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="search" name="sub_moteur" ></p>
-						
 							<?php 
 								if(isset($_POST['am']) && isset($_POST['sub_moteur'])){
 									echo "great thing we have<br>".$mark->name;
@@ -198,16 +187,11 @@
 	</div>
 
 <?php
-if(isset($_POST['search']))
-{
-	// eb3at rekosssssssssssssss ta3 pieces 
-	// rah yjiblek Object
 
-}else{
 	$pieces = Piece::find_all();
 	
 	//var_dump($pieces);
-}
+
 ?>
 
 	<!-- end contact form -->

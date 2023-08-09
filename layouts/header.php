@@ -15,7 +15,7 @@
 						<!-- menu start -->
 						<nav class="main-menu">
                             <ul>
-                            <li class="current-list-item"><a href="index.php">Accueil--</a></li>
+                            <li class="current-list-item"><a href="index.php">Accueil</a></li>
                             <li><a href="about.php">À propos</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="sub-menu">
