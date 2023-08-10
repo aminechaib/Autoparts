@@ -171,6 +171,7 @@
 									?>
 								</select>
 							</p>
+							<p><input type="text" id="productFilter" placeholder="Filter by name"></p>
 							<?php 
 								if(isset($_POST['am']) && isset($_POST['sub_moteur'])){
 									echo "great thing we have<br>".$mark->name;
@@ -206,6 +207,7 @@
 					</div>
 				</div>
 			</div>
+		
 
 			<!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -243,6 +245,27 @@
     }
   ?>
 </div>
+
+<script>
+  const filterInput = document.getElementById('productFilter');
+  const productContainer = document.getElementById('compatible');
+
+  filterInput.addEventListener('input', function() {
+    const searchTerm = filterInput.value.trim().toLowerCase();
+
+    Array.from(productContainer.getElementsByClassName('single-product-item')).forEach(item => {
+      const productName = item.querySelector('h3').textContent.toLowerCase();
+      const productReference = item.querySelector('h3').textContent.toLowerCase();
+      
+      if (productName.includes(searchTerm) || productReference.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 
 <script>
   $(document).ready(function() {
