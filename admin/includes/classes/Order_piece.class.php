@@ -203,23 +203,17 @@ class Order_piece{
     public $sale_price;
     public $errors = [];
     
-    public function __construct($args=[])
-    {    if (isset($_SESSION['data']) && is_array($_SESSION['data'])) {
-      foreach ($_SESSION['data'] as $item) {
-          if (isset($item['sale_price']) && isset($item['quantity']) && isset($item['idz'])) {
-          echo "<br>id_here_ord_class=";var_dump($_SESSION['order_id']);
-        
+    public function __construct(int $id_order=null, $args=[])
+    {
+        // var_dump($args);exit;
+        $this->id_order = $id_order;
         $this->id = $args['id'] ?? '';
         $this->creation_date = date('Y-m-d H:m:s');
         $this->id_ad = 1;
-        $this->id_piece = $item['idz'];
-      $this->id_order = $_SESSION['order_id'];
-  $this->quantity = $item['quantity'];
-        $this->sale_price = $item['sale_price'];
-       }
-      }
-  }
-     }
+        $this->id_piece = $args['id'];
+        $this->quantity = $args['quantity'];
+        $this->sale_price = $args['sale_price'];
+    }
     protected function validate(){
         $this->errors = [];
         //nom order_piece

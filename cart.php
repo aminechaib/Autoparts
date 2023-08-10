@@ -33,27 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
       for ($i = 0; $i < count($_SESSION['cart']); $i++) {
           $data[$i] = array(
-              'idz' => $_SESSION['cart'][$i],
-              'name' => $_POST['pr_name'][$i],
-              'reference' => $_POST['pr_reference'][$i],
+              'id' => $_SESSION['cart'][$i],
               'sale_price' => $_POST['sa_price'][$i],
               'quantity' => $_POST['quantity'][$i],
           ); 
     }  
       $orderInstance = new Order();
       $order = $orderInstance->create();
-      $_SESSION['order_id'] = $orderInstance->id; 
+      $id_order = $orderInstance->id; 
    
-  //  var_dump($_SESSION['order_id']);   
-  echo "<br>id_here_cart";var_dump($_SESSION['order_id']);
-        
-     $_SESSION['data']=$data;
-     var_dump($_SESSION['data']);
-     
-      // var_dump($order_id);
-      // echo $order_id;
-      $order_piece = new Order_piece();
-      $order_pieces = $order_piece->create();
+      //var_dump($id_order);exit;
+      // var_dump($data);exit;
+      // echo $id_order;
+      foreach ($data as $key => $args) {
+        $order_piece = new Order_piece($id_order, $args);
+        $order_pieces = $order_piece->create();
+      }
    
     $_SESSION['form_inputs'] = $inputs;
    
