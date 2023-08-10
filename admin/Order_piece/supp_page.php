@@ -5,11 +5,14 @@ require_login();
 
  $id = $_GET['id'] ?? NULL;
 if(isset($id) && !empty($id)){
-        $compatible = Compatible::delete($id);
+
+        $piece = Piece::delete($id);
         session_start();
 $_SESSION['toast'] = true;
 $_SESSION['toastType'] = "une suppression";
-        redirect_to('index.php'); 
+
+        redirect_to('index.php');
+   
 }else{
     echo 'faragh';
 }

@@ -54,14 +54,6 @@
 
 <?php
 
-
-
-
-
-
-
-
-
 if($pieces){
 	foreach($pieces as $vlue){	?>
 

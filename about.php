@@ -36,8 +36,8 @@
 										<i class="fas fa-shipping-fast"></i>
 									</div>
 									<div class="content">
-										<h3>Home Delivery</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<h3>Livraison à domicile</h3>
+										<p>Nous proposons la livraison à domicile gratuite sur les commandes de plus de 10000DZD. Vous pouvez choisir d'avoir votre commande livrée à votre domicile ou à votre bureau. Nous proposons également une variété d'options de livraison, afin que vous puissiez choisir l'option qui vous convient le mieux.</p>
 									</div>
 								</div>
 							</div>
@@ -47,8 +47,8 @@
 										<i class="fas fa-money-bill-alt"></i>
 									</div>
 									<div class="content">
-										<h3>Best Price</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<h3>Meilleur prix</h3>
+										<p>Nous sommes convaincus que vous trouverez les meilleurs prix sur les pièces automobiles chez nous. Nous vous invitons à comparer nos prix à ceux de nos concurrents et à constater par vous-même que nous offrons les meilleurs prix possibles.</p>
 									</div>
 								</div>
 							</div>
@@ -58,8 +58,8 @@
 										<i class="fas fa-briefcase"></i>
 									</div>
 									<div class="content">
-										<h3>Custom Box</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<h3>Boîte personnalisée</h3>
+										<p>Si vous souhaitez en savoir plus sur nos boîtes personnalisées, n'hésitez pas à nous contacter. Nous serons heureux de répondre à toutes vos questions et de vous aider à choisir la boîte parfaite pour vos besoins.</p>
 									</div>
 								</div>
 							</div>
@@ -69,8 +69,8 @@
 										<i class="fas fa-sync-alt"></i>
 									</div>
 									<div class="content">
-										<h3>Quick Refund</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<h3>Remboursement rapide</h3>
+										<p>Nous offrons un remboursement rapide pour les pièces automobiles. Si vous n'êtes pas satisfait de votre achat, vous pouvez le retourner dans les 5 jours pour un remboursement complet</p>
 									</div>
 								</div>
 							</div>

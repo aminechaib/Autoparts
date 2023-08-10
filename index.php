@@ -60,7 +60,7 @@
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
 								<p class="subtitle">Grande vente en cours !</p>
-								<h1>Obtenez une remise de décembre</h1>
+								<h1>Attendez les soldes ou les promotions</h1>
 								<div class="hero-btns">
 									<a href="shop.php" class="boxed-btn">Visitez notre Produit</a>
 									<a href="contact.php" class="bordered-btn">Contactez-nous</a>
@@ -86,7 +86,7 @@
 						</div>
 						<div class="content">
 							<h3>Livraison à domicile</h3>
-							<p>Pour toute commande de plus de 5000da</p>
+							<p>Pour toute commande de plus de 10000DZD</p>
 						</div>
 					</div>
 				</div>
@@ -112,7 +112,7 @@
 						</div>
 						<div class="content">
 						<h3>Remboursement</h3>
-						<p>Obtenez un remboursement dans les 3 jours !</p>
+						<p>Obtenez un remboursement dans les 5 jours !</p>
 						</div>
 					</div>
 				</div>

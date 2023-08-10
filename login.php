@@ -81,12 +81,15 @@
 							
 							<input type="hidden" name="token" value="FsWga4&@f6aw" />
 							<p><input type="submit" name="ajouter" value="connecter"></p>
-							<div class="<?php if(!empty($errors)){ echo 'ui negative message'; ?>">
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="<?php if(!empty($errors)){ echo 'ui negative message'; ?>">
 						<i class="close icon"></i>
 						<div class="header">
 						</div>
 						<ul class="list">
-										
 						<?php
 							foreach ($errors as $error) {
 							echo '<li>'. $error . '</li>';
@@ -96,9 +99,6 @@
 						</ul>
 					</div>
 						</form>
-					</div>
-				</div>
-				<div class="col-lg-4">
 					<div class="contact-form-wrap">
 						<div class="contact-form-box">
 							<h4><i class="fas fa-map"></i> Shop Address</h4>

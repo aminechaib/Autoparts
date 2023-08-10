@@ -88,27 +88,21 @@ include("../includes/app_head.php");
                     <form method="POST" class="ui form">
                         <div class="three fields">
                                 <div class="field">
-                                <label for="">Piece:</label>
-                                
-                                <select class="ui search dropdown" name="id_piece">
-                                <option value="">Piece..</option>
-                               <?php foreach ($pieces as $piece) {
-                                   ?>
-                                <option value="<?php echo $piece->id; ?>">  <?php echo $piece->reference."  ".$piece->name; ?></option>
+                 <label for="searchInput">Piece:</label>
+                <input type="text" id="searchInput" onkeyup="filterDropdownOptions('dropdownPiece', this.value)" placeholder="Search...">
+                <select class="ui search dropdown" name="id_piece" id="dropdownPiece">
+                    <?php include('fetch_piece_name.php'); ?>
+                </select>
+               
+               
+                <label for="searchInputm">Moteur:</label>
+                <input type="text" id="searchInputm" onkeyup="filterDropdownOptions('dropdownMoteur', this.value)" placeholder="Search...">
+                <select class="ui search dropdown" name="id_moteur" id="dropdownMoteur">
+                    <?php include('fetch_moteur_name.php'); ?>
+                </select>
+                                            
 
-                                <?php
-                               }?>
-                                </select>
-                                <label for="">Moteur:</label>
-                                
-                                <select class="ui search dropdown" name="id_moteur">
-                                <option value="">Moteur..</option>
-                               <?php foreach ($moteurs as $moteur) {
-                                   ?>
-                                <option value="<?php echo $moteur->id; ?>">  <?php echo $moteur->name."  ".$moteur->puissance."ch"; ?></option>
-                                <?php
-                               }?>
-                                </select>
+                              
 
                             </div>
                         </div>

@@ -26,27 +26,42 @@
               <tr class="table-head-row">
               <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $inputs = array();
-    // Loop through the submitted inputs
-    if (isset($_POST['checkout']) && ($_POST['pr_name']) && is_array($_POST['pr_name'])) {
-        foreach ($_POST['pr_name'] as $index => $name) {
-            // Assuming the other arrays (sa_price and quantity) are also received in the same order
-            $price = $_POST['sa_price'][$index];
-            $quantity = $_POST['quantity'][$index];
-            $reference = $_POST['pr_reference'][$index];
-            $input = array(
-                'name' => $name,
-                'reference' => $reference,
-                'price' => $price,
-                'quantity' => $quantity,
-            );
+  $inputs = array();
+  
+  if (isset($_POST['checkout'])) {
+      $data = array();
 
-            $inputs[] = $input;
-        }
-    }
+      for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+          $data[$i] = array(
+              'idz' => $_SESSION['cart'][$i],
+              'name' => $_POST['pr_name'][$i],
+              'reference' => $_POST['pr_reference'][$i],
+              'sale_price' => $_POST['sa_price'][$i],
+              'quantity' => $_POST['quantity'][$i],
+          ); 
+    }  
+      $orderInstance = new Order();
+      $order = $orderInstance->create();
+      $_SESSION['order_id'] = $orderInstance->id; 
+   
+  //  var_dump($_SESSION['order_id']);   
+  echo "<br>id_here_cart";var_dump($_SESSION['order_id']);
+        
+     $_SESSION['data']=$data;
+     var_dump($_SESSION['data']);
+     
+      // var_dump($order_id);
+      // echo $order_id;
+      $order_piece = new Order_piece();
+      $order_pieces = $order_piece->create();
+   
     $_SESSION['form_inputs'] = $inputs;
-    header("Location: checkout.php"); // Redirect to the display page
-    exit();
+   
+
+  
+  
+    //header("Location: checkout.php"); // Redirect to the display page  
+  }
 }
 ?>
     <form action="" method="POST">
@@ -70,7 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                      //     var_dump($piece);
                             ?>
                             <tr class="table-body-row">
-                                <td class="product-remove"><a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)"><i class="far fa-window-close"></i></a></td>
+                                <td class="product-remove">
+                                    <a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)">
+                                    <i class="far fa-window-close"></i>
+                                    </a>
+                                </td>
                                 <td class="product-image">
                                     <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
                                 </td>
@@ -87,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
                                 </td>
                                 <td>
-                                    <input type="number" name="quantity[]" class="inputQuantity" min="0" oninput="myFunction(this)" value="1">
+                                    <input type="number" name="quantity[]" class="inputQuantity" min="1" oninput="myFunction(this)" value="1">
                                 </td>
                                 <td class="product-total"><?php echo $piece->sale_price . "  DZD"; ?></td>
                             </tr>
@@ -119,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <td id="subtotal"></td>
             </tr>
             <tr class="total-data">
-              <td><strong>TVA: </strong></td>
+              <td><strong>TVA 19%: </strong></td>
               <td id="shipping"></td>
             </tr>
             <tr class="total-data">

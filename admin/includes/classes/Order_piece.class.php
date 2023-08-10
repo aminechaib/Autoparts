@@ -1,9 +1,7 @@
 <?php 
 
 
-class Compatible{
-
-
+class Order_piece{
     /////// active record code
     static protected $database;
     
@@ -11,12 +9,13 @@ class Compatible{
         self::$database = $database;
     }
 
-    static protected $db_columns =[
+    static protected $db_columns = [
         'id',
-        'id_piece',
-        'id_moteur',
+        'quantity',
+        'sale_price',
         'creation_date',
-        'id_ad'
+        'id_order',
+        'id_piece'
     ];
 
     static public function find_by_sql($sql){
@@ -39,22 +38,11 @@ class Compatible{
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM compatible ";
+        $sql = "SELECT * FROM order_piece ORDER by id DESC";
        return self::find_by_sql($sql);
     }
-
-    static public function find_all_get_name(){
-        $sql = "SELECT  piece_name.name, piece.reference, compatible.id_moteur,compatible.id
-        FROM piece
-        INNER JOIN piece_name ON piece.id_name = piece_name.id
-        INNER JOIN compatible ON piece.id = compatible.id_piece ";
-       return self::find_by_sql($sql);
-    }
-    static public function test($id){
-        $sql = "SELECT piece.id, piece.sale_price, piece_name.name,piece_name.photo, piece.reference, compatible.id_moteur
-        FROM piece
-        INNER JOIN piece_name ON piece.id_name = piece_name.id
-        INNER JOIN compatible ON piece.id = compatible.id_piece where id_moteur=$id";
+    static public function find_by_status(){
+        $sql = "SELECT * FROM order_piece where status=1";
        return self::find_by_sql($sql);
     }
 
@@ -66,10 +54,10 @@ class Compatible{
             }
         }
         return $object;
-    }
-    
+    } 
+
     static public function find_by_id($id){
-        $sql = "SELECT * FROM compatible ";
+        $sql = "SELECT * FROM order_piece ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -79,18 +67,19 @@ class Compatible{
         }
     }
     
-    public function create(){
+    public function create()
+    {
         $attributes = $this->sanitized_attributes();//mna9yiin
 
-        $sql = "INSERT INTO compatible(";
+        $sql = "INSERT INTO `order_piece` (";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
-
+        //var_dump($sql);exit;
        // echo $sql . "<br>";
             
-       $result = self::$database-> query($sql);
+       $result = self::$database->query($sql);
 
        if($result){
            $this->id = self::$database->insert_id;
@@ -98,9 +87,14 @@ class Compatible{
         // echo var_dump(self::$database->error_list);
        }
        return $result;
-   }
+    }
 
-    public function check_validation(){
+    public function save(){
+        return $this->create();
+    }
+
+    public function check_validation()
+    {
         $validation = $this->validate();
        if(empty($validation)){
                
@@ -132,8 +126,9 @@ class Compatible{
     } 
 
     static public function delete($id){
-        $sql = "DELETE FROM compatible WHERE id =";
-        $sql .= "'" . $id ."';";    
+        $sql = "DELETE FROM order_piece WHERE id =";
+        $sql .= "'" . $id ."';";
+        
         $result = self::$database->query($sql);
         if($result){
            return $result;
@@ -144,7 +139,7 @@ class Compatible{
     }
 
     static public function find_by_name($string){
-        $sql = "SELECT * FROM compatible WHERE name LIKE ";
+        $sql = "SELECT * FROM order_piece WHERE name LIKE ";
         $sql .= "'" . self::$database->escape_string($string) ."%'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -152,27 +147,32 @@ class Compatible{
         }else{
             return false;
         }
+
     }
-    
+
 
     public function update(){
         $attributes = $this->sanitized_attributes();
         $attributes_pairs = [];
         foreach ($attributes as $key => $value) {
+            
             $attributes_pairs[] = "{$key}='{$value}'";
         }
-        $sql = "UPDATE compatible SET ";
+
+        $sql = "UPDATE order_piece SET ";
         $sql .= join(', ', $attributes_pairs);
         $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
         $sql .= "LIMIT 1";
         echo $sql . "<br>";
         $result = self::$database->query($sql);
+
         if($result){
             $this->id = self::$database->insert_id;
         }else{
          echo var_dump(self::$database->error_list);
         }
         return $result;
+        
     }
     public function merge_attributes($args=[]){
 
@@ -185,7 +185,7 @@ class Compatible{
     
     static public function rows_tot()
     {
-        $sql = "select * from compatible";
+        $sql = "select * from order_piece";
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();
@@ -193,100 +193,47 @@ class Compatible{
         return $row;
     }
 
-    static public function find_piece_by_moteur_id($id){
-        {
-            $sql = "SELECT piece_name.name, piece.reference, compatible.id_moteur
-            FROM piece
-            INNER JOIN piece_name ON piece.id_name = piece_name.id
-            INNER JOIN compatible ON piece.id = compatible.id_piece";
-            $sql .="WHERE id_moteur='". self::$database->escape_string($id) ."'";
-            // var_dump($sql);exit;
-            $compatible= self::find_by_sql($sql);
-            //var_dump(array_shift($compatible));exit;
-            if(!empty($compatible)){
-                //var_dump($compatible);
-                return $compatible;
-            }else{
-                return false;
-            }
-        }}
-    static public function moteur_name($id)
-    {
-        
-        $sql = "SELECT * FROM moteur ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        //var_dump($sql);exit;
-        $moteur= self::find_by_sql($sql);
-        //var_export(array_shift($moteur));exit;
-        if(!empty($moteur)){
-            return array_shift($moteur);
-        }else{
-            return false;
-        }
-    }
-    static public function moteur_puissance($id)
-    {
-        $sql = "SELECT puissance FROM moteur ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $moteur= self::find_by_sql($sql);
-        //var_dump(array_shift($moteur));exit;
-        if(!empty($moteur)){
-            return array_shift($moteur);
-        }else{
-            return false;
-        }
-    }
-    static public function piece_name($id)
-    {
-        
-        $sql = "SELECT * FROM piece ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        //var_dump($sql);exit;
-        $moteur= self::find_by_sql($sql);
-        //var_export(array_shift($moteur));exit;
-        if(!empty($moteur)){
-            return array_shift($moteur);
-        }else{
-            return false;
-        }
-    }
-
-    
     /////// end record code////////////////////////////
-    
+    public $quantity;
+    public $id_order;
     public $id;
-    public $name;
-    public $photo;
-    public $puissance;
-    public $reference;
-    public $id_piece;
-    public $id_moteur;
-    public $sale_price;
     public $creation_date;
     public $id_ad;
+    public $id_piece;
+    public $sale_price;
     public $errors = [];
     
     public function __construct($args=[])
-    {
-
-        $this->id_moteur = $args['id_moteur'] ?? '';
-        $this->id_piece = $args['id_piece'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? '';
+    {    if (isset($_SESSION['data']) && is_array($_SESSION['data'])) {
+      foreach ($_SESSION['data'] as $item) {
+          if (isset($item['sale_price']) && isset($item['quantity']) && isset($item['idz'])) {
+          echo "<br>id_here_ord_class=";var_dump($_SESSION['order_id']);
+        
+        $this->id = $args['id'] ?? '';
+        $this->creation_date = date('Y-m-d H:m:s');
         $this->id_ad = 1;
-    }
-
+        $this->id_piece = $item['idz'];
+      $this->id_order = $_SESSION['order_id'];
+  $this->quantity = $item['quantity'];
+        $this->sale_price = $item['sale_price'];
+       }
+      }
+  }
+     }
     protected function validate(){
         $this->errors = [];
-        //nom compatible
-
-        if(is_blank($this->id_moteur)) {
-            $this->errors[] = "moteur du compatible ne doit pas être vide.";
-        }
-        if(is_blank($this->id_piece)) {
-            $this->errors[] = "piece du compatible ne doit pas être vide.";
-        }
+        //nom order_piece
+        if(is_blank($this->quantity)) {
+            $this->errors[] = "nom du order_piece ne doit pas être vide.";
+        }elseif(!has_length($this->quantity, array('min' => 1, 'max' => 255))) {
+            $this->errors[] = "nom du order_piece doit avoir au moins 4 caractéres! ";  }
           return $this->errors;
     }
+    
+    
+
+    
+
 };
 
 

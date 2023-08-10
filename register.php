@@ -57,8 +57,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Get 24/7 Support</p>
-						<h1>Contactez-nous</h1>
+						<p>Inscrivez-vous</p>
+						<h1>Bienvenue chez AutoParts</h1>
 					</div>
 				</div>
 			</div>
@@ -70,7 +70,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
     <div class="row">
       <div class="col-lg-8 mb-5 mb-lg-0">
         <div class="form-title">
-          <h2>Have you any question?</h2>
+          <h2>Tu na pas un compte?</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
         </div>
         <div id="form_status"></div>
@@ -120,22 +120,22 @@ if(is_post_request() && isset($_POST['ajouter'])){
     
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="contact-form-wrap">
-          <div class="contact-form-box">
-            <h4><i class="fas fa-map"></i> Shop Address</h4>
-            <p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
-          </div>
-          <div class="contact-form-box">
-            <h4><i class="far fa-clock"></i> Shop Hours</h4>
-            <p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
-          </div>
-          <div class="contact-form-box">
-            <h4><i class="fas fa-address-book"></i> Contact</h4>
-            <p>Phone: +00 111 222 3333 <br> Email: support@fruitkha.com</p>
-          </div>
-        </div>
-      </div>
+				<div class="col-lg-4">
+					<div class="contact-form-wrap">
+						<div class="contact-form-box">
+							<h4><i class="fas fa-map"></i> Notre Address</h4>
+							<p>Rue cem med boudiaf <br> souidania,alger. <br> Algerie</p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="far fa-clock"></i>heure de travaille</h4>
+							<p>samedi - jeudi: 8 AM a 9 PM </p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="fas fa-address-book"></i> Contact</h4>
+							<p>Phone: +213 675 56 10 07 <br> Email: ccamine4@gmail.com</p>
+						</div>
+					</div>
+				</div>
     </div>
   </div>
 </div>
@@ -155,8 +155,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
 
 	<!-- google map section -->
 	<div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
-	</div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.776745996894!2d2.904647674313292!3d36.7039023731245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa553cd88f7f3%3A0xe9898bd7bdef7ba4!2sPieces%20Auto!5e0!3m2!1sfr!2sdz!4v1690289316712!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>	
+</div>
 	<!-- end google map section -->
 
 
@@ -193,9 +193,7 @@ $_SESSION['errors'] = [];
     </script>
 
 
-    <?php 
-require_once("admin/includes/app_foot.php");
-?>
+
 
 	<!-- footer -->
 	<?php include('layouts/footer.php'); ?>					

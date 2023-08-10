@@ -30,6 +30,28 @@ $(function() {
   $("body").toggleClass("opened");
  });
 
+ $(document).ready(function(){
+		$('#search_piece').on('keydown',function(){
+			var searched_piece = $(this).val();
+			console.log(searched_piece);
+			if(searched_piece){
+				$.ajax({
+					type:'POST',
+					url:'../search_piece.php',
+					data:'search='+searched_piece,
+					success:function(html){
+						//$('#compatible').html(html);					
+					}
+				}); 
+			}else{
+				$('#moteur').html('<option value="">Select category first</option>');
+				
+			}
+		});
+		
+		
+	});
+
   // js toggle example "2"
   /*
    $(".leftbar").hover(function() {
@@ -43,7 +65,18 @@ $(function() {
   
 });
 
-
+function filterDropdownOptions(dropdownId, query) {
+        const dropdown = document.getElementById(dropdownId);
+        for (let i = 0; i < dropdown.options.length; i++) {
+            const optionText = dropdown.options[i].text.toLowerCase();
+            if (optionText.includes(query.toLowerCase())) {
+                dropdown.options[i].style.display = "block";
+            } else {
+                dropdown.options[i].style.display = "none";
+            }
+        }
+    }
+                           
 </script>
 
 </body>

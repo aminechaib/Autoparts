@@ -7,7 +7,49 @@
 	<!-- end header -->
 
 	
-	
+	<?php include('layouts/head.php'); ?>	
+<!-- header -->
+
+<?php require_once("admin/includes/initialize.php"); ?>
+
+	<?php 
+	$errors = [];
+	$username = '';
+	$password = '';
+	if(is_post_request() && isset($_POST['ajouter'])){
+		
+		$mobile_phone = $_POST['mobile_phone'] ?? '';
+		$password = $_POST['password'] ?? '';
+
+		// Validations
+		if(is_blank($mobile_phone)) {
+			$errors[] = "numéro de téléphone est vide!";
+		}
+		if(is_blank($password)) {
+			$errors[] = "mot de passe est vide!";
+		}
+
+		// if there were no errors, try to login
+		if(empty($errors)) {
+			$client = Client::find_by_phone($mobile_phone);
+			//var_dump($client);exit;
+			// test if admin found and password is correct
+			if($client != false && $client->verify_password($password)) {
+				
+			  // Mark client as logged in
+			  $session->login($client, 'client');
+			//   echo("jazet.php");
+			   redirect_to('index.php');
+			} 
+			else {
+			  // phone_number not found or password does not match
+			  $errors[] = "mot de passe ou numéro de téléphone erroné :/ ";
+			}
+		
+		}
+
+	}
+	?>
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -34,22 +76,26 @@
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-						
-								<p><input type="text" placeholder="Nome" name="name" id="na">
-								<input type="text" placeholder="Prenome" name="prenome" id="na"></p>
-								<p><input type="email" placeholder="Email" name="email" id="emil">
-								<input type="text" placeholder="adress" name="adress"></p>
-							<p>
-								<input type="tel" placeholder="Phone" name="phone" id="phone">
-								<input type="text" placeholder="Subject" name="subject" id="subject">
-							</p>
-							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
-							<input type="hidden" name="token" value="" />
-							<p><input type="submit" value="Submit"></p>
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">						
+								<p><input type="text" placeholder="Numero de telephone" name="mobile_phone" id="na"></p>
+								<p><input type="password" placeholder="Mot de pass" name="password" id="na"></p>
+								<p><input type="submit" name="ajouter" value="connecter"></p>
 						</form>
 					</div>
 				</div>
+				<div class="<?php if(!empty($errors)){ echo 'ui negative message'; ?>">
+						<i class="close icon"></i>
+						<div class="header">
+						</div>
+						<ul class="list">
+										
+						<?php
+							foreach ($errors as $error) {
+							echo '<li>'. $error . '</li>';
+							}
+						}
+						?>
+						</div>
 				<div class="col-lg-4">
 					<div class="contact-form-wrap">
 						<div class="contact-form-box">

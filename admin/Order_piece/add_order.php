@@ -40,24 +40,21 @@ if(is_post_request() && isset($_POST['ajouter'])){
    
     //création et préparation de données pour les convertirs en objets 
       $args = [];
-      $args['id_name'] = $_POST['id_name'] ?? NULL;
-      $args['id_mark'] = $_POST['id_mark'] ?? NULL;
-      $args['id_admin'] = 1;
-      $args['id'] ?? '';
-      $args['reference'] = $_POST['reference'] ?? NULL;
-      $args['purchase_price'] = $_POST['purchase_price'] ?? NULL;
-      $args['sale_price'] = $_POST['sale_price'] ?? NULL;
-      $args['quantity'] = $_POST['quantity'] ?? NULL;
 
-      $piece = new piece($args);
-      //var_dump($piece);
+      $args['id_client'] = $_POST['id_client'] ?? NULL;
+      $args['id_ad'] = 1;
+      $args['id'] ?? '';
+      $args['status'] = $_POST['status'] ?? NULL;
+
+      $order = new Order($args);
+      //var_dump($order);
       ///////////////////////////////////////////////
-      $result = $piece->check_validation();
+      $result = $order->check_validation();
       
       if($result === true){
 
         $_SESSION['toast'] = true;
-        $_SESSION['toastType'] = "un ajout d'une piece ";
+        $_SESSION['toastType'] = "un ajout d'une order ";
         redirect_to('index.php');
 
       }else{
@@ -77,8 +74,7 @@ include("../includes/app_head.php");
 
             <?php include('../includes/menu_head.php'); 
             $marks = Mark::find_all_piece();
-       $names = piece_name::find_all_names();
-    //    var_dump($names);exit;
+            $categorys = Category::find_all();
             ?>
 
             <div class="ui padded grid">
@@ -87,34 +83,98 @@ include("../includes/app_head.php");
                     <h2 class="ui left aligned header"><i class=" icons">
                     <i class="users icon"></i>
                     <i class="corner add icon"></i>
-                    </i>&nbsp;Ajouter une piece</h2>
+                    </i>&nbsp;Ajouter une order</h2>
+                    <div class="field">
+                     <label>photo</label>     
+  <input type="file" id="fileInput"/>
+  <button onclick="uploadImage()">Upload</button>
+  <img id="image" />
+  </div>
+  <script>
+  function uploadImage() {
+      
+      var file = document.getElementById("fileInput").files[0];
+      var reader = new FileReader();
+      reader.onload = function () {
+        var imageData = reader.result;
+        var image = new Image();
+        image.src = imageData;
+        image.onload = function () {
+          var width = image.width;
+          var height = image.height;
+          var resizedImage = resizeImage(image, 1200, 1000);
+          document.getElementById("image").src = resizedImage;
+          saveImageToServer(resizedImage); // Call the function to save the image on the server
+        };
+      };
+      reader.readAsDataURL(file);
+    }
 
+    function resizeImage(image, width, height) {
+  var canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(image, 0, 0, width, height);
+
+  // Specify the image format explicitly (JPEG)
+  return canvas.toDataURL('image/jpeg', 0.8); // You can adjust the quality (0.0 to 1.0)
+}
+
+function saveImageToServer(imageData) {
+    var fileExtension = imageData.split(';')[0].split('/')[1];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText); // Optional: Display the server response
+      }
+    };
+    xhttp.open("POST", "save_image.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("imageData=" + encodeURIComponent(imageData) + "&extension=" + fileExtension);
+  
+
+}
+
+  </script>
                     <form method="POST" class="ui form" enctype="multipart/form-data">
-                        <div class="two fields">
+                        <div class="three fields">
                             <div class="field">
-                            <label for="searchInput">Mark:</label>
-               <input type="text" id="searchInputm" onkeyup="filterDropdownOptions('dropdownMoteur', this.value)" placeholder="Search...">
-                <select class="ui search dropdown" name="id_mark" id="dropdownMoteur">
-                    <?php include('fetch_mark.php'); ?>
-                </select>
-                            
+                                <label for="">Mark:</label>                                
+                                <select class="ui search dropdown" name="id_client">
+                                    <option value="">Mark..</option>
+                                    <?php foreach ($marks as $mark) { ?>
+                                    <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="field">
-                            <label for="searchInput">Piece:</label>
-                <input type="text" id="searchInput" onkeyup="filterDropdownOptions('dropdownPiece', this.value)" placeholder="Search...">
-                <select class="ui search dropdown" name="id_piece" id="dropdownPiece">
-                    <?php include('fetch_piece_name.php'); ?>
-                </select>
-                                 
-                              
+                                <label for="">category:</label>
+                                <select class="ui search dropdown" name="id_categorie">
+                                    <option value="">category..</option>
+                                    <?php foreach ($categorys as $category) {
+                                    ?>
+                                    <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
+
+                                    <?php
+                                    }?>
+                                </select>
                             </div>
               
-                              
+                                <div class="field">
+                                <label>photo</label>
+                                <input type="text" value="<?php   ?>" name="photo" placeholder="Nom de order">
+                            </div>
+
+                            <div class="field">
+                                <label>Nom</label>
+                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de order">
+                            </div>
                         </div>
                         <div class="four fields">
                             <div class="field">
                                 <label>Reference</label>
-                                <input type="text" value="<?php if(isset($_POST['reference'])) echo $_POST['reference']; ?>" name="reference" placeholder="reference">
+                                <input type="text" value="<?php if(isset($_POST['status'])) echo $_POST['status']; ?>" name="status" placeholder="status">
                             </div>
                             <div class="field">
                                 <label>quantity</label>

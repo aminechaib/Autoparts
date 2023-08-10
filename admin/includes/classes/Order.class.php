@@ -9,8 +9,7 @@ class Order{
         self::$database = $database;
     }
 
-    static protected $db_columns =[
-
+    static protected $db_columns = [
         'id',
         'id_ad',
         'id_client',
@@ -67,46 +66,20 @@ class Order{
             return false;
         }
     }
-
-
-
-    // static public function delete_from_cart($id){
-    //     if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
-    //         $key = array_search($id, $_SESSION['cart']);
-    //         if($key !== false){
-    //             unset($_SESSION['cart'][$key]);
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-    static public function delete_from_cart($id){
-        if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
-            $key = array_search($id, $_SESSION['cart']);
-            if($key !== false){
-                unset($_SESSION['cart'][$key]);
-                return $_SESSION['cart']; // Return the updated cart
-            }
-        }
-        return false;
-    }
     
-    
-    
-
-
-    public function create(){
+    public function create()
+    {
         $attributes = $this->sanitized_attributes();//mna9yiin
 
-        $sql = "INSERT INTO order(";
+        $sql = "INSERT INTO `order` (";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
-
+        //var_dump($sql);exit;
        // echo $sql . "<br>";
             
-       $result = self::$database-> query($sql);
+       $result = self::$database->query($sql);
 
        if($result){
            $this->id = self::$database->insert_id;
@@ -114,9 +87,14 @@ class Order{
         // echo var_dump(self::$database->error_list);
        }
        return $result;
-   }
+    }
 
-    public function check_validation(){
+    public function save(){
+        return $this->create();
+    }
+
+    public function check_validation()
+    {
         $validation = $this->validate();
        if(empty($validation)){
                
@@ -215,38 +193,7 @@ class Order{
         return $row;
     }
 
-    static public function mark_name($id)
-    {
-        $sql = "SELECT name FROM mark ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        $mark= self::find_by_sql($sql);
-        //var_dump(array_shift($mark));exit;
-        if(!empty($mark)){
-            return array_shift($mark);
-        }else{
-            return false;
-        }
-    }
-    static public function category_name($id)
-    {
-        $sql = "SELECT name FROM category ";
-        $sql .="WHERE id='". self::$database->escape_string($id) ."'";
-        //var_dump($sql);exit;
-        $category= self::find_by_sql($sql);
-        //var_export(array_shift($category));exit;
-        if(!empty($category)){
-            return array_shift($category);
-        }else{
-            return false;
-        }
-    }
-
     /////// end record code////////////////////////////
-    
-    
-
-    
-
 
     public $status;
     public $id;
@@ -258,10 +205,10 @@ class Order{
     public function __construct($args=[])
     {
         $this->id = $args['id'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? 1;
+        $this->creation_date = date('Y-m-d H:m:s');
         $this->id_ad = 1;
-        $this->id_client = $args['id_client'] ?? '';
-        $this->status = $args['status'] ?? '';
+        $this->id_client = $_SESSION['client']->id ?? '';
+        $this->status = 'PENDING';
     }
     protected function validate(){
         $this->errors = [];
