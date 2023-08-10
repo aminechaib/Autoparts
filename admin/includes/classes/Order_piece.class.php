@@ -213,6 +213,7 @@ class Order_piece{
         $this->id_piece = $args['id'];
         $this->quantity = $args['quantity'];
         $this->sale_price = $args['sale_price'];
+        
     }
     protected function validate(){
         $this->errors = [];

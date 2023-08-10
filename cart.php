@@ -28,7 +28,7 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $inputs = array();
   
-  if (isset($_POST['checkout'])) {
+  if (isset($_POST['checkout']) && isset($_SESSION['cart']) > 0) {
       $data = array();
 
       for ($i = 0; $i < count($_SESSION['cart']); $i++) {
@@ -49,13 +49,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $order_piece = new Order_piece($id_order, $args);
         $order_pieces = $order_piece->create();
       }
-   
+      unset($_SESSION['cart']);unset($data);
+      $_SESSION['clean_cart'] = true;
+      $_SESSION['success_order'] = true;
+   ?>
+   <script>
+    document.getElementById('a').value=1;
+   </script>
+   <?php
     $_SESSION['form_inputs'] = $inputs;
    
 
   
   
     //header("Location: checkout.php"); // Redirect to the display page  
+  }else
+  {
+    redirect_to(url_for('index.php', 'front'));
   }
 }
 ?>
@@ -79,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                          if ($piece) {      
                      //     var_dump($piece);
                             ?>
+                            <input type="text" id="a">
                             <tr class="table-body-row">
                                 <td class="product-remove">
                                     <a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)">
@@ -101,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
                                 </td>
                                 <td>
-                                    <input type="number" name="quantity[]" class="inputQuantity" min="1" oninput="myFunction(this)" value="1">
+                                    <input type="number" id="quant" name="quantity[]" class="inputQuantity" min="1" oninput="myFunction(this)" value="1">
                                 </td>
                                 <td class="product-total"><?php echo $piece->sale_price . "  DZD"; ?></td>
                             </tr>
@@ -162,8 +173,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<!-- end header -->
 
 <!-- ... previous HTML code ... -->
-
+<?php
+if($_SESSION['clean_cart'])
+{?>
+  <script>
+    localStorage.clear();
+  </script>
+<?php
+$_SESSION['clean_cart'] = false;
+}
+?>
 <script>
+  
 
 function removeFromCart(id) {
     // Store the current scroll position
@@ -195,6 +216,7 @@ function removeFromCart(id) {
     var priceString = row.querySelector('.product-price').innerText;
     var price = parseFloat(priceString.replace(/[^\d.]/g, ''));
     var quantity = input.value;
+    console.log(quantity);
     var total = price * quantity;
     row.querySelector('.product-total').innerText = total.toFixed(2) + " DZD";
     updateTotal();

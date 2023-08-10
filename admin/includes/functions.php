@@ -1,11 +1,15 @@
 <?php 
 
-function url_for($script_path) {
+function url_for($script_path, $x = 'admin') {
     // add the leading '/' if not present
     if($script_path[0] != '/') {
       $script_path = "/" . $script_path;
     }
-    return WWW_ROOT . $script_path;
+    if($x == 'admin')
+      return WWW_ROOT . $script_path;
+    else
+      return WWW_ROOT_FRONT . $script_path;
+    //var_dump(WWW_ROOT . $script_path);exit;
   }
 
 function u($string="") {

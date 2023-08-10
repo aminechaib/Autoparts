@@ -5,10 +5,13 @@ define("PROJECT_PATH", dirname(INCLUDES_PATH));// our project path
 
 
 $public_end = strpos($_SERVER['SCRIPT_NAME'], 'autoparts/admin/') + 16;// find folder autparts
+$public_end_for_front = strpos($_SERVER['SCRIPT_NAME'], 'autoparts/') + 10;
 
-$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end); // cut the part 
+$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end); // cut the part
+$doc_root_front = substr($_SERVER['SCRIPT_NAME'], 0, $public_end_for_front); // cut the part 
 
 define("WWW_ROOT", $doc_root);// racine du l'application
+define("WWW_ROOT_FRONT", $doc_root_front);// racine du l'application
 //var_dump(WWW_ROOT);exit;
 require_once("functions.php");// load functions 
 
