@@ -235,7 +235,7 @@ class piece_name {
     public function __construct($args = [])
     {
         //var_dump($args);exit;
-        $this->creation_date = $args['creation_date'] ?? 1;
+        $this->creation_date = date('Y-m-d H:m:s');;
         $this->id_admin = 1;
         $this->id_categorie = $args['id_categorie'] ?? '';
         $this->photo = $args['photo'] ?? '';

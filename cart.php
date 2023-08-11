@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                          if ($piece) {      
                      //     var_dump($piece);
                             ?>
-                            <input type="text" id="a">
+                     
                             <tr class="table-body-row">
                                 <td class="product-remove">
                                     <a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)">
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ?>
             </tbody>
         </table>
-        <input type="submit" value="Submit" name="checkout">
+       
   
 </body>
 </html>
@@ -157,12 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="hidden" name="total_p" id="total_p">
         <input type="hidden" name="subtotal_p" id="subtotal_p">
         <input type="hidden" name="shipping_p" id="shipping_p">
- <input type="submit" name="sm" value="checkout">
-    
-        <div class="cart-buttons">
-          <a href="cart.php?action=cancel" class="boxed-btn">Cancel</a>
-          <a href="cart.php?action=update" class="boxed-btn">Update Cart</a>
-          
+        <input type="submit" value="checkout" name="checkout">
         </div>
       </div>
     </div>

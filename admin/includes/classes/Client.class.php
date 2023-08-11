@@ -281,7 +281,7 @@ class Client{
         $this->password = $args['password'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->adresse = $args['adresse'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? 1;
+        $this->creation_date =date('Y-m-d H:m:s');;
         $this->id_ad = $args['id_ad'] ?? '';
 
     }

@@ -271,7 +271,7 @@ class Compatible{
 
         $this->id_moteur = $args['id_moteur'] ?? '';
         $this->id_piece = $args['id_piece'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? '';
+        $this->creation_date = date('Y-m-d H:m:s');;
         $this->id_ad = 1;
     }
 

@@ -295,7 +295,7 @@ class Piece{
         $this->id = $args['id'] ?? '';
         $this->piece_name = $args['piece_name'] ?? '';
         $this->id_name = $args['id_name'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? 1;
+        $this->creation_date = date('Y-m-d H:m:s');;
         $this->id_admin = 1;
         $this->category_name = $args['category_name'] ?? '';
         $this->reference = $args['reference'] ?? '';

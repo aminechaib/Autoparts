@@ -1,0 +1,9 @@
+.sticky-input {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  padding: 10px;
+}
+.content {
+  margin-top: 60px; /* Adjust this value to create space below the fixed input */
+}
