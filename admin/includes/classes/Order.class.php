@@ -38,7 +38,20 @@ class Order{
     }
 
     static public function find_all(){
-        $sql = "SELECT * FROM order ORDER by id DESC";
+        $sql = "SELECT
+        c.first_name,
+        c.last_name,
+        c.adresse,
+        c.mobile_phone,
+        o.id,
+        o.status,
+        o.id_ad,
+        o.creation_date
+    FROM
+        client c
+    JOIN
+        `order` o ON c.id = o.id_client;
+    ";
        return self::find_by_sql($sql);
     }
     static public function find_by_status(){
@@ -197,6 +210,10 @@ class Order{
 
     public $status;
     public $id;
+    public $first_name;
+    public $last_name;
+    public $adresse;
+    public $mobile_phone;
     public $creation_date;
     public $id_ad;
     public $id_client;

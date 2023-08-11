@@ -16,7 +16,9 @@ label {
 
 
 <?php
-$piece = Piece::find_by_id($id);
+$order = Order_piece::find_by_id($id);
+var_dump($order);
+
 $categorys = Category::find_all();
 $marks = Mark::find_all_piece();
 //var_dump(($marks));exit;
@@ -24,12 +26,12 @@ $marks = Mark::find_all_piece();
 
         <div class="ui fluid container">
             <div class="ui padded grid">
-            <h1>Modifier Piece N° <?php echo $id ?></h1>
+            <h1>commande N° <?php echo $id ?></h1>
                 <div class="ui fifteen wide column row centered grid" id="modifier_grid<?php echo $id ?>">
                     <h2 class="ui left aligned header"><i class=" icons">
                             <i class="users icon"></i>
                             <i class="corner add icon"></i>
-                        </i>&nbsp;modifier la piece</h2>
+                        </i>&nbsp;modifier laddddddddddddd piece</h2>
                     <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_piece.php?id=<?php echo $id ?>">
                         <div class="two fields">
                                 <div class="field">

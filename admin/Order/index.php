@@ -48,26 +48,17 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Piece</h1>
+                    <h1 class="ui  header item"><i class="users icon"></i>Commande</h1>
 
 
                   
 
                                    
-                    <div class="right item">
-                        <a href="add_piece.php" class="">
-                            <i class="big plus circle icon"></i>
-
-                        </a>
-                        <div class="ui search  " id="load_search">
-                                           <div class="ui icon input">
-                                               <input class="prompt" type="text" placeholder="chercher..."
-                                                   id="search">  
-                                               <i class="search icon"></i>
-                                           </div>
+                
+                      
                                            <div class="results">
-                                           </div>
-                                   </div>
+                                          
+                                  
                     </div>
                 </div>
               
@@ -84,44 +75,39 @@ height: 100%;
                             <tr>
                                 <th>#</th>
                                 <th>Nom</th>
-                                <th>Reference</th>
-                                <th>quantity</th>
-                                <th>prix d'achat</th>
-                                <th>prix de vent</th>
-                                <th>categorie</th>
-                                <th>Marque</th>
-                                <th>date de creation</th>
+                                <th>num de telephone</th>
+                                <th>adresse</th>
+                                <th>date de commande</th>
+                                <th>status</th>
+                           
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                            <?php
-                               $pieces = Piece::find_all(); 
+                               $pieces = Order::find_all(); 
                                if($pieces){
                                    foreach($pieces as $piece){
+                                    //  var_dump($piece);
                                ?>
                                <tr>
                                    <td><?php echo h($piece->id);?></td>
-                                   <td><?php echo h($piece->name);?></td>
-                                   <td><?php echo h($piece->reference);?></td>
-                                   <td><?php echo h($piece->quantity);?></td>
-                                   <td><?php echo h($piece->purchase_price);?></td>
-                                   <td><?php echo h($piece->sale_price);?></td>
-                                   <td><?php echo h($piece->category_name($piece->id_categorie)->name);?></td>
-                                   <td><?php echo h($piece->mark_name($piece->id_mark)->name);?></td>
+                                   <td><?php echo $piece->first_name."  ".$piece->last_name;?></td>
+                                   <td><?php echo h($piece->mobile_phone);?></td>
+                                   <td><?php echo h($piece->adresse);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
+                                   <td><?php echo h($piece->status);?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
                                            data-button_id="<?php echo h($piece->id) ?>" data-type="modifier"><i
-                                               class="edit outline icon"></i><span>Modifier</span></button>
+                                               class="edit outline icon"></i><span>Valider</span></button>
                                        <div class="ui modal modifier m<?php echo h($piece->id, '') ?>">
                                            <div class="content">
                                                <?php modifier_modal($piece->id, '') ?>
                                            </div>
                                        </div>
                                    </td>
-                                   
                                    <td>
                                     <button class="ui tiny red button" data-button_id="<?php echo h($piece->id) ?>"
                                         data-type="supprimer">
