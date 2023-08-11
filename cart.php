@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- ... previous HTML code ... -->
 <?php
-if($_SESSION['clean_cart'])
+if(isset($_SESSION['clean_cart']))
 {?>
   <script>
     localStorage.clear();

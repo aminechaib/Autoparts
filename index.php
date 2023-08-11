@@ -176,9 +176,6 @@
 								if(isset($_POST['am']) && isset($_POST['sub_moteur'])){
 									echo "great thing we have<br>".$mark->name;
 								}
-								// foreach($marks as $mark){	
-								// 	$find= Mark :: find_model_where_mark($mark->id);
-								// 					var_dump($find) ;}
 							?>
 						</form>
 					</div>
@@ -223,7 +220,7 @@
       <div class="product-image">
         <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
       </div>
-      <h3><?php echo $piece->piece_name." ".$piece->reference; ?></h3>
+      <h3><?php echo $piece->piece_name." ".$piece->reference." ".$piece->category_name; ?></h3>
       <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
       <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
         <?php 
@@ -234,7 +231,7 @@
 					echo '<input type="submit" name="" value="Déjà ajouté">';
 				}
 			}else{?>
-			<p>connect</p><?php
+			<?php
 			}
         ?>
       </form>
@@ -256,8 +253,9 @@
     Array.from(productContainer.getElementsByClassName('single-product-item')).forEach(item => {
       const productName = item.querySelector('h3').textContent.toLowerCase();
       const productReference = item.querySelector('h3').textContent.toLowerCase();
+	  const productcategory = item.querySelector('h3').textContent.toLowerCase();
       
-      if (productName.includes(searchTerm) || productReference.includes(searchTerm)) {
+      if (productName.includes(searchTerm) || productReference.includes(searchTerm) || productReference.includes(searchTerm)) {
         item.style.display = 'block';
       } else {
         item.style.display = 'none';
