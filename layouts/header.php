@@ -8,11 +8,13 @@
 						<div class="site-logo">
 							<a href="index.php">
 								<img src="assets/img/logo AP.png" alt="">
-							</a>
+							</a>   <p><input type="text" id="productFilter" placeholder="Filter by name"></p>
 						</div>
 						<!-- logo -->
                         <title>Auto Parts</title>
 						<!-- menu start -->
+                        
+                    
 						<nav class="main-menu">
                             <ul>
                             <li class="current-list-item"><a href="index.php">Accueil</a></li>
@@ -26,6 +28,7 @@
                                     <li><a href="contact.php">Contact</a></li>
                                     <li><a href="news.php">Actualités</a></li>
                                     <li><a href="shop.php">Produit</a></li>
+                                    
                                 </ul>
                             </li>
                          <li><a href="news.php">Actualités</a></li>
@@ -51,6 +54,7 @@
                                         ?>
                                         </span>
                                     </a>
+                                    
                                     <?php
                                     }else{?>
                                         <a class="shopping-cart" href="index.php">

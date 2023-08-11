@@ -209,5 +209,45 @@
 	</script>
 
 
+
+
+<script>
+  const filterInput = document.getElementById('productFilter');
+  const productContainer = document.getElementById('compatible');
+
+  filterInput.addEventListener('input', function() {
+    const searchTerm = filterInput.value.trim().toLowerCase();
+
+    Array.from(productContainer.getElementsByClassName('single-product-item')).forEach(item => {
+      const productName = item.querySelector('h3').textContent.toLowerCase();
+      const productReference = item.querySelector('h3').textContent.toLowerCase();
+	  const productcategory = item.querySelector('h3').textContent.toLowerCase();
+      
+      if (productName.includes(searchTerm) || productReference.includes(searchTerm) || productReference.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    // Store the current scroll position when the form is submitted
+    $('.add-to-cart-form').on('submit', function() {
+      var scrollPosition = $(window).scrollTop();
+      sessionStorage.setItem('scrollPosition', scrollPosition);
+    });
+
+    // Restore the scroll position on page load
+    var storedScrollPosition = sessionStorage.getItem('scrollPosition');
+    if (storedScrollPosition) {
+      $(window).scrollTop(storedScrollPosition);
+      sessionStorage.removeItem('scrollPosition');
+    }
+  });
+</script>
 </body>
 </html>
