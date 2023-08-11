@@ -198,12 +198,14 @@
   -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `order_piece` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `quantity` varchar(20) NOT NULL,
   `sale_price` varchar(20) NOT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_order` int(11) NOT NULL,
-  `id_piece` int(11) NOT NULL
+  `id_piece` int(11) NOT NULL,
+  FOREIGN KEY (`id_order`) REFERENCES `order` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (`id_piece`) REFERENCES `piece` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -212,12 +214,7 @@ CREATE TABLE `order_piece` (
 
 --
 -- Indexes for table `order_piece`
---
-ALTER TABLE `order_piece`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_order` (`id_order`),
-  ADD KEY `id_piece` (`id_piece`);
-
+-
     -- Table structure for table `admin_offre`
   --
 
