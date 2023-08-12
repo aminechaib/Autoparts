@@ -16,8 +16,12 @@ label {
 
 
 <?php
+
 $order = Order_piece::find_by_id($id);
-var_dump($order);
+foreach($order as $all){
+    var_dump($all);
+}
+// var_dump($order);
 
 $categorys = Category::find_all();
 $marks = Mark::find_all_piece();

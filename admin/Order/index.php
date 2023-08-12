@@ -98,6 +98,13 @@ height: 100%;
                                    <td><?php echo h($piece->adresse);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
                                    <td><?php echo h($piece->status);?></td>
+                                   <td> <button class="ui tiny blue  button"
+                                            data-button_id="<?php echo h($piece->id) ?>" data-type="afficher">
+                                            <i class="question icon"></i><span>Afficher</span></button>
+
+                                        <div class="ui large modal afficher a<?php echo h($piece->id) ?>">
+                                            <div class="content">
+                                                <?php afficher_modal($piece->id, ''); ?></td>
                                    <td>
                                        <button class="ui tiny yellow  button"
                                            data-button_id="<?php echo h($piece->id) ?>" data-type="modifier"><i

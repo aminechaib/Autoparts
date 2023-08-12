@@ -29,7 +29,19 @@ label {
 }
 </style>
 
-    <?php 
+<?php
+// include composer autoload
+require '../../vendor/autoload.php';
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
+
+// configure with favored image driver (gd by default)
+Image::configure(['driver' => 'imagick']);
+
+
 require_once("../includes/initialize.php");
 
 
@@ -37,14 +49,21 @@ require_once("../includes/initialize.php");
 /////////////////////////////////////////////////////////////////////////////
 
 if(is_post_request() && isset($_POST['ajouter'])){
+
+    $target_dir = "uploads/";
+    var_dump($_FILES["photo"]["name"]);exit;
+
+
     //création et préparation de données pour les convertirs en objets 
       $args = [];
       $args['name'] = $_POST['name'] ?? NULL;
       $args['id_admin'] = 1;
       $args['id'] ?? '';
       $args['id_categorie'] =  $_POST['id_categorie'] ?? NULL;
-      $args['photo'] = $_POST['photo'] ?? NULL;
+      $args['photo'] = $_POST['photo'] ?? NULL; // todo insert file name
       $args['creation_date'] = date('Y-m-d H:m:s');
+
+      
     
       $piece = new Piece_name($args); //ok
       //var_dump($piece);
@@ -101,7 +120,6 @@ include("../includes/app_head.php");
                             <div class="field">
                             <label>photo</label>     
                             <input type="file" id="fileInput" name="photo"/>
-                            <button onclick="uploadImage()">Upload</button>
                             <img id="image"  />
                             </div>
                             
