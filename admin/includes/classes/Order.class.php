@@ -70,15 +70,35 @@ class Order{
     } 
 
     static public function find_by_id($id){
-        $sql = "SELECT * FROM order ";
+        $sql = "SELECT * FROM `order` ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $object_array= self::find_by_sql($sql);
+        //
+        // var_dump($object_array);exit;
         if(!empty($object_array)){
             return array_shift($object_array);
         }else{
             return false;
         }
     }
+
+    static public function find_by_id_or($id) {
+        $sql = "SELECT * FROM `order` ";
+        $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
+        $result = self::$database->query($sql);
+        $data = array(); // Store the fetched data
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_object()) {
+                $data[] = $row; // Add each fetched row to the data array
+            }
+        }
+
+        return $data; // Return the fetched data
+    }
+
+    // ... (other methods)
+
     
     public function create()
     {
@@ -139,7 +159,7 @@ class Order{
     } 
 
     static public function delete($id){
-        $sql = "DELETE FROM order WHERE id =";
+        $sql = "DELETE FROM `order` WHERE id =";
         $sql .= "'" . $id ."';";
         
         $result = self::$database->query($sql);
@@ -152,7 +172,7 @@ class Order{
     }
 
     static public function find_by_name($string){
-        $sql = "SELECT * FROM order WHERE name LIKE ";
+        $sql = "SELECT * FROM `order` WHERE name LIKE ";
         $sql .= "'" . self::$database->escape_string($string) ."%'";
         $object_array= self::find_by_sql($sql);
         if(!empty($object_array)){
@@ -172,7 +192,7 @@ class Order{
             $attributes_pairs[] = "{$key}='{$value}'";
         }
 
-        $sql = "UPDATE order SET ";
+        $sql = "UPDATE `order` SET ";
         $sql .= join(', ', $attributes_pairs);
         $sql .= " WHERE id='". self::$database->escape_string($this->id)."' ";
         $sql .= "LIMIT 1";
@@ -187,6 +207,8 @@ class Order{
         return $result;
         
     }
+
+
     public function merge_attributes($args=[]){
 
         foreach ($args as $key => $value) {
@@ -198,7 +220,7 @@ class Order{
     
     static public function rows_tot()
     {
-        $sql = "select * from order";
+        $sql = "select * from `order`";
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();

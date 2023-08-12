@@ -26,6 +26,13 @@ function modifier_modal($id_tab, $type_category){
     include('modifier_modal.php');
 
 }
+function valider_modal($id_tab, $type_category){
+
+    $id= $id_tab ?? false;
+  
+    include('valider_modal.php');
+
+}
 
 
 ?>

@@ -1,117 +1,64 @@
-<?php 
-require_once("../includes/initialize.php");
+
+  <?php
+  if(!$id){
+    redirect_to('index.php');
+  }
+$order_data = Order_piece::find_by_id_order($id); // Retrieve data for the order
+
+
+    // Access properties of $order and echo the information
 ?>
+                           
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+</head>
+<body>
 
-<style>
+<table class="ui striped table" id="tabAll">
+    <thead>
+        <tr>
+            <th>Piece</th>
+            <th>Quantity</th>
+            <th>prix</th>
+            <th>status</th>
+            <th>total HT</th>
+            <th>total TTC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $totalValue = 0; // Initialize the total value variable
+        foreach ($order_data as $order) {
+            $totalValue += $order->quantity * $order->sale_price; // Calculate total value
+        ?>
+            <tr>
+                <td><?php echo h($order->name); ?></td>
+                <td><?php echo h($order->quantity); ?></td>
+                <td><?php echo h($order->sale_price." DA"); ?></td>
+                <?php  $quantity=$order->quantity; 
+                $sale_price=$order->sale_price; 
+                ; ?>
+                <td><?php echo h($order->status); ?></td>
+                <input type="hidden" name="status">
+                <td><?php echo h($quantity*$sale_price." DA"); ?></td>
+                <td></td>
+            </tr>
+        <?php } ?>
+        <!-- Add a row for the total value -->
+        <tr>
+            <td colspan="4">total</td>
+            <td>Total HT: <?php echo h($totalValue." DA"); ?></td>
+            <td>Total TTC: <?php echo h($totalValue*0.19+$totalValue." DA"); ?></td>
+        </tr>
+    </tbody>
+</table>
+<form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="valider.php?id=<?php echo $id ?>">
+<input type="submit" value="Valider" name="valider" class="ui yellow button">
+</form>
+</body>
+</html>
+<?php
 
-.ui.left.aligned.header{
-
-margin-top: 1% !important;
-}
-.twelve.wide.column h2{
-  margin-top: 1%;
-  margin-bottom: 1%;
-}
-#rating{
-  margin-top: 3%;
-}
-.err{
-  background-color: #FE1100 !important;
-  color: white;
-}
-
-.war{
-  background-color: #E4FE19;
-  color: black;
-}
-
-</style>
-
-<div class="ui fluid container">
-
-<?php 
-if(!$id){
-  redirect_to('index.php');
-}
-
-$clients = Order_piece::find_by_id($id);
 ?>
-    <div class="ui padded grid">
-      <!-- begin row head-->
-                        
-
-                    <div class="centered row">
-
-                      <div class="ui segment eight wide centered column">
-
-                            <div class="ui centered grid">
-                                
-                                <div class="ui centered grid row">
-                                          
-                                          <div class="middle aligned four wide column">
-                                          <img src="<?php echo url_for('images/important.svg'); ?>" alt="" class="ui small  circular centered image">
-                                          </div>
-
-                                          <div class="twelve wide column">
-                                          <?php foreach($clients as $client){ ?>
-                                          <h3>commande N° <?php echo h($client->id);?> &nbsp; <?php echo h($client->id);?></h3>
-                                          <h4><strong>prix :</strong><?php echo h($client->sale_price)." <br>quantity :".$client->quantity;?></h4>
-                                   
-                                         <?php } ?>
-                                          </div>
-                                </div>
-                                
-                                    
-                                    <div class="ui centered grid row">
-                                    
-                                                      
-                                   
-
-                                    </div>
-                            </div>
-                      </div>
-                    
-                    </div>
-                          <div class="row">
-                          </div>
-
-                  
-                            <div class="ui bottom attached tab segment" data-tab="secondAfficher">
-                        
-                            </div>
-                                      
-                            </div>
-                            
-                            </div>
-                    
-
-
-            
-           
-</div>         
-
-      <!-- end row head-->
-
-
-
-        </div>
-     
-
-
-
-
-
-  
-
-      <script>
-
-$('.ui.rating')
-  .rating()
-;
-
-$('.menu .item')
-  .tab()
-;
-</script>
-
-
