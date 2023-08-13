@@ -69,19 +69,20 @@ class Order_piece{
 
 
     static public function find_by_id_order($id){
-        $sql = "SELECT op.quantity, op.sale_price, pn.name, o.status, o.id AS order_id
+        $sql = "SELECT op.id,op.quantity, op.sale_price, pn.name, o.status, o.id AS order_id
         FROM order_piece op
         JOIN piece p ON op.id_piece = p.id
         JOIN piece_name pn ON p.id_name = pn.id
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
-        $result = self::$database->query($sql);
-
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_object()) {
-           return $row;
-          }
-        }         
+        
+        $object_array = self::find_by_sql($sql);
+        var_dump($object_array);
+        if(!empty($object_array)){
+            return array_shift($object_array);
+        }else{
+            return false;
+        }
     }
 
     
