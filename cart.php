@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       foreach ($data as $key => $args) {
         
          $order_piece = new Order_piece($id_order, $args);
-         var_dump($args);
-        // echo $args;
-        // $order_pieces = $order_piece->create();
+        // var_dump($args);
+      
+        $order_pieces = $order_piece->create();
       }
       unset($_SESSION['cart']);unset($data);
       $_SESSION['clean_cart'] = true;
@@ -89,8 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php
                 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     foreach ($_SESSION['cart'] as $id) {
+                      var_dump($_SESSION['cart']);
                         $piece = Piece::find_by_id($id);
-                  
                          if ($piece) {      
                      //     var_dump($piece);
                             ?>
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     </a>
                                 </td>
                                 <td class="product-image">
-                                    <a href="single-product.php"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+                                    <a href="single-product.php"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
                                 </td>
                                 <td class="product-name">
                                     <?php echo $piece->piece_name; ?>

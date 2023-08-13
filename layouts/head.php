@@ -54,12 +54,12 @@
 		
 		// get the piece id
 		$id = $_GET['piece_id'];
-
+if(!in_array($id,$_SESSION['cart'])){
 		// push the id to session(cart) array
 		array_push($_SESSION['cart'], $id);
 		//echo 'here';exit;
 		$_SESSION['addedToCart'] = true;
-	}
+	}}
 	//$cart_count = 0;
 	if(isset($_SESSION['cart']))
 		// var_dump(array_values($_SESSION['cart']));

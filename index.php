@@ -220,7 +220,7 @@
   <div class="col-lg-4 col-md-6 text-center">
     <div class="single-product-item">
       <div class="product-image">
-        <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+        <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
       </div>
       <h3><?php echo $piece->piece_name."<br>".$piece->reference."<br>".$piece->category_name; ?></h3>
       <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>

@@ -94,6 +94,7 @@ class Order_piece{
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
+       
         // var_dump(self::$database->error_list);
         $result = self::$database->query($sql);
        if($result){
@@ -223,18 +224,18 @@ class Order_piece{
     public $sale_price;
     public $errors = [];
     
-    // public function __construct(int $id_order=null, $args=[])
-    // {
-    //     // var_dump($args);exit;
-    //     $this->id_order = $id_order;
-    //     $this->id = $args['id'] ?? '';
-    //     $this->creation_date = date('Y-m-d H:m:s');
-    //     $this->id_ad = 1;
-    //     $this->id_piece = $args['id'];
-    //     $this->quantity = $args['quantity'];
-    //     $this->sale_price = $args['sale_price'];
+    public function __construct(int $id_order=null, $args=[])
+    {
+        // var_dump($args);exit;
+        $this->id_order = $id_order;
+        $this->id = $args['id'] ?? '';
+        $this->creation_date = date('Y-m-d H:m:s');
+        $this->id_ad = 1;
+        $this->id_piece = $args['id'];
+        $this->quantity = $args['quantity'];
+        $this->sale_price = $args['sale_price'];
         
-    // }
+    }
     protected function validate(){
         $this->errors = [];
         //nom order_piece
