@@ -19,5 +19,7 @@ if(isset($_POST['image'])) {
 }
 ?>
 
-
+<?php 
+require_once("../includes/app_foot.php");
+?>
 
