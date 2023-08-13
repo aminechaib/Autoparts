@@ -45,9 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       //var_dump($id_order);exit;
       // var_dump($data);exit;
       // echo $id_order;
+
+      
       foreach ($data as $key => $args) {
-        $order_piece = new Order_piece($id_order, $args);
-        $order_pieces = $order_piece->create();
+        
+         $order_piece = new Order_piece($id_order, $args);
+         var_dump($args);
+        // echo $args;
+        // $order_pieces = $order_piece->create();
       }
       unset($_SESSION['cart']);unset($data);
       $_SESSION['clean_cart'] = true;

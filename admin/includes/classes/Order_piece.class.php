@@ -66,21 +66,36 @@ class Order_piece{
             return false;
         }
     }
+
+
+    static public function find_by_id_order($id){
+        $sql = "SELECT op.quantity, op.sale_price, pn.name, o.status, o.id AS order_id
+        FROM order_piece op
+        JOIN piece p ON op.id_piece = p.id
+        JOIN piece_name pn ON p.id_name = pn.id
+        JOIN `order` o ON op.id_order = o.id ";
+        $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
+        $result = self::$database->query($sql);
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_object()) {
+           return $row;
+          }
+        }         
+    }
+
     
     public function create()
     {
         $attributes = $this->sanitized_attributes();//mna9yiin
-
+// var_dump($attributes);
         $sql = "INSERT INTO `order_piece` (";
         $sql .= join(', ', array_keys($attributes));
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
-        //var_dump($sql);exit;
-       // echo $sql . "<br>";
-            
-       $result = self::$database->query($sql);
-
+        // var_dump(self::$database->error_list);
+        $result = self::$database->query($sql);
        if($result){
            $this->id = self::$database->insert_id;
        }else{
@@ -88,6 +103,7 @@ class Order_piece{
        }
        return $result;
     }
+
 
     public function save(){
         return $this->create();
@@ -109,6 +125,7 @@ class Order_piece{
         foreach (self::$db_columns as $column) {
             if($column == 'id'){ continue;};
            $attributes[$column] = $this->$column;
+        //    var_dump($attributes);
         }
         return $attributes;
     }
@@ -120,7 +137,10 @@ class Order_piece{
         foreach ($this->attributes() as $key => $value) {
             
             $sanitized[$key] = self::$database->escape_string($value);
-        }
+            //echo"ssssssssssssssailanaz";
+            // var_dump($sanitized);
+        
+          }
 
         return $sanitized;
     } 
@@ -133,7 +153,7 @@ class Order_piece{
         if($result){
            return $result;
         }else{
-         echo var_dump(self::$database->error_list);
+         //echo var_dump(self::$database->error_list);
         }
 
     }
@@ -169,7 +189,7 @@ class Order_piece{
         if($result){
             $this->id = self::$database->insert_id;
         }else{
-         echo var_dump(self::$database->error_list);
+        //  echo var_dump(self::$database->error_list);
         }
         return $result;
         
@@ -203,18 +223,18 @@ class Order_piece{
     public $sale_price;
     public $errors = [];
     
-    public function __construct(int $id_order=null, $args=[])
-    {
-        // var_dump($args);exit;
-        $this->id_order = $id_order;
-        $this->id = $args['id'] ?? '';
-        $this->creation_date = date('Y-m-d H:m:s');
-        $this->id_ad = 1;
-        $this->id_piece = $args['id'];
-        $this->quantity = $args['quantity'];
-        $this->sale_price = $args['sale_price'];
+    // public function __construct(int $id_order=null, $args=[])
+    // {
+    //     // var_dump($args);exit;
+    //     $this->id_order = $id_order;
+    //     $this->id = $args['id'] ?? '';
+    //     $this->creation_date = date('Y-m-d H:m:s');
+    //     $this->id_ad = 1;
+    //     $this->id_piece = $args['id'];
+    //     $this->quantity = $args['quantity'];
+    //     $this->sale_price = $args['sale_price'];
         
-    }
+    // }
     protected function validate(){
         $this->errors = [];
         //nom order_piece

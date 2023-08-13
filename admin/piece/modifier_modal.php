@@ -17,6 +17,7 @@ label {
 
 <?php
 $piece = Piece::find_by_id($id);
+
 $categorys = Category::find_all();
 $marks = Mark::find_all_piece();
 //var_dump(($marks));exit;
@@ -44,24 +45,25 @@ $marks = Mark::find_all_piece();
                                 <?php
                                }?>
                                 </select>
-                                <label for="">Category:</label>
+                                <label for="">nom_de_piece:</label>
                                 
-                                <select class="ui search dropdown" name="id_categorie">
-                                <option value="">Category..</option>
-                               <?php foreach ($categorys as $category) {
-                                   ?>
-                                <option value="<?php echo $category->id;?>" <?php if($piece->id_categorie == $category->id) echo 'selected'; ?>>  <?php echo $category->name; ?></option>
+                                <select class="ui search dropdown" name="id_name">
+                                <option value="">nom_de_piece..</option>
+                               <?php
+                               $piece_name=piece_name::find_all_names();
 
+                               foreach ($piece_name as $p) {
+                                
+
+                                 ?>
+                                   
+                                <option value="<?php echo $p->id;?>"><?php echo $p->name; ?></option>
                                 <?php
-                               }?>
+                         //var_dump($p);echo "hhhhhhhhhhh"; 
+                              }?>
                                 </select>
 
-                                
-                            <div class="field">
-                                <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
-                            </div>
-                            <div class="field">
+                                <div class="field">
                                 <label>Reference</label>
                                 <input type="text" value="<?php if(isset($_POST['reference'])) echo $_POST['reference']; ?>" name="reference" placeholder="reference">
                             </div>
@@ -77,10 +79,7 @@ $marks = Mark::find_all_piece();
                                 <label>sale_price</label>
                                 <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
                             </div>
-                            <div class="field">
-                                <label>photo</label>
-                                <input type="file" value="<?php if(isset($_POST['photo'])) echo $_POST['photo']; ?>" name="photo" id="photo">
-                            </div>
+
 
 
                             </div>
@@ -193,11 +192,11 @@ $(function() {
             }
         });
 
-
+    
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($piece->name); ?>',
+  
     reference     : '<?php echo h($piece->reference); ?>',
     quantity     : '<?php echo h($piece->quantity); ?>',
     purchase_price     : '<?php echo h($piece->purchase_price); ?>',

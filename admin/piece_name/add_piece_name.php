@@ -50,8 +50,8 @@ require_once("../includes/initialize.php");
 
 if(is_post_request() && isset($_POST['ajouter'])){
 
-    $target_dir = "uploads/";
-    var_dump($_FILES["photo"]["name"]);exit;
+    // $target_dir = "uploads/";
+    // var_dump($_FILES["photo"]["name"]);exit;
 
 
     //création et préparation de données pour les convertirs en objets 
@@ -60,7 +60,9 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['id_admin'] = 1;
       $args['id'] ?? '';
       $args['id_categorie'] =  $_POST['id_categorie'] ?? NULL;
-      $args['photo'] = $_POST['photo'] ?? NULL; // todo insert file name
+      if(isset($_SESSION['uploaded_filename'])) {
+      $args['photo'] = basename($_SESSION['uploaded_filename']) ?? NULL; // todo insert file name}
+      }
       $args['creation_date'] = date('Y-m-d H:m:s');
 
       
@@ -119,59 +121,51 @@ include("../includes/app_head.php");
                             </div>
                             <div class="field">
                             <label>photo</label>     
-                            <input type="file" id="fileInput" name="photo"/>
+                            <input type="file" id="imageInput">
+                            <button id="uploadButton">Upload and Resize</button>
                             <img id="image"  />
                             </div>
-                            
-                <script>
-  function uploadImage() {
-      
-      var file = document.getElementById("fileInput").files[0];
-      var reader = new FileReader();
-      reader.onload = function () {
-        var imageData = reader.result;
-        var image = new Image();
-        image.src = imageData;
-        image.onload = function () {
-          var width = image.width;
-          var height = image.height;
-          var resizedImage = resizeImage(image, 1200, 1000);
-          document.getElementById("image").src = resizedImage;
-          saveImageToServer(resizedImage); // Call the function to save the image on the server
-        };
-      };
-      reader.readAsDataURL(file);
-    }
+                            <script>
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            const input = document.getElementById('imageInput');
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
 
-    function resizeImage(image, width, height) {
-  var canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  var ctx = canvas.getContext("2d");
-  ctx.drawImage(image, 0, 0, width, height);
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
 
-  // Specify the image format explicitly (JPEG)
-  return canvas.toDataURL('image/jpeg', 0.8); // You can adjust the quality (0.0 to 1.0)
-}
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = 200;
+                        canvas.height = 200;
+                        ctx.drawImage(img, 0, 0, 200, 200);
 
-function saveImageToServer(imageData) {
-    var fileExtension = imageData.split(';')[0].split('/')[1];
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText); // Optional: Display the server response
-      }
-    };
-    xhttp.open("POST", "save_image.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("imageData=" + encodeURIComponent(imageData) + "&extension=" + fileExtension);
-  
+                        const resizedDataURL = canvas.toDataURL('image/jpeg', 0.8);
 
-}
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'upload.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                console.log(xhr.responseText);
+                                location.reload(); // Reload the page to show the session variable
+                            }
+                        };
+                        xhr.send('image=' + encodeURIComponent(resizedDataURL));
+                    };
+                };
 
-  </script>
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
-                            
+
+
+          
                             <div class="field">
                                 <label>Nom</label>
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">

@@ -30,7 +30,8 @@ $categorys = Category::find_all();
                             <i class="corner add icon"></i>
                         </i>&nbsp;modifier Nom_piece</h2>
                     <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_piece.php?id=<?php echo $id ?>">
-                        <div class="field">
+                    <div class="one field">
+                    <div class="field">
                                 <label for="">Category:</label>
                                 <select class="ui search dropdown" name="id_categorie">
                                 <option value="">Category..</option>
@@ -46,17 +47,58 @@ $categorys = Category::find_all();
                                 <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
                             </div>
                             <div class="field">
-                                <label>photo</label>
-                                <input type="file" value="<?php if(isset($_POST['photo'])) echo $_POST['photo']; ?>" name="photo" id="photo">
-                            </div>                  
+                            <label>photo</label>     
+                            <input type="file" id="imageInputt">
+                            <button id="uploadButtonn">Upload and Resize</button>
+                            <img id="image"  />
+                            </div>
+                            <script>
+        document.getElementById('uploadButtonn').addEventListener('click', function() {
+            const input = document.getElementById('imageInputt');
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = 200;
+                        canvas.height = 200;
+                        ctx.drawImage(img, 0, 0, 200, 200);
+
+                        const resizedDataURL = canvas.toDataURL('image/jpeg', 0.8);
+
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'upload_update.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                console.log(xhr.responseText);
+                                location.reload(); // Reload the page to show the session variable
+                            }
+                        };
+                        xhr.send('image=' + encodeURIComponent(resizedDataURL));
+                    };
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+       
+
                         </div>
-                        
                         <div class="one  fields">
                             <div class="field">
                             
                                 <input type="submit" class="ui yellow button" value="Modifier" name="modifier">
                             </div>
                         </div>
+
                         <div class="ui error message"></div>
                     </form><!-- end form -->
 
@@ -160,7 +202,7 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($piece->name); ?>',
+    name     : '<?php echo ($piece->name); ?>',
     reference     : '<?php echo h($piece->reference); ?>',
     quantity     : '<?php echo h($piece->quantity); ?>',
     purchase_price     : '<?php echo h($piece->purchase_price); ?>',

@@ -20,7 +20,7 @@ if(is_post_request() && isset($_POST['modifier'])){
    
   
    
-   $args = [];
+   $args = []; ;
    $args['id'] = $_GET['id']?? NULL;
    $args['name'] = $_POST['name'] ?? NULL;
    $args['id_admin'] = 1;

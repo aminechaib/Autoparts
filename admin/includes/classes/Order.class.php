@@ -109,7 +109,7 @@ class Order{
         $sql .= ") VALUES ('";
         $sql .= join("', '", array_values($attributes) );
         $sql .= "');";
-        //var_dump($sql);exit;
+     
        // echo $sql . "<br>";
             
        $result = self::$database->query($sql);
@@ -153,7 +153,9 @@ class Order{
         foreach ($this->attributes() as $key => $value) {
             
             $sanitized[$key] = self::$database->escape_string($value);
+            
         }
+
 
         return $sanitized;
     } 

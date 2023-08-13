@@ -148,9 +148,10 @@ class Piece{
     public function attributes(){
         $attributes = [];
         foreach (self::$db_columns as $column) {
+         
             if($column == 'id'){ continue;};
            $attributes[$column] = $this->$column;
-        }
+        }var_dump($attributes);
         return $attributes;
     }
 

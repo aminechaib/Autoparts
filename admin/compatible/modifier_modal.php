@@ -19,6 +19,7 @@ label {
 $compatible = Compatible::find_by_id($id);
 $moteurs = Moteur::find_all();
 $pieces = Piece::find_all();
+// var_dump($pieces);
 
 //var_dump(($marks));exit;
 ?>
@@ -43,7 +44,7 @@ $pieces = Piece::find_all();
                                 <option value="">Piece..</option>
                                <?php foreach ($pieces as $piece) {
                                    ?>
-                                <option value="<?php echo $piece->id;?>" <?php if($compatible->id_piece == $piece->id) echo 'selected'; ?>>  <?php echo $piece->name; ?></option>
+                                <option value="<?php echo $piece->id;?>" <?php if($compatible->id_piece == $piece->id) echo 'selected'; ?>>  <?php echo $piece->piece_name."<-->".$piece->reference; ?></option>
 
                                 <?php
                                }?>
@@ -173,7 +174,7 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($compatible->name); ?>',
+    name     : '<?php echo h($compatible->piece_name); ?>',
     reference     : '<?php echo h($compatible->reference); ?>',
     quantity     : '<?php echo h($compatible->quantity); ?>',
     purchase_price     : '<?php echo h($compatible->purchase_price); ?>',

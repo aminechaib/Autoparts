@@ -55,6 +55,8 @@ class piece_name {
        return self::find_by_sql($sql);
     }
 
+
+    
     static public function find_all()
     {
         $sql = "SELECT c.name AS category_name, pn.name AS piece_name, p.*
