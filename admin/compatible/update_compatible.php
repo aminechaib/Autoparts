@@ -4,7 +4,7 @@ require_login();
 
 $id = $_GET['id'];
 $compatible = Compatible::find_by_id($id);
-
+var_dump($compatible);
 if($compatible == false)
 {
 redirect_to('index.php');
@@ -24,6 +24,7 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args['id'] = $_GET['id']?? NULL;
    $args['id_ad'] = 1;
    $args['id_moteur'] = $_POST['id_moteur'] ?? NULL;
+   $args['id_piece'] = $_POST['id_piece'] ?? NULL;
    $compatible->merge_attributes($args);
   $result =$compatible->update();
   if($result){

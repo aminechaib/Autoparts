@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php
                 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                     foreach ($_SESSION['cart'] as $id) {
-                      var_dump($_SESSION['cart']);
+                      // var_dump($_SESSION['cart']);
                         $piece = Piece::find_by_id($id);
                          if ($piece) {      
                      //     var_dump($piece);

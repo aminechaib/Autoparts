@@ -17,9 +17,12 @@ label {
 
 <?php
 $piece = Piece::find_by_id($id);
-
+// var_dump($piece);
 $categorys = Category::find_all();
 $marks = Mark::find_all_piece();
+$piece_name=piece_name::find_all_names();
+
+
 //var_dump(($marks));exit;
 ?>
 
@@ -50,16 +53,15 @@ $marks = Mark::find_all_piece();
                                 <select class="ui search dropdown" name="id_name">
                                 <option value="">nom_de_piece..</option>
                                <?php
-                               $piece_name=piece_name::find_all_names();
-
-                               foreach ($piece_name as $p) {
+            
+                               foreach ($piece_name as $piece_n) {
                                 
 
                                  ?>
                                    
-                                <option value="<?php echo $p->id;?>"><?php echo $p->name; ?></option>
+                                <option value="<?php echo $piece_n->id;?>"><?php echo $piece_n->name; ?></option>
                                 <?php
-                         //var_dump($p);echo "hhhhhhhhhhh"; 
+                         //var_dump($piece_n);echo "hhhhhhhhhhh"; 
                               }?>
                                 </select>
 
