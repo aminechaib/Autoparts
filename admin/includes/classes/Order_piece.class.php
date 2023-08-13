@@ -69,15 +69,15 @@ class Order_piece{
 
 
     static public function find_by_id_order($id){
-        $sql = "SELECT op.id,op.quantity, op.sale_price, pn.name, o.status, o.id AS order_id
+        $sql = "SELECT op.id,op.quantity, op.sale_price, p.reference,pn.name,pn.name, o.status, o.id AS order_id
         FROM order_piece op
         JOIN piece p ON op.id_piece = p.id
         JOIN piece_name pn ON p.id_name = pn.id
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
         
-        $object_array = self::find_by_sql($sql);
-        var_dump($object_array);
+        $object_array = self::find_by_sql($sql);var_dump($object_array);
+        
         if(!empty($object_array)){
             return array_shift($object_array);
         }else{
@@ -219,6 +219,8 @@ class Order_piece{
     public $quantity;
     public $id_order;
     public $id;
+    public $reference;
+    public $name;
     public $creation_date;
     public $id_ad;
     public $id_piece;
@@ -237,6 +239,7 @@ class Order_piece{
         $this->sale_price = $args['sale_price'];
         
     }
+   
     protected function validate(){
         $this->errors = [];
         //nom order_piece

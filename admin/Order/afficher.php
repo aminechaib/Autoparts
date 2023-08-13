@@ -5,14 +5,14 @@
   }
   echo "the id is".$id;
   $order_piece = Order_piece::find_by_id_order($id); // Retrieve data for the order
-  // var_dump($order_piece);
-  // if ($order_piece) {
-  //   foreach ($order_piece as $order_pi) {
-  //     echo var_dump($order_pi);
-  //   }
-  // } else {
-  //   echo "No order pieces found.";
-  // }
+//   var_dump($order_piece);
+//   if ($order_piece) {
+//     foreach ($order_piece as $order_pi) {
+//       echo var_dump($order_pi);
+//     }
+//   } else {
+//     echo "No order pieces found.";
+//   }
   
 
     // Access properties of $order and echo the information
