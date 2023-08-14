@@ -69,7 +69,7 @@ class Order_piece{
 
 
     static public function find_by_id_order($id){
-        $sql = "SELECT op.id,op.quantity, op.sale_price, p.reference,pn.name,pn.name, o.status, o.id AS order_id
+        $sql = "SELECT op.id,op.quantity, op.sale_price, p.reference,pn.name, o.status, o.id AS order_id
         FROM order_piece op
         JOIN piece p ON op.id_piece = p.id
         JOIN piece_name pn ON p.id_name = pn.id
@@ -229,7 +229,7 @@ class Order_piece{
     
     public function __construct(int $id_order=null, $args=[])
     {
-        // var_dump($args);exit;
+    
         $this->id_order = $id_order;
         $this->id = $args['id'] ?? '';
         $this->creation_date = date('Y-m-d H:m:s');
