@@ -84,20 +84,16 @@ include("../includes/app_head.php");
                             <i class="corner add icon"></i>
                         </i>&nbsp;Ajouter une model</h2>
                     <form method="POST" class="ui form">
-                        <div class="two fields">
-                            <div class="field">
-                                <label for="">Mark:</label>
-                                
-                                <select class="ui search dropdown" name="id_mark">
-                                <option value="">Mark..</option>
-                               <?php foreach ($marks as $mark) {
-                                   ?>
-                                <option value="<?php echo $mark->id; ?>">  <?php echo $mark->name; ?></option>
-
-                                <?php
-                               }?>
-                                </select>
-
+                        <div class="field">
+                            <label for="searchInput">Mark:</label> 
+                            <div></div>
+                            <div class="two fields">     
+                            <input type="text" id="searchInput" onkeyup="filterDropdownOptions('dropdownPiece', this.value)" placeholder="Search...">
+                            <select class="ui search dropdown" name="id_mark" id="dropdownPiece">
+                            <?php include('fetch_model_name.php'); ?>
+                </select>
+                                 
+                              
                             </div>
 
                             <div class="field">
