@@ -17,6 +17,7 @@ label {
 
 <?php
 $piece = piece_name::find_by_id($id);
+
 $categorys = Category::find_all();
 //var_dump(($marks));exit;
 ?>
@@ -44,7 +45,7 @@ $categorys = Category::find_all();
                                 </div>
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
+                                <input type="text" name="name" placeholder="Nom de model">
                             </div>
                             <div class="field">
                             <label>photo</label>     
@@ -163,16 +164,12 @@ $(function() {
         });
 
 
-$('#modifier_form<?php echo $id ?>')
+        $('#modifier_form<?php echo $id ?>')
 
-  .form('set values', {
-    name     : '<?php echo ($piece->name); ?>',
-    reference     : '<?php echo h($piece->reference); ?>',
-    quantity     : '<?php echo h($piece->quantity); ?>',
-    purchase_price     : '<?php echo h($piece->purchase_price); ?>',
-    sale_price     : '<?php echo h($piece->sale_price); ?>', 
-    photo    : '<?php echo h($piece->photo); ?>', 
-    terms      : true
-  })
+.form('set values', {
+  name     : '<?php echo h($piece->name); ?>',
+
+  terms      : true
+})
 ;
     </script>
