@@ -5,6 +5,7 @@
   }
   echo "the id is".$id;
   $order_piece = Order_piece::find_by_id_order($id); // Retrieve data for the order
+  var_dump($order_piece);
 //   var_dump($order_piece);
 //   if ($order_piece) {
 //     foreach ($order_piece as $order_pi) {
@@ -49,13 +50,12 @@
 
 ?>
 
+<?php
+        $totalValue = 0; // Initialize the total value variable
+        foreach ($order_piece as $order) {
 
-
-
-
-
-
-
+   
+   } ?>
 
 
 

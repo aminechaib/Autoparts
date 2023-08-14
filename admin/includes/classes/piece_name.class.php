@@ -46,7 +46,7 @@ class piece_name {
         if(!empty($category)){
             return array_shift($category);
         }else{
-            return false;
+             return false;
         }
     }
 

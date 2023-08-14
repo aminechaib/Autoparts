@@ -102,7 +102,7 @@ include("../includes/app_head.php");
                             <div class="field">
                             <label for="searchInput">Piece:</label>
                 <input type="text" id="searchInput" onkeyup="filterDropdownOptions('dropdownPiece', this.value)" placeholder="Search...">
-                <select class="ui search dropdown" name="id_piece" id="dropdownPiece">
+                <select class="ui search dropdown" name="id_name" id="dropdownPiece">
                     <?php include('fetch_piece_name.php'); ?>
                 </select>
                                  

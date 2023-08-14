@@ -76,7 +76,7 @@ class Order_piece{
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
         
-        $object_array = self::find_by_sql($sql);var_dump($object_array);
+        $object_array = self::find_by_sql($sql);
         
         if(!empty($object_array)){
             return array_shift($object_array);
@@ -227,19 +227,34 @@ class Order_piece{
     public $sale_price;
     public $errors = [];
     
-    public function __construct(int $id_order=null, $args=[])
+    public function __construct(int $id_order = null, $args = [])
     {
-    
         $this->id_order = $id_order;
         $this->id = $args['id'] ?? '';
-        $this->creation_date = date('Y-m-d H:m:s');
+        $this->creation_date = date('Y-m-d H:i:s');
         $this->id_ad = 1;
-        $this->id_piece = $args['id'];
-        $this->quantity = $args['quantity'];
-        $this->sale_price = $args['sale_price'];
         
+        // Check if the necessary keys exist in the $args array before accessing their values
+        if (isset($args['id'])) {
+            $this->id_piece = $args['id'];
+        } else {
+            // Handle the case where 'id' is not present
+            // For example, you can set a default value or throw an exception.
+        }
+        
+        if (isset($args['quantity'])) {
+            $this->quantity = $args['quantity'];
+        } else {
+            // Handle the case where 'quantity' is not present
+        }
+        
+        if (isset($args['sale_price'])) {
+            $this->sale_price = $args['sale_price'];
+        } else {
+            // Handle the case where 'sale_price' is not present
+        }
     }
-   
+    
     protected function validate(){
         $this->errors = [];
         //nom order_piece
