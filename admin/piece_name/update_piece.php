@@ -25,7 +25,9 @@ if(is_post_request() && isset($_POST['modifier'])){
    $args['name'] = $_POST['name'] ?? NULL;
    $args['id_admin'] = 1;
    $args['id_categorie'] =  $_POST['id_categorie'] ?? NULL;;
-   $args['photo'] = "mm.jpg";
+   if(isset($_SESSION['uploaded_filename'])) {
+    $args['photo'] = basename($_SESSION['uploaded_filename']) ?? NULL; // todo insert file name}
+    }
    $args['creation_date'] = date('Y-m-d H:m:s');
    $piece->merge_attributes($args);
   $result =$piece->update();
