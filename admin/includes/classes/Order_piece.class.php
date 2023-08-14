@@ -76,13 +76,7 @@ class Order_piece{
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
         
-        $object_array = self::find_by_sql($sql);
-        
-        if(!empty($object_array)){
-            return array_shift($object_array);
-        }else{
-            return false;
-        }
+        return self::find_by_sql($sql);
     }
 
     

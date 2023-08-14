@@ -17,7 +17,6 @@ label {
 
 <?php
 $piece = piece_name::find_by_id($id);
-
 $categorys = Category::find_all();
 //var_dump(($marks));exit;
 ?>
@@ -47,13 +46,7 @@ $categorys = Category::find_all();
                                 <label>Nom</label>
                                 <input type="text" name="name" placeholder="Nom de model">
                             </div>
-                            <div class="field">
-                            <label>photo</label>     
-                            <input type="file" id="imageInput">
-                            <button id="uploadButton">Upload and Resize</button>
-                            <img id="image"  />
-                            </div>
-
+        
        
 
                         </div>
