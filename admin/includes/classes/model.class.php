@@ -264,7 +264,7 @@ class Model{
         }elseif(!has_length($this->name, array('min' => 1, 'max' => 255))) {
             $this->errors[] = "nom du model doit avoir au moins 1 caractéres! ";  }
             if(empty($this->id_mark)) {
-                $this->errors[] = "choisis une mark";}
+                $this->errors[] = "choisie une marque";}
           return $this->errors;
     }
     

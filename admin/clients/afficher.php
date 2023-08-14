@@ -35,7 +35,7 @@ if(!$id){
 }
 
 $client = Client::find_by_id($id);
-var_dump($client);
+// var_dump($client);
 ?>
     <div class="ui padded grid">
       <!-- begin row head-->

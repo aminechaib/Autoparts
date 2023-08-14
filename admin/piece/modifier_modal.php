@@ -59,7 +59,7 @@ $piece_name=piece_name::find_all_names();
 
                                  ?>
                                    
-                                <option value="<?php echo $piece_n->id;?>"><?php echo $piece_n->name; ?></option>
+                                <option value="<?php echo $piece_n->id;?>" <?php if($piece->id_name == $piece_n->id) echo 'selected'; ?>><?php echo $piece_n->name; ?></option>
                                 <?php
                          //var_dump($piece_n);echo "hhhhhhhhhhh"; 
                               }?>
@@ -74,11 +74,11 @@ $piece_name=piece_name::find_all_names();
                                 <input type="text" value="<?php if(isset($_POST['quantity'])) echo $_POST['quantity']; ?>" name="quantity" placeholder="quantity">
                             </div>
                             <div class="field">
-                                <label>purchase_price</label>
+                                <label>prix d'achat</label>
                                 <input type="text" value="<?php if(isset($_POST['purchase_price'])) echo $_POST['purchase_price']; ?>" name="purchase_price" placeholder="purchase_price">
                             </div>
                             <div class="field">
-                                <label>sale_price</label>
+                                <label>prix d'vent</label>
                                 <input type="text" value="<?php if(isset($_POST['sale_price'])) echo $_POST['sale_price']; ?>" name="sale_price" placeholder="sale_price">
                             </div>
 
@@ -180,15 +180,59 @@ $(function() {
             on: 'blur',
             fields: {
 
-                name: {
-                    identifier: 'name',
+                id_name: {
+                    identifier: 'id_name',
                     rules: [{
                             type: 'empty',
-                            prompt: 'manque un nom'
+                            prompt: 'choisie le nom de piece'
+                        },
+
+                    ]
+                },
+                id_mark: {
+                    identifier: 'id_mark',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'choisie une marque de piece'
+                        },
+
+                    ]
+                }, reference: {
+                    identifier: 'reference',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'reference ne doit pas etre vide'
+                        },
+
+                    ]
+                }, quantity: {
+                    identifier: 'quantity',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'quantity ne doit pas etre vide'
+                        },
+
+                    ]
+                },
+                purchase_price: {
+                    identifier: 'purchase_price',
+                    rules: [{
+                            type: 'empty',
+                            prompt: "prix d'achat ne doit pas etre vide"
+                        },
+
+                    ]
+                },
+                sale_price: {
+                    identifier: 'sale_price',
+                    rules: [{
+                            type: 'empty',
+                            prompt: "prix d'vent ne doit pas etre vide"
                         },
 
                     ]
                 }
+              
               
 
             }

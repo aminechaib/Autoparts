@@ -41,7 +41,7 @@ $pieces = Piece::find_all();
                                 <label for="">Piece:</label>
                                 
                                 <select class="ui search dropdown" name="id_piece">
-                                <option value="">Piece..</option>
+                               
                                <?php foreach ($pieces as $piece) {
                                    ?>
                                 <option value="<?php echo $piece->id;?>" <?php if($compatible->id_piece == $piece->id) echo 'selected'; ?>>  <?php echo $piece->piece_name."<-->".$piece->reference; ?></option>
@@ -51,7 +51,7 @@ $pieces = Piece::find_all();
                                 </select>
                                 <label for="">Moteur:</label>
                                 <select class="ui search dropdown" name="id_moteur">
-                                <option value="">Moteur..</option>
+                                
                                <?php foreach ($moteurs as $moteur) {
                                    ?>
                                 <option value="<?php echo $moteur->id;?>" <?php if($compatible->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name; ?></option>
@@ -156,15 +156,24 @@ $(function() {
             on: 'blur',
             fields: {
 
-                name: {
-                    identifier: 'name',
+                id_piece: {
+                    identifier: 'id_piece',
                     rules: [{
                             type: 'empty',
-                            prompt: 'manque un nom'
+                            prompt: 'choisie un moteur'
                         },
 
                     ]
-                }
+                },
+                id_moteur: {
+                    identifier: 'id_moteur',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'choisie une piece'
+                        },
+
+                    ]
+                },
               
 
             }

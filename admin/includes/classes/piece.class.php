@@ -308,13 +308,32 @@ class Piece{
      
     }
     protected function validate(){
-        echo "goooooood morning";
         $this->errors = [];
         //nom piece
-        // if(is_blank($this->id_name)) {
-        //     $this->errors[] = "nom du piece ne doit pas être vide.";
-        // }elseif(!has_length($this->id_name, array('min' => 4, 'max' => 255))) {
-        //     $this->errors[] = "nom du piece doit avoir au moins 4 caractéres! ";  }
+        if(is_blank($this->id_name)) {
+            $this->errors[] = "choisie nom de piece.";
+        }
+        //mark
+        if(is_blank($this->id_mark)) {
+            $this->errors[] = "choisie la marque de piece.";
+        }
+                //mark
+        if(is_blank($this->reference)) {
+            $this->errors[] = "choisie la reference de piece.";
+        }
+        //quantity
+        if(is_blank($this->quantity)) {
+            $this->errors[] = "quantity ne doit pas etre vide.";
+        }
+        //purchase price
+        if(is_blank($this->purchase_price)) {
+            $this->errors[] = "prix d'achat ne doit pas etre vide.";
+        }
+        //sale_price
+        if(is_blank($this->sale_price)) {
+            $this->errors[] = "prix d'vent ne doit pas etre vide.";
+        }
+
           return $this->errors;
     }
     

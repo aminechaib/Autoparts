@@ -246,11 +246,18 @@ class piece_name {
 
     protected function validate(){
         $this->errors = [];
-        //nom piece
-        // if(is_blank($this->id_name)) {
-        //     $this->errors[] = "nom du piece ne doit pas être vide.";
-        // }elseif(!has_length($this->id_name, array('min' => 4, 'max' => 255))) {
-        //     $this->errors[] = "nom du piece doit avoir au moins 4 caractéres! ";  }
+        // nom piece
+        if(is_blank($this->name)) {
+            $this->errors[] = "nom du piece ne doit pas être vide.";
+        }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
+            $this->errors[] = "nom du piece doit avoir au moins 4 caractéres!";}
+            // categorie
+            if(is_blank($this->id_categorie)) {
+                $this->errors[] = "choisie une categorie.";}
+                //photo
+                if(is_blank($this->photo)) {
+                    $this->errors[] = "choisie une une photo.";}
+         
           return $this->errors;
     }
 

@@ -152,6 +152,24 @@ $(function() {
                         },
 
                     ]
+                },
+                enrgie: {
+                    identifier: 'enrgie',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'choisie energie de moteur'
+                        },
+
+                    ]
+                },
+                puissance: {
+                    identifier: 'puissance',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'manque puissance'
+                        },
+
+                    ]
                 }
               
 

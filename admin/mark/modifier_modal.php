@@ -148,6 +148,15 @@ $(function() {
                         },
 
                     ]
+                },
+                type: {
+                    identifier: 'type',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'choisie un type'
+                        },
+
+                    ]
                 }
               
 

@@ -251,15 +251,19 @@ class Moteur{
         //nom moteur
         if(is_blank($this->name)) {
             $this->errors[] = "nom du moteur ne doit pas être vide.";
-        }elseif(!has_length($this->name, array('min' => 2, 'max' => 255))) {
-            $this->errors[] = "nom du moteur doit avoir au moins 4 caractéres! ";  }
-          return $this->errors;
+        }elseif(!has_length($this->name, array('min' => 3, 'max' => 255))) {
+            $this->errors[] = "nom du moteur doit avoir au moins  caractéres! ";  }
+  
+    //energie
+    if(is_blank($this->enrgie)) {
+        $this->errors[] = "chisie energie de moteur.";
     }
-    
-    
-
-    
-
+    //puissance
+    if(is_blank($this->puissance)) {
+        $this->errors[] = "puissance de moteur ne doit pas etre vide.";
+    }
+    return $this->errors;
+  } 
 };
 
 

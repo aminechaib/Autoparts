@@ -117,58 +117,65 @@ $models = Model::find_all();
 
 $(function() {
       
-});
-
-
-
-    $('.menu .item')
-        .tab();
-
-    $('.ui.radio.checkbox')
-        .checkbox();
-
-
-     $('#particulier<?php echo $id ?>').change(function() {
-         
-        if(this.checked){
-        console.log('hna part');
-        
-            $('#myfield<?php echo $id ?>').addClass('disabled');
-        }
-
-     });
-     $('#professionnel<?php echo $id ?>').change(function() {
-
-        if(this.checked){
-        console.log('hna pro');
-
-            $('#myfield<?php echo $id ?>').removeClass('disabled');
+    });
+    
+    
+    
+        $('.menu .item')
+            .tab();
+    
+        $('.ui.radio.checkbox')
+            .checkbox();
+    
+    
+         $('#particulier<?php echo $id ?>').change(function() {
+             
+            if(this.checked){
+            console.log('hna part');
             
-        }
-
-     });
-         
-
-    $('#modifier_form<?php echo $id ?>')
-        .form({
-            on: 'blur',
-            fields: {
-
-                name: {
-                    identifier: 'name',
-                    rules: [{
-                            type: 'empty',
-                            prompt: 'manque un nom'
-                        },
-
-                    ]
-                }
-              
-
+                $('#myfield<?php echo $id ?>').addClass('disabled');
             }
-        });
-
-
+    
+         });
+         $('#professionnel<?php echo $id ?>').change(function() {
+    
+            if(this.checked){
+            console.log('hna pro');
+    
+                $('#myfield<?php echo $id ?>').removeClass('disabled');
+                
+            }
+    
+         });
+             
+    
+        $('#modifier_form<?php echo $id ?>')
+            .form({
+                on: 'blur',
+                fields: {
+    
+                    id_moteur: {
+                        identifier: 'id_moteur',
+                        rules: [{
+                                type: 'empty',
+                                prompt: 'manque un nom'
+                            },
+    
+                        ]
+                    },
+                      id_categorie: {
+                        identifier: 'id_categorie',
+                        rules: [{
+                                type: 'empty',
+                                prompt: 'choisie la categorie'
+                            }
+                        ]
+                    }
+                  
+                }
+            });
+    
+    
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {

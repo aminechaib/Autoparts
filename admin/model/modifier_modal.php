@@ -155,6 +155,15 @@ $(function() {
                         },
 
                     ]
+                },
+                id_mark: {
+                    identifier: 'id_mark',
+                    rules: [{
+                            type: 'empty',
+                            prompt: 'manque la marque'
+                        },
+
+                    ]
                 }
               
 
