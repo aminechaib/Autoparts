@@ -55,10 +55,8 @@ $id=$_SESSION['client']->id;
                                    <td><?php echo h($piece->id);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
                                    <td><?php echo h($piece->status);?></td>
-								   <td><a id="openPopupButton" href="afficher_cmd.php?id=<?php echo $piece->id;?>" class="boxed-btn">Afficher</a>
-								</td>
-                                </td>       
-                               </tr>
+								   <td><a id="openPopupButton" href="afficher_cmd.php?id=<?php echo $piece->id;?>" class="boxed-btn">Afficher</a></td>
+                               	   <td><button type="button">Afficher</button></td>
                                <?php
                                    }
                                }
@@ -68,7 +66,7 @@ $id=$_SESSION['client']->id;
                     </table>						<?php
 
 ?>
-						<a href="#" class="boxed-btn">Place Order</a>
+						
 					</div>
 				</div>
 			</div>
