@@ -3,12 +3,14 @@
   if(!$id){
     redirect_to('index.php');
   }
-  echo "the id is".$id;
-  $order_piece = Order_piece::find_by_id_order($id); // Retrieve data for the order
-  var_dump($order_piece);
-//   var_dump($order_piece);
-//   if ($order_piece) {
-//     foreach ($order_piece as $order_pi) {
+  $pieces = Order_piece::find_by_id_order($id);
+
+
+  
+
+//   var_dump($pieces);
+//   if ($pieces) {
+//     foreach ($pieces as $order_pi) {
 //       echo var_dump($order_pi);
 //     }
 //   } else {
