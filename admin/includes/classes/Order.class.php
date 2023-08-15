@@ -59,6 +59,17 @@ class Order{
        return self::find_by_sql($sql);
     }
 
+
+
+    static public function find_order_by_id_client($id){
+        $sql = "SELECT `id`, `id_ad`, `id_client`, `status`, `creation_date` FROM `order`
+    ";
+        $sql .="WHERE id_client='". self::$database->escape_string($id) ."'";
+        
+        return self::find_by_sql($sql);
+    }
+
+
     static protected function instantiate($record){
         $object = new self;
         foreach ($record as $property => $value) {
@@ -73,7 +84,6 @@ class Order{
         $sql = "SELECT * FROM `order` ";
         $sql .="WHERE id='". self::$database->escape_string($id) ."'";
         $object_array= self::find_by_sql($sql);
-        //
         // var_dump($object_array);exit;
         if(!empty($object_array)){
             return array_shift($object_array);

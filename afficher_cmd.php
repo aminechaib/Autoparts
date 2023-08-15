@@ -6,7 +6,7 @@
 	<?php include('layouts/header.php'); ?>					
 	<!-- end header -->
 
-	
+
 	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -29,46 +29,54 @@
 			<div class="row">
 				
 <?php
+
 $id=$_SESSION['client']->id;
+
 	?>
 				<div class="col-lg-6">
-				<div class="order-details-wrap">
-				<table class="order-details">
+					<div class="order-details-wrap">
+
+
+					<?php
+
+    ?>
+
+
+
+
+
+					<table class="order-details">
 							<thead>
 								<tr>
 								    <th>id</th>
-								
-									<th>Date de commande</th>
-									<th>status de commande</th>
-									<th>Afficher</th>
+									<th>Piece</th>
+									<th>reference</th>
+									<th>quantity</th>
+									
 								</tr>
 							</thead>
 							<tbody class="order-details-body">
                            <?php
-                               $pieces = Order::find_order_by_id_client($id); 
-							
+                                  if (isset($_GET['id'])) {
+									$id = $_GET['id'];
+									$pieces = Order_piece::find_by_id_order($id);
                                if($pieces){
                                    foreach($pieces as $piece){
-                                    //  var_dump($piece);
                                ?>
                                <tr>
                                    <td><?php echo h($piece->id);?></td>
-                                   <td><?php echo h($piece->creation_date);?></td>
-                                   <td><?php echo h($piece->status);?></td>
-								   <td><a id="openPopupButton" href="afficher_cmd.php?id=<?php echo $piece->id;?>" class="boxed-btn">Afficher</a>
-								</td>
+								   <td><?php echo h($piece->name);?></td>
+                                   <td><?php echo h($piece->reference);?></td>
+								   <td><?php echo h($piece->quantity);?></td>
                                 </td>       
                                </tr>
                                <?php
                                    }
                                }
-							    
+							    }
                            ?>
                         </tbody>
-                    </table>						<?php
-
-?>
-						<a href="#" class="boxed-btn">Place Order</a>
+                    </table>						
 					</div>
 				</div>
 			</div>

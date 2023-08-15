@@ -75,11 +75,9 @@ class Order_piece{
         JOIN piece_name pn ON p.id_name = pn.id
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
-        
         return self::find_by_sql($sql);
     }
 
-    
     public function create()
     {
         $attributes = $this->sanitized_attributes();//mna9yiin
