@@ -41,6 +41,7 @@ $id=$_SESSION['client']->id;
 									<th>Date de commande</th>
 									<th>status de commande</th>
 									<th>Afficher</th>
+									<th>Suprimer</th>
 								</tr>
 							</thead>
 							<tbody class="order-details-body">
@@ -80,8 +81,8 @@ $item=$piece->id;
                         </tbody>
                     </table>	
 					 <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+    <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
             <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
