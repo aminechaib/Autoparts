@@ -97,16 +97,18 @@ include("../includes/app_head.php");
                                 </select>
 
                         </div>
-                        <div class="one  fields">
-                            <div class="field">
+                        <div class="one fields">
+                            <div class="field" style="margin-top:25px;">
                                 <input type="submit" class="ui button" value="ajouter" name="ajouter">
                             </div>
                         </div>
 
-                        <!-- <div class="ui error message"><?php echo $php_errormsg ?? ''; ?></div> -->
-                      
+                        <!-- <div class="ui error message"><?php echo $php_errormsg ?? ''; ?></div>
+                       -->
                     </form><!-- end form -->
-                    <div class="<?php if(isset($_SESSION['errors']) and !empty($_SESSION['errors'])){ echo 'ui error message';} ?>">
+                </div><!-- end segment-->
+
+                <div class="<?php if(isset($_SESSION['errors']) and !empty($_SESSION['errors'])){ echo 'ui error message';} ?>">
                         <ul class="list">
                                         
                         <?php
@@ -122,9 +124,6 @@ include("../includes/app_head.php");
                         </ul>
 
                     </div>
-
-                </div><!-- end segment-->
-
 
 
 

@@ -93,15 +93,15 @@ class Mark{
     }
 
     public function check_validation(){
-        $validation = $this->validate();
+        $validation = $this->validate();             
        if(empty($validation)){
-               
+
         return $this->create();
        }else{
          return $validation;
        }     
     }
-        
+
     public function attributes(){
         $attributes = [];
         foreach (self::$db_columns as $column) {
@@ -248,9 +248,11 @@ class Mark{
             $this->errors[] = "nom du marque ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 1, 'max' => 255))) {
             $this->errors[] = "nom du marque doit avoir au moins 1 caractéres! ";  }
-            if(empty($this->type)) {
+        if(empty($this->type)) {
                 $this->errors[] = "choisie un type de piece";}
-          return $this->errors;
+
+
+        return $this->errors;
     }
     
     
