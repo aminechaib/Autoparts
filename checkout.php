@@ -55,29 +55,60 @@ $id=$_SESSION['client']->id;
                                    <td><?php echo h($piece->id);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
                                    <td><?php echo h($piece->status);?></td>
-								   <td><a id="openPopupButton" href="afficher_cmd.php?id=<?php echo $piece->id;?>" class="boxed-btn">Afficher</a></td>
-                               	   <td><button type="button">Afficher</button></td>
-                               <?php
+								   <td>
+<?php
+$item=$piece->id;
+?>
+<button type="button" class="btn btn-custom open-modal" data-toggle="modal" data-target="#myModal" data-value="<?php echo $item; ?>">Afficher</button>
+<style>.btn-custom {
+    background-color: #F28123;
+    color: white; /* You can adjust the text color as needed for contrast */
+    /* Add any other styles you need for your custom button */
+}
+
+</style>
+		<?php
+    
+    ?>
+					
+									</td>
+
+  								<?php
                                    }
-                               }
-							    
+                               }						
                            ?>
                         </tbody>
-                    </table>						<?php
+                    </table>	
+					 <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Votre Commande</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" id="selectedValueDisplay">
+                    <!-- Selected value will be displayed here -->
+                </div>
+                <div class="modal-footer">
 
-?>
-						
+                </div>
+            </div>
+        </div>
+    </div>		
+	
+	
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-<?php
 
 
-		
-?>
+
+
 	<!-- end check out section -->
 <!-- logo_carousel -->
 <?php include('layouts/logo_carousel.php'); ?>	

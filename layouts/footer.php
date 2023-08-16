@@ -249,5 +249,27 @@
     }
   });
 </script>
+<!-- JavaScript to handle button click and update modal content -->
+<script>
+    $(document).ready(function() {
+        $('.open-modal').click(function() {
+            var selectedValue = $(this).data('value'); // Get the value from data-value attribute
+            
+            $('#selectedValueDisplay').html("You selected: " + selectedValue);
+            
+            // Send the selected value back to the server using AJAX
+            $.ajax({
+                type: "POST",
+                url: "ajax-handler.php", // Add the correct URL of the PHP script
+                data: { selectedValue: selectedValue },
+                success: function(response) {
+                    console.log("Value sent to the server: " + selectedValue);
+                    // Display the server response in the modal body
+                    $('#selectedValueDisplay').html(response);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
