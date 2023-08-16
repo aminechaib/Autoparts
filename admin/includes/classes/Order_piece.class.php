@@ -69,12 +69,26 @@ class Order_piece{
 
 
     static public function find_by_id_order($id){
-        $sql = "SELECT op.id,op.quantity, op.sale_price, p.reference,pn.name, o.status, o.id AS order_id
+        $sql = "SELECT op.id,op.quantity,id_piece, op.sale_price, p.reference,pn.name, o.status, o.id AS order_id
         FROM order_piece op
         JOIN piece p ON op.id_piece = p.id
         JOIN piece_name pn ON p.id_name = pn.id
         JOIN `order` o ON op.id_order = o.id ";
         $sql .="WHERE id_order='". self::$database->escape_string($id) ."'";
+        return self::find_by_sql($sql);
+    }
+
+    static public function find_quantity_by_id_order($id){
+        $sql = "SELECT 
+        p.id AS piece_id,
+        op.quantity AS order_piece_quantity,
+        op.id_piece AS order_piece_id,
+        p.quantity AS piece_quantity
+    FROM 
+        order_piece op
+    JOIN 
+        piece p ON op.id_piece = p.id ";
+        $sql .="WHERE op.id_order='". self::$database->escape_string($id) ."'";
         return self::find_by_sql($sql);
     }
 
@@ -210,6 +224,10 @@ class Order_piece{
     /////// end record code////////////////////////////
     public $quantity;
     public $id_order;
+    public $order_piece_quantity;
+    public $order_piece_id;
+    public $piece_quantity;
+    public $piece_id;
     public $id;
     public $reference;
     public $name;

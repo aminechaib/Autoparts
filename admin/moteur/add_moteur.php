@@ -43,7 +43,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       $args['id_ad'] = 1;
       $args['enrgie']= $_POST['enrgie'] ?? NULL;
       $args['puissance'] = $_POST['puissance'] ?? NULL;
-      $args['creation_date'] = $_POST['creation_date'] ?? NULL;
+      $args['creation_date'] = date('Y-m-d H:m:s');
 
 
 
