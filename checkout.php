@@ -72,7 +72,24 @@ $item=$piece->id;
     
     ?>
 					
-									</td>
+				</td>
+				<td>
+				<button type="button" class="btn btn-custom dele-modal" data-toggle="modal" data-value="<?php echo $item; ?>">Suprimer</button>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Find the button by its class name
+  var button = document.querySelector('.btn-custom.dele-modal');
+
+  // Attach a click event listener to the button
+  button.addEventListener('click', function() {
+    // Perform the action you want, e.g., show the modal
+
+    // Reload the page
+    location.reload();
+  });
+});
+</script>
+	</td>
 
   								<?php
                                    }

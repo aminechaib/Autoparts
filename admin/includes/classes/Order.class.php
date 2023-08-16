@@ -14,6 +14,7 @@ class Order{
         'id_ad',
         'id_client',
         'status',
+        'is_deleted',
         'creation_date'
        
     ];
@@ -45,6 +46,7 @@ class Order{
         c.mobile_phone,
         o.id,
         o.status,
+        o.is_deleted,
         o.id_ad,
         o.creation_date
     FROM
@@ -62,9 +64,9 @@ class Order{
 
 
     static public function find_order_by_id_client($id){
-        $sql = "SELECT `id`, `id_ad`, `id_client`, `status`, `creation_date` FROM `order`
+        $sql = "SELECT `id`, `id_ad`, `id_client`,`is_deleted`, `status`, `creation_date` FROM `order`
     ";
-        $sql .="WHERE id_client='". self::$database->escape_string($id) ."'";
+        $sql .="WHERE is_deleted='no' AND id_client='". self::$database->escape_string($id) ."'";
         
         return self::find_by_sql($sql);
     }
@@ -236,7 +238,6 @@ class Order{
         $result = self::$database->query($sql);
         $row = $result->num_rows;
         $result->free();
-
         return $row;
     }
 
@@ -250,6 +251,7 @@ class Order{
     public $mobile_phone;
     public $creation_date;
     public $id_ad;
+    public $is_deleted;
     public $id_client;
     public $errors = [];
     
@@ -260,6 +262,7 @@ class Order{
         $this->id_ad = 1;
         $this->id_client = $_SESSION['client']->id ?? '';
         $this->status = 'PENDING';
+        $this->is_deleted = 'no';
     }
     protected function validate(){
         $this->errors = [];

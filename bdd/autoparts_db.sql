@@ -179,7 +179,7 @@
     `id_ad` int NOT NULL,
     `id_client` int NOT NULL,
     `status` varchar(20) NOT NULL DEFAULT 'PENDING',
-    `is_deleted` varchar(20) NOT NULL DEFAULT 'no',
+    `is_deleted` varchar(80) NOT NULL DEFAULT 'no',
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (id_client) REFERENCES client (id)  ON UPDATE CASCADE ON DELETE CASCADE

@@ -79,6 +79,7 @@ height: 100%;
                                 <th>adresse</th>
                                 <th>date de commande</th>
                                 <th>status</th>
+                                <th>suprimer</th>
                            
                                 <th></th>
                                 <th></th>
@@ -98,6 +99,7 @@ height: 100%;
                                    <td><?php echo h($piece->adresse);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
                                    <td><?php echo h($piece->status);?></td>
+                                   <td><?php echo h($piece->is_deleted);?></td>
                                    <td> <button class="ui tiny blue  button"
                                             data-button_id="<?php echo h($piece->id) ?>" data-type="afficher">
                                             <i class="question icon"></i><span>Afficher</span></button>
