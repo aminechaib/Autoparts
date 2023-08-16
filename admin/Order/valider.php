@@ -1,6 +1,5 @@
 <?php 
-require_once('../includes/initialize.php'); 
- session_start();
+require_once('../includes/initialize.php');
 require_login();
 
 
@@ -13,13 +12,7 @@ $order_p=Order_piece::find_quantity_by_id_order($id);
 
 foreach($order_p as $stock){
   $qua=$stock->piece_quantity-$stock->order_piece_quantity;
-  if($qua<0){
-        //echo 'jazat la requete';
-      
-        $_SESSION['toast'] = true;
-        $_SESSION['toastType'] = "la commande et pas valider";
-        redirect_to('index.php');
-  }else{
+  
   // echo "<br>". $qua;
 $ss=$stock->piece_id;
 echo "<br>". $ss;
@@ -86,7 +79,7 @@ $order=Order::find_by_id($id);
 
   if($result){
     //echo 'jazat la requete';
-    
+    session_start();
     $_SESSION['toast'] = true;
     $_SESSION['toastType'] = "la commande et bien etes valider";
     redirect_to('index.php');
@@ -94,5 +87,5 @@ $order=Order::find_by_id($id);
      //echo 'mamchatch';
   }
 
-}}
+}
 ?>

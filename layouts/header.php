@@ -5,10 +5,21 @@
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
 						<!-- logo -->
+                        
 						<div class="site-logo">
 							<a href="index.php">
 								<img src="assets/img/logo AP.png" alt="">
-							</a>   <p><input type="text" id="productFilter" placeholder="Filter by name"></p>
+							</a>   
+                            <p>
+                            <?php
+                                if("http://localhost/Autoparts/index.php" == $url)
+                                {
+                                ?>
+                                <input type="text" id="productFilter" placeholder="Filter by name">
+                                <?php
+                                }
+                                ?>
+                            </p>
 						</div>
 						<!-- logo -->
                         <title>Auto Parts</title>

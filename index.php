@@ -229,7 +229,11 @@
         <?php 
 			if(isset($_SESSION['client'])){
 				if(!in_array($piece->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
-					echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+					
+					if($piece->quantity > 0)
+						echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+					else
+						echo '<input type="submit" name="" value="out of stock">';
 				} else {
 					echo '<input type="submit" name="" value="Déjà ajouté">';
 				}

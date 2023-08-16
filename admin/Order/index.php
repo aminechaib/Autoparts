@@ -2,6 +2,9 @@
 require_once("../includes/initialize.php");
 include("../includes/app_head.php");
 include('function_modal.php');
+
+
+
 $bool = $_SESSION['toast'] ;
 ?>
 
@@ -39,12 +42,20 @@ height: 100%;
         <div class="ui padded grid">
 
 
-            <?php 
 
-
-?>
             <div class="ui fifteen wide column row centered grid segment">
-
+            <?php 
+if (isset($_GET['error'])) {
+    $errorMessage = $_GET['error'];
+?>
+    <div class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">
+   Tu ne peux pas valider cette commande car le stock et insufissant
+  </div>
+  </div><?php
+}
+?>
                 <div class="ui pointing secondary big menu">
 
 
