@@ -107,16 +107,7 @@ height: 100%;
                                         <div class="ui large modal afficher a<?php echo h($piece->id) ?>">
                                             <div class="content">
                                                 <?php afficher_modal($piece->id, ''); ?></td>
-                                   <td>
-                                       <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($piece->id) ?>" data-type="modifier"><i
-                                               class="edit outline icon"></i><span>Valider</span></button>
-                                       <div class="ui modal modifier m<?php echo h($piece->id, '') ?>">
-                                           <div class="content">
-                                               <?php modifier_modal($piece->id, '') ?>
-                                           </div>
-                                       </div>
-                                   </td>
+                                  
                                    <td>
                                     <button class="ui tiny red button" data-button_id="<?php echo h($piece->id) ?>"
                                         data-type="supprimer">
