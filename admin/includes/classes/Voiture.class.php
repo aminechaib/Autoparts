@@ -237,7 +237,7 @@ class Voiture{
 
         $this->id_moteur = $args['id_moteur'] ?? '';
         $this->id_model = $args['id_model'] ?? '';
-        $this->creation_date = $args['creation_date'] ?? '';
+        $this->creation_date = date('Y-m-d H:m:s');;
         $this->id_ad = 1;
     }
 
