@@ -31,7 +31,7 @@
 
   CREATE TABLE `category` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20) NOT NULL,
+    `name` varchar(50) NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
@@ -60,7 +60,7 @@
 
   CREATE TABLE `mark` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20) NOT NULL,
+    `name` varchar(50) NOT NULL,
     `type` varchar(20) NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
@@ -79,8 +79,8 @@
 
     CREATE TABLE `piece_name` (
       `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      `name` varchar(20) NOT NULL,
-      `photo` varchar(20) NOT NULL,
+      `name` varchar(50) NOT NULL,
+      `photo` varchar(255) NOT NULL,
       `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
       `id_admin` int NOT NULL,
       FOREIGN KEY (id_admin) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
@@ -99,7 +99,7 @@
       `quantity` varchar(20) DEFAULT NULL,
       `purchase_price` float DEFAULT NULL,
       `sale_price` float DEFAULT NULL,
-      `reference` varchar(20) DEFAULT NULL,
+      `reference` varchar(50) DEFAULT NULL,
       `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
       `id_admin` int NOT NULL,
       FOREIGN KEY (id_admin) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
@@ -115,7 +115,7 @@
 
   CREATE TABLE `moteur` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20) NOT NULL,
+    `name` varchar(50) NOT NULL,
     `enrgie` varchar(20) NOT NULL,
     `puissance` int (20) NOT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -129,7 +129,7 @@
 
   CREATE TABLE `model` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20) DEFAULT NULL,
+    `name` varchar(50) DEFAULT NULL,
     `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     `id_ad` int NOT NULL,
     FOREIGN KEY (id_ad) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE,
@@ -210,20 +210,3 @@ CREATE TABLE `order_piece` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `order_piece`
--
-    -- Table structure for table `admin_offre`
-  --
-
-  -- CREATE TABLE `admin_offre` (
-  --   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  --   `nom_offre` varchar(20) NOT NULL,
-  --   `temp_de_offre` time(20) NOT NULL,
-  --   `description_offre` varchar(255) NOT NULL,
-  --   `id_piece` int NOT NULL,
-  --   FOREIGN KEY (id_piece) REFERENCES admin (id)  ON UPDATE CASCADE ON DELETE CASCADE
-  -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
