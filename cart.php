@@ -100,6 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <a href="#" onclick="removeFromCart(<?php echo $piece->id; ?>)">
                                     <i class="far fa-window-close"></i>
                                     </a>
+                                   
+                               <input type="hidden" value="<?php echo $piece->quantity; ?>" class="stock">
+                               </td>
                                 </td>
                                 <td class="product-image">
                                     <a href="single-product.php"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
@@ -116,9 +119,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <?php echo $piece->sale_price . "  DZD"; ?>
                                     <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
                                 </td>
+                              
                                 <td>
                                     <input type="number" id="quant" name="quantity[]" class="inputQuantity" min="1" oninput="myFunction(this)" value="1">
-                                </td>
+                                    <div class="maxQuantityMsg" style="color: red;"></div>
+    </td>
+
                                 <td class="product-total"><?php echo $piece->sale_price . "  DZD"; ?></td>
                             </tr>
                             <?php
@@ -221,6 +227,23 @@ function removeFromCart(id) {
     row.querySelector('.product-total').innerText = total.toFixed(2) + " DZD";
     updateTotal();
     storeQuantity(input); // Store the updated quantity in local storage
+
+    
+    var row = input.closest('tr');
+    var stockInput = row.querySelector('.stock');
+    var quantInput = row.querySelector('.inputQuantity');
+    var maxQuantityMsg = row.querySelector('.maxQuantityMsg');
+    
+    var stockValue = parseInt(stockInput.value);
+    quantInput.max = stockValue;
+    
+    var quantValue = parseInt(quantInput.value);
+    if (quantValue > stockValue) {
+        quantInput.value = stockValue;
+        maxQuantityMsg.textContent = "La quantité ne peut pas dépasser le stock disponible, !";
+    } else {
+        maxQuantityMsg.textContent = "";
+    }
   }
 
   function updateTotal() {
