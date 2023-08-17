@@ -110,14 +110,16 @@ include("../includes/app_head.php");
                             <div class="field">
                                 <label for="">category:</label>
                                 <select class="ui search dropdown" name="id_categorie">
-                                    <option value="">category..</option>
-                                    <?php foreach ($categorys as $category) {
-                                    ?>
-                                    <option value="<?php echo $category->id; ?>">  <?php echo $category->name; ?></option>
+    <option value="">category..</option>
+    <?php foreach ($categorys as $category) {
+        $selected = ($category->id == $_POST['id_categorie']) ? 'selected' : ''; // Compare with the submitted value
+    ?>
+    <option value="<?php echo $category->id; ?>" <?php echo $selected; ?>>
+        <?php echo $category->name; ?>
+    </option>
+    <?php }?>
+</select>
 
-                                    <?php
-                                    }?>
-                                </select>
                             </div>
                             <div class="field">
                             <label>photo</label>     
@@ -132,8 +134,7 @@ include("../includes/app_head.php");
           
                             <div class="field">
                                 <label>Nom</label>
-                                <input type="text" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" name="name" placeholder="Nom de piece">
-                            </div>
+                                <input type="text" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" name="name" placeholder="Nom de piece"></div>
                         </div>
                         <div class="one fields">
                             <div class="field">

@@ -15,7 +15,7 @@
                                 if("http://localhost/Autoparts/index.php" == $url)
                                 {
                                 ?>
-                                <input type="text" id="productFilter" placeholder="Filter by name">
+                                <input type="text" id="productFilter" placeholder="Recherche">
                                 <?php
                                 }
                                 ?>
