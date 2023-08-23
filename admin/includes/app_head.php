@@ -14,7 +14,7 @@ if(!isset($page_title)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favico.png">
+	<link rel="icon" type="image/png" href="favico.png">
     <title><?php echo $page_title; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo url_for('dist/semantic.css') ;?>">
     <script src="<?php echo url_for('dist/jquery-3.3.1.min.js');?>"></script>
