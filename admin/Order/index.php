@@ -27,7 +27,7 @@ height: 100%;
     height: 85vh;
     overflow: scroll;
 }
-.open_piece{
+.open_commande{
         border-right:3px solid #119ee7;
         
         }
@@ -44,22 +44,51 @@ height: 100%;
 
 
             <div class="ui fifteen wide column row centered grid segment">
-            <?php 
-if (isset($_GET['error'])) {
-    $errorMessage = $_GET['error'];
-?>
-    <div class="ui negative message">
-  <i class="close icon"></i>
-  <div class="header">
-   Tu ne peux pas valider cette commande car le stock et insufissant
-  </div>
-  </div><?php
+            <?php
+$piece = Piece::find_all();
+$hasQuantityLessThanThree = false;
+
+foreach ($piece as $pie) {
+    if ($pie->quantity < 3) {
+        $hasQuantityLessThanThree = true;
+        break; // No need to continue checking if we found one
+    }
 }
 ?>
+
+<?php if ($hasQuantityLessThanThree): ?>
+    <style>
+        .warning-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            animation: blink 2s infinite; /* Adding animation property */
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+    <div class="warning-container">
+        <div class="warning-message">
+            Votre stock de pièces est sur le point de s'épuiser!
+        </div>
+    </div>
+<?php endif; ?>
+
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Commande</h1>
+                    <h1 class="ui  header item"><i class="clipboard list icon"></i>Commande</h1>
 
 
                   

@@ -48,7 +48,7 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Compatible</h1>
+                    <h1 class="ui  header item"><i class="check circle icon"></i>Compatible</h1>
             
                     <div class="right item">
                         <a href="add_compatible.php" class="">

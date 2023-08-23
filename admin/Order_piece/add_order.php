@@ -12,7 +12,7 @@
 label {
     float: left;
 }
-.open_pie{
+.open_commande{
         border-right:3px solid #119ee7;
         
         }

@@ -13,7 +13,7 @@
 label {
     float: left;
 }
-.open_moteure{
+.open_mot{
         border-right:3px solid #119ee7;
         
         }
@@ -84,7 +84,7 @@ include("../includes/app_head.php");
 
                 <div class="ui fifteen wide column row centered grid segment">
                     <h2 class="ui left aligned header"><i class=" icons">
-                            <i class="users icon"></i>
+                            <i class="cogs icon"></i>
                             <i class="corner add icon"></i>
                         </i>&nbsp;Ajouter une moteur</h2>
                     <form method="POST" class="ui form">

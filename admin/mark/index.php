@@ -48,7 +48,7 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Marque</h1>
+                    <h1 class="ui  header item"><i class="globe icon"></i>Marque</h1>
                     <div class="right item">
                         <a href="add_mark.php" class="">
                             <i class="big plus circle icon"></i>
@@ -79,6 +79,7 @@ height: 100%;
                             <tr>
                                 <th>#</th>
                                 <th>Nom</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>

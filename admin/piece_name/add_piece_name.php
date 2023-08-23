@@ -12,7 +12,7 @@
 label {
     float: left;
 }
-.open_pie{
+.open_piece_name{
         border-right:3px solid #119ee7;
         
         }
@@ -100,7 +100,7 @@ include("../includes/app_head.php");
 
                 <div class="ui fifteen wide column row centered grid segment">
                     <h2 class="ui left aligned header"><i class=" icons">
-                    <i class="users icon"></i>
+                    <i class="file image outline icon"></i>
                     <i class="corner add icon"></i>
                     </i>&nbsp;Ajouter un nom_piece</h2>
                     

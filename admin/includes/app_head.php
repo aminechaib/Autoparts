@@ -11,10 +11,10 @@ if(!isset($page_title)){
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="classes/favico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/favico.png">
     <title><?php echo $page_title; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo url_for('dist/semantic.css') ;?>">
     <script src="<?php echo url_for('dist/jquery-3.3.1.min.js');?>"></script>
@@ -138,7 +138,7 @@ if(!isset($page_title)){
         if($_SESSION['admin']->role == 'super-admin') 
         { echo '
             <a class="item open_ad bar" href="';?><?php echo url_for("admins/index.php"); ?><?php echo '">';?>
-              <?php echo '<i class="user small icon"></i>
+              <?php echo '<i class="user icon"></i>
               <div class="content">Admins</div>
             </a>
         ';
@@ -147,49 +147,48 @@ if(!isset($page_title)){
         
         
         <a class="item open_dash bar" href="<?php echo url_for('dashboard.php'); ?>">
-          <i class="home small icon"></i>
+          <i class="home icon"></i>
           <div class="content">Accueil</div>
         </a>
         <a class="item open_cl" href="<?php echo url_for('clients/index.php'); ?>">
-          <i class="users small icon"></i>
+          <i class="users icon"></i>
           <div class="content">Client</div>
         </a>
         <a class="item open_cat" href="<?php echo url_for('categories/index.php'); ?>">
-            <i class="cogs icon small icon"></i>
+            <i class="tasks icon"></i>
             <div class="content">Category</div>
           </a>
-
           <a class="item open_mot" href="<?php echo url_for('moteur/index.php'); ?>">
-            <i class="car icon small icon"></i>
+            <i class="cogs icon icon"></i>
             <div class="content">Moteur</div>
           </a>
           <a class="item open_mar" href="<?php echo url_for('mark/index.php'); ?>">
-              <i class="database small icon"></i>
+              <i class="globe icon"></i>
               <div class="content">marque</div>
             </a>
             <a class="item open_mod" href="<?php echo url_for('model/index.php'); ?>">
-              <i class="database small icon"></i>
+              <i class="tags icon"></i>
               <div class="content">model</div>
             </a>
             <a class="item open_piece_name" href="<?php echo url_for('piece_name/index.php'); ?>">
-              <i class="file alternate outline small icon"></i>
+              <i class="file image outline icon"></i>
                   <div class="content">piece_name</div>
                 </a>
               <a class="item open_piece" href="<?php echo url_for('piece/index.php'); ?>">
-              <i class="file alternate outline small icon"></i>
+              <i class="wrench icon"></i>
                   <div class="content">piece</div>
                 </a>
                
         <a class="item open_comp" href="<?php echo url_for('compatible/index.php'); ?>">
-        <i class="small boxes icon"></i>
+        <i class="check circle icon"></i>
                   <div class="content">Compatible</div>
                 </a>
-                <a class="item open_comp" href="<?php echo url_for('voiture/index.php'); ?>">
-        <i class="small boxes icon"></i>
+                <a class="item open_voiture" href="<?php echo url_for('voiture/index.php'); ?>">
+                <i class="car icon"></i>
                   <div class="content">Voiture</div>
                 </a>
-                <a class="item open_comp" href="<?php echo url_for('order/index.php'); ?>">
-        <i class="small boxes icon"></i>
+                <a class="item open_commande" href="<?php echo url_for('order/index.php'); ?>">
+        <i class="clipboard list icon"></i> 
                   <div class="content">commande</div>
                 </a>
                

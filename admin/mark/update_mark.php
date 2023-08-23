@@ -15,8 +15,6 @@ if(is_post_request() && isset($_POST['modifier'])){
       $_POST[$key] = test_input($value);
       }
     */
-
-   
    $args = [];
    $args['id'] = $_GET['id']?? NULL;
    $args['name'] = $_POST['name'] ?? NULL;

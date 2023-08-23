@@ -65,26 +65,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
         redirect_to('add_client.php');//bah yweli hna
       }
-      //////////////////////////////////////////////
-    //   $result = $client->create();
 
-    //   if($result == true){
-        
-    //     $_SESSION['toast'] = true;
-    //     $_SESSION['toastType'] = "un ajout d'un client ";
-
-    //     redirect_to('index.php');
-    //   }else{
-    //      // echo "error";
-    //   }
-    
-///}hna taghla9 tcheck email
-// else{
-//     $_SESSION['valid_email'] = true;
-//     $_SESSION['error_valid'] = 'email non valide';
-
-// }
-// } 
 }
 ///////////////////////////////////////////////////////////////////////////////////
 include("../includes/app_head.php");

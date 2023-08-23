@@ -24,7 +24,7 @@ height: 100%;
     height: 85vh;
     overflow: scroll;
 }
-.open_comp{
+.open_voiture{
         border-right:3px solid #119ee7;
         
         }
@@ -48,7 +48,7 @@ height: 100%;
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="users icon"></i>Voiture</h1>
+                    <h1 class="ui  header item"><i class="car icon"></i>Voiture</h1>
             
                     <div class="right item">
                         <a href="add_voiture.php" class="">

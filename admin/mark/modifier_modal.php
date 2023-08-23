@@ -27,7 +27,7 @@ $mark = Mark::find_by_id($id);
 
                 <div class="ui fifteen wide column row centered grid" id="modifier_grid<?php echo $id ?>">
                     <h2 class="ui left aligned header"><i class=" icons">
-                            <i class="users icon"></i>
+                            <i class="globe icon"></i>
                             <i class="corner add icon"></i>
                         </i>&nbsp;modifier le marque</h2>
                     <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="update_mark.php?id=<?php echo $id ?>">
