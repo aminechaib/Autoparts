@@ -2,9 +2,6 @@
 	<?php include('layouts/head.php'); ?>					
 	<!-- end head -->
 	
-	<!-- header -->
-	<?php include('layouts/header.php'); ?>					
-	<!-- end header -->
 
 	
 	
@@ -29,8 +26,16 @@
 			<div class="row">
 				
 <?php
-$id=$_SESSION['client']->id;
+if(isset($_SESSION['client'])){
+$id=$_SESSION['client']->id;}else
+{
+  redirect_to(url_for('index.php', 'front'));
+}
 	?>
+			<!-- header -->
+			<?php include('layouts/header.php'); ?>					
+	<!-- end header -->
+
 				<div class="col-lg-6">
 				<div class="order-details-wrap">
 				<table class="order-details">
@@ -115,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>		
-	
+
 	
 					</div>
 				</div>

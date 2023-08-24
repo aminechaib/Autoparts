@@ -52,7 +52,7 @@ class Order{
     FROM
         client c
     JOIN
-        `order` o ON c.id = o.id_client;
+        `order` o ON c.id = o.id_client ORDER BY o.creation_date DESC;
     ";
        return self::find_by_sql($sql);
     }

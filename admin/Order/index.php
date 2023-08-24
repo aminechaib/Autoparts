@@ -138,7 +138,19 @@ foreach ($piece as $pie) {
                                    <td><?php echo h($piece->mobile_phone);?></td>
                                    <td><?php echo h($piece->adresse);?></td>
                                    <td><?php echo h($piece->creation_date);?></td>
-                                   <td><?php echo h($piece->status);?></td>
+                                   <td>
+                                    <?php
+                                    $status = h($piece->status);
+                                    if ($status === "PENDING") {
+                                        echo '<div style="background-color: red; padding: 5px; color: white;">' . $status . '</div>';
+                                    } elseif ($status === "VALIDER") {
+                                        echo '<div style="background-color: green; padding: 5px; color: white;">' . $status . '</div>';
+                                    } else {
+                                        echo h($piece->status);
+                                    }
+                                    ?>
+                                </td>
+
                                    <td><?php echo h($piece->is_deleted);?></td>
                                    <td> <button class="ui tiny blue  button"
                                             data-button_id="<?php echo h($piece->id) ?>" data-type="afficher">

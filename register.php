@@ -70,8 +70,8 @@ if(is_post_request() && isset($_POST['ajouter'])){
     <div class="row">
       <div class="col-lg-8 mb-5 mb-lg-0">
         <div class="form-title">
-          <h2>Tu na pas un compte?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+          <h2>"Vous n'avez pas de compte ?</h2>
+          <p> Inscrivez-vous pour pouvoir passer des commandes de notre gamme de pièces automobiles en ligne.</p>
         </div>
         <div id="form_status"></div>
         <div class="contact-form">

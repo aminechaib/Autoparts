@@ -1,8 +1,10 @@
 
   <?php
+
   if(!$id){
     redirect_to('index.php');
   }
+  $ord= Order::find_by_id_or($id);
   $pieces = Order_piece::find_by_id_order($id);
   $totalSum = 0; // Initialize the total sum
   $totalSalePrice = 0; // Initialize the total sale price
@@ -82,10 +84,24 @@
     </tbody>
 </table>
 <form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="valider.php?id=<?php echo $id ?>">
-<input type="submit" value="Valider" name="valider" class="ui yellow button">
+<?php
+foreach($ord as $orde){
+    
+    $status = h($orde->status);
+    if ($status === "PENDING") {
+
+
+   
+?>
+
+<input type="submit" value="VALIDER" name="valider" class="ui yellow button">
 </form>
 </body>
 </html>
 <?php
+ }
+else{
 
+}
+}
 ?>

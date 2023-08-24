@@ -29,7 +29,11 @@
 						<nav class="main-menu">
                             <ul>
                             <li class="current-list-item"><a href="index.php">Accueil</a></li>
+                            <?php if(isset($_SESSION['client'])){
+                                
+                            ?>
                             <li><a href="checkout.php">Check-out</a></li>
+                            <?php  }else{ }?>
                             <li><a href="about.php">À propos</a></li>
                             </li>
                             <li><a href="contact.php">Contact</a></li>
