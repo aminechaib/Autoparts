@@ -247,6 +247,7 @@
       sessionStorage.removeItem('scrollPosition');
     }
   });
+
 </script>
 <!-- JavaScript to handle button click and update modal content -->
 <script>
