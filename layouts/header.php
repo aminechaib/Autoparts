@@ -28,16 +28,21 @@
                     
 						<nav class="main-menu">
                             <ul>
-                            <li class="current-list-item"><a href="index.php">Accueil</a></li>
-                            <?php if(isset($_SESSION['client'])){
+                            <?php
+// Get the current filename
+$currentFilename = basename($_SERVER['PHP_SELF']);
+
+?>
+<li <?php if ($currentFilename === 'index.php') echo 'class="current-list-item"'; ?>><a href="index.php">Accueil</a></li>
+                             <?php if(isset($_SESSION['client'])){
                                 
                             ?>
-                            <li><a href="checkout.php">Check-out</a></li>
+                            <li <?php if ($currentFilename === 'checkout.php') echo 'class="current-list-item"'; ?>><a href="checkout.php">Check-out</a></li>
                             <?php  }else{ }?>
-                            <li><a href="about.php">À propos</a></li>
+                            <li <?php if ($currentFilename === 'about.php') echo 'class="current-list-item"'; ?>><a href="about.php">À propos</a></li>
                             </li>
-                            <li><a href="contact.php">Contact</a></li>
-                            <li><a href="shop.php">Produit</a></li>
+                            <li <?php if ($currentFilename === 'contact.php') echo 'class="current-list-item"'; ?>><a href="contact.php">Contact</a></li>
+                            <li <?php if ($currentFilename === 'shop.php') echo 'class="current-list-item"'; ?>><a href="shop.php">Produit</a></li>
                             <li>
                                 <div class="header-icons">
                                     <?php 
@@ -45,6 +50,18 @@
                                     {?>
                                         <a class="shopping-cart" href="cart.php">
                                         <i class="fas fa-shopping-cart"></i>
+                                        <script>// Get the current page URL
+var currentPageURL = window.location.href;
+
+// Check if the current page URL contains "cart.php"
+if (currentPageURL.includes("cart.php")) {
+  // Get the element by its class name
+  var cartIcon = document.querySelector(".fas.fa-shopping-cart");
+
+  // Change the color of the element
+  cartIcon.style.color = "#f28123"; // You can replace "red" with any desired color
+}
+</script>
                                         <span style="background-color:brown;padding:0px 2px;">
                                         <?php 
                                         echo count($_SESSION['cart']);                                        
