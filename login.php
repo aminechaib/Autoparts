@@ -1,51 +1,49 @@
+<?php include('layouts/head.php'); ?>
 
-
-<?php include('layouts/head.php'); ?>	
 <!-- header -->
 
 <?php require_once("admin/includes/initialize.php"); ?>
 
-	<?php 
-	$errors = [];
-	$username = '';
-	$password = '';
-	if(is_post_request() && isset($_POST['ajouter'])){
-		
-		$mobile_phone = $_POST['mobile_phone'] ?? '';
-		$password = $_POST['password'] ?? '';
+<?php
+$errors = [];
+$username = '';
+$password = '';
+if (is_post_request() && isset($_POST['ajouter'])) {
 
-		// Validations
-		if(is_blank($mobile_phone)) {
-			$errors[] = "numéro de téléphone est vide!";
-		}
-		if(is_blank($password)) {
-			$errors[] = "mot de passe est vide!";
-		}
+    $mobile_phone = $_POST['mobile_phone'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-		// if there were no errors, try to login
-		if(empty($errors)) {
-			$client = Client::find_by_phone($mobile_phone);
-			//var_dump($client);exit;
-			// test if admin found and password is correct
-			if($client != false && $client->verify_password($password)) {
-				
-			  // Mark client as logged in
-			  $session->login($client, 'client');
-			//   echo("jazet.php");
-			   redirect_to('index.php');
-			} 
-			else {
-			  // phone_number not found or password does not match
-			  $errors[] = "mot de passe ou numéro de téléphone erroné :/ ";
-			}
-		
-		}
+    // Validations
+    if (is_blank($mobile_phone)) {
+        $errors[] = "numéro de téléphone est vide!";
+    }
+    if (is_blank($password)) {
+        $errors[] = "mot de passe est vide!";
+    }
 
-	}
-	?>
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
+    // if there were no errors, try to login
+    if (empty($errors)) {
+        $client = Client::find_by_phone($mobile_phone);
+        //var_dump($client);exit;
+        // test if admin found and password is correct
+        if ($client != false && $client->verify_password($password)) {
+
+            // Mark client as logged in
+            $session->login($client, 'client');
+            //   echo("jazet.php");
+            redirect_to('index.php');
+        } else {
+            // phone_number not found or password does not match
+            $errors[] = "mot de passe ou numéro de téléphone erroné :/ ";
+        }
+
+    }
+
+}
+?>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
@@ -58,48 +56,42 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-	<?php 
-	include('layouts/header.php');
-	 ?>	
-	<!-- contact form -->
-	<div class="contact-from-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 mb-5 mb-lg-0">
-					<div class="form-title">
-						<h2>Login</h2>
-											</div>
-				 	<div id="form_status"></div>
-					<div class="contact-form">
-						<form method="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-						<p>
-								<input type="text" placeholder="Numero de telephone" name="mobile_phone" id="na">
-								</p><p>
-								<input type="password" placeholder="Mot de pass" name="password">
-							</p>
-							
-							
-							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" name="ajouter" value="connecter"></p>
 
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="<?php if(!empty($errors)){ echo 'ui negative message'; ?>">
-						<i class="close icon"></i>
-						<div class="header">
-						</div>
-						<ul class="list">
-						<?php
-							foreach ($errors as $error) {
-							echo '<li>'. $error . '</li>';
-							}
-						}
-						?>
-						</ul>
-					</div>
-						</form>
-					<div class="contact-form-wrap">
+<?php include('layouts/header.php'); ?>
+
+<!-- contact form -->
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Login</h2>
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form method="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <p>
+                            <input type="text" placeholder="Numero de telephone" name="mobile_phone" id="na">
+                        </p>
+                        <p>
+                            <input type="password" placeholder="Mot de pass" name="password">
+                        </p>
+                        <input type="hidden" name="token" value="FsWga4&@f6aw" />
+                        <p><input type="submit" name="ajouter" value="connecter"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <?php if (!empty($errors)) { ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php foreach ($errors as $error) { ?>
+                                <li><?php echo $error; ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
+				<div class="contact-form-wrap">
 						<div class="contact-form-box">
 							<h4><i class="fas fa-map"></i> Shop Address</h4>
 							<p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
