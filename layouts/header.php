@@ -37,7 +37,7 @@ $currentFilename = basename($_SERVER['PHP_SELF']);
                              <?php if(isset($_SESSION['client'])){
                                 
                             ?>
-                            <li <?php if ($currentFilename === 'checkout.php') echo 'class="current-list-item"'; ?>><a href="checkout.php">Check-out</a></li>
+                            <li <?php if ($currentFilename === 'checkout.php') echo 'class="current-list-item"'; ?>><a href="checkout.php">Commande</a></li>
                             <?php  }else{ }?>
                             <li <?php if ($currentFilename === 'about.php') echo 'class="current-list-item"'; ?>><a href="about.php">À propos</a></li>
                             </li>

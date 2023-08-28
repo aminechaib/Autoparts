@@ -197,7 +197,7 @@ $pieces = Piece::find_all();
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="section-title">
-					<h3><span class="orange-text">Nos</span> produits</h3>
+					<h3><span class="orange-text">Nos</span> pieces</h3>
 					<p>Trouver les bonnes pièces auto pour votre voiture peut être difficile. Utilisez Auto Part pour faciliter votre vie.</p>
 				</div>
 			</div>
