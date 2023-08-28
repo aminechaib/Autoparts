@@ -30,7 +30,7 @@
 				<div class="col-lg-8 mb-5 mb-lg-0">
 					<div class="form-title">
 						<h2>Avez-vous des questions ?</h2>
-						<p>N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin de plus d'informations sur nos produits!</p>
+						<p>N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin de plus d'informations sur nos pieces!</p>
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
@@ -46,7 +46,7 @@
 							</p>
 							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
 							<input type="hidden" name="token" value="" />
-							<p><input type="submit" value="Submit"></p>
+							<p><input type="submit" value="Envoyer"></p>
 						</form>
 					</div>
 				</div>
