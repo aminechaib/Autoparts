@@ -12,13 +12,14 @@
 							</a>   
                             <p>
                             <?php
-                                if("http://localhost/Autoparts/index.php" == $url)
-                                {
-                                ?>
-                                <input type="text" id="productFilter" placeholder="Recherche">
-                                <?php
-                                }
-                                ?>
+    $currentPage = $_SERVER['PHP_SELF'];
+    if (basename($currentPage) === 'index.php') {
+?>
+    <input type="text" id="productFilter" placeholder="Recherche">
+<?php
+    }
+?>
+
                             </p>
 						</div>
 						<!-- logo -->

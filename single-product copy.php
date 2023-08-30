@@ -38,18 +38,20 @@
 					if (isset($_GET['piece_id'])) {
 						$pieceId = $_GET['piece_id'];
 						$pieces = Piece::find_by_id($pieceId); 
-						if($pieces){
-							var_dump($pieces);
-					
+						if($pieces){echo $pieces->name;
+						 var_dump($pieces);
+						}
+					} else {
+						echo "Piece ID not specified in the URL.";
+					}
 		?>
 						<img src="admin/uploads/<?php echo "nothing"; ?>" alt=""><?php ?>
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h3><?php echo $pieces->piece_name; ?></h3>
-						<p class="single-product-pricing"> <?php echo $pieces->sale_price;?>DA</p>
-						<span>Compatible:</span>
+						<h3>Green apples have polyphenols</h3>
+						<p class="single-product-pricing"><span>Per Kg</span> $50</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
 						<div class="single-product-form">
 							<form action="index.php">
@@ -71,12 +73,7 @@
 		</div>
 	</div>
 	<!-- end single product -->
-<?php
-	}
-} else {
-	echo "Piece ID not specified in the URL.";
-}
-?>
+
 	<!-- more products -->
 	<div class="more-products mb-150">
 		<div class="container">
