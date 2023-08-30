@@ -1,16 +1,16 @@
 	<!-- head -->
-	<?php include('layouts/head.php'); ?>					
+	<?php include('layouts/head.php'); ?>
 	<!-- end head -->
-	
+
 	<!-- header -->
-	<?php include('layouts/header.php'); ?>					
+	<?php include('layouts/header.php'); ?>
 	<!-- end header -->
-	
-	
 
 
 
-	
+
+
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -33,25 +33,42 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-					<?php 
-					// 
-					if (isset($_GET['piece_id'])) {
-						$pieceId = $_GET['piece_id'];
-						$pieces = Piece::find_by_id($pieceId); 
-						if($pieces){
-							var_dump($pieces);
-					
-		?>
-						<img src="admin/uploads/<?php echo "nothing"; ?>" alt=""><?php ?>
+						<?php
+						// 
+						if (isset($_GET['piece_id'])) {
+							$pieceId = $_GET['piece_id'];
+
+							$pieces = Piece::find_by_id_mod_ref($pieceId);
+
+							foreach ($pieces as $piece) {
+								//  var_dump($piece);
+								// echo $piece->model_name . ', ' . $piece->moteur_name . '<br>';
+								$photo = $piece->photo; // Display id_name for each piece
+							}
+						?>
+							<img src="admin/piece_name/uploads/<?php echo $photo; ?>" alt=""><?php ?>
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h3><?php echo $pieces->piece_name; ?></h3>
-						<p class="single-product-pricing"> <?php echo $pieces->sale_price;?>DA</p>
+						<h3><?php echo "Nom:" . $piece->piece_name . "<br>" . "Reference:" . $piece->piece_reference;  ?></h3>
+						<p class="single-product-pricing"> <?php echo "Prix:" . $piece->sale_price; ?>DA</p>
+
 						<span>Compatible:</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
-						<div class="single-product-form">
+						<?php
+							foreach ($pieces as $piece) {
+
+								// 
+								// Display id_name for each piece
+						?>
+							<p><?php echo $piece->mark_name . ', ' . $piece->model_name . ', ' . $piece->moteur_name . ', ' . $piece->puissance . 'ch'; ?></p>
+						<?php
+							}
+						?>
+
+
+
+						<!-- <div class="single-product-form">
 							<form action="index.php">
 								<input type="number" placeholder="0">
 							</form>
@@ -64,21 +81,21 @@
 							<li><a href=""><i class="fab fa-twitter"></i></a></li>
 							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
 							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end single product -->
-<?php
-	}
-} else {
-	echo "Piece ID not specified in the URL.";
-}
-?>
+	<?php
+
+						} else {
+							echo "Piece ID not specified in the URL.";
+						}
+	?>
 	<!-- more products -->
-	<div class="more-products mb-150">
+	<!-- <div class="more-products mb-150">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
@@ -121,11 +138,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- end more products -->
-<!-- logo_carousel -->
-<?php include('layouts/logo_carousel.php'); ?>	
+	<!-- logo_carousel -->
+	<?php include('layouts/logo_carousel.php'); ?>
 	<!-- end logo_carousel -->
 	<!-- footer -->
-	<?php include('layouts/footer.php'); ?>					
+	<?php include('layouts/footer.php'); ?>
 	<!-- end footer -->
