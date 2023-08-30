@@ -13,8 +13,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
-						<h1>Shop</h1>
+						<p>Quality & Prix</p>
+						<h1>Piece</h1>
 					</div>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
+                            <li class="active" data-filter="*">Toute</li>
 							<?php 
 					$categorys = Category::find_all();
 					$pieces = Piece::find_all();
@@ -59,15 +59,30 @@ if($pieces){
 
 <div class="col-lg-4 col-md-6 text-center <?php echo h($vlue->category_name);?>">
 	<div class="single-product-item">
-		<div class="product-image">
-		<?php echo $vlue->photo; ?>
-			<a href="single-product.html"><img src="admin/uploads/<?php echo $vlue->photo; ?>" alt=""></a>
-		</div>
+	<div class="product-image">
+							<a href="single-product.php?piece_id=<?php echo $vlue->id; ?>"><img src="admin/piece_name/uploads/<?php echo $vlue->photo; ?>" alt=""></a>
+						</div>
 	
 		<h3><?php echo h($vlue->piece_name);?></h3>
 		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DZD </p>
-		<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-	</div>
+	
+		<form action="shop.php?piece_id=<?php echo $vlue->id; ?>" method="POST" class="add-to-cart-form">
+							<?php
+							if (isset($_SESSION['client'])) {
+								if (!in_array($vlue->id, (isset($_SESSION['cart']) ? $_SESSION['cart'] : []))) {
+
+									if ($vlue->quantity > 0)
+										echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
+									else
+										echo '<input type="submit" name="" value="out of stock">';
+								} else {
+									echo '<input type="submit" name="" value="Déjà ajouté">';
+								}
+							} else { ?>
+							<?php
+							}
+							?>
+						</form></div>
 </div>
 
 <?php
@@ -80,19 +95,7 @@ if($pieces){
 
 
 
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<!-- end products -->

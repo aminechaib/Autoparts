@@ -86,6 +86,16 @@ class Model{
         }
         return $result;
     }
+    static public function check_name_mark($name,$id_mark)
+    {
+        $sql = "select*from model where name='".$name."'  and id_mark ='".$id_mark."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
 
     public function check_validation(){
         $validation = $this->validate();
@@ -263,6 +273,9 @@ class Model{
             $this->errors[] = "nom du model ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 1, 'max' => 255))) {
             $this->errors[] = "nom du model doit avoir au moins 1 caractéres! ";  }
+            if ($this->check_name_mark($this->name, $this->id_mark)) {
+                $this->errors[] = "model existe déjà.";
+            }
             if(empty($this->id_mark)) {
                 $this->errors[] = "choisie une marque";}
           return $this->errors;

@@ -17,7 +17,7 @@ require_login();
         <div class="row">
             <div class="column">
                 <form action="supp_page.php?id=<?php echo $id . $type_voiture;; ?>" class="ui form" method="POST" id="supp_form<?php echo $id . $type_voiture;; ?>">
-                    <h2>Voulez vous supprimer cete voiture N° <?php echo $id . $type_voiture;; ?>?</h2>
+                    <h2>Voulez vous supprimer cette voiture N° <?php echo $id . $type_voiture;; ?>?</h2>
                     <input type="submit" value="OUI" class="ui huge right floated red button" name="oui" id="supp_refresh_button<?php echo $id . $type_voiture;; ?>">
                 </form>
             </div>

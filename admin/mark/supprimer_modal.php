@@ -19,7 +19,7 @@ require_login();
             <div class="column">
                 <form action="supp_page.php?id=<?php echo $id . $type_mark;; ?>" class="ui form" method="POST" id="supp_form<?php echo $id . $type_mark;; ?>">
 
-                    <h2>Voulez vous supprimer cete marque N° <?php echo $id . $type_mark;; ?>?</h2>
+                    <h2>Voulez vous supprimer cette marque N° <?php echo $id . $type_mark;; ?>?</h2>
                     <input type="submit" value="OUI" class="ui huge right floated red button" name="oui" id="supp_refresh_button<?php echo $id . $type_mark;; ?>">
                 </form>
             </div>

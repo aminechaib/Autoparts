@@ -154,6 +154,16 @@ class Compatible{
         }
     }
     
+    static public function check_compatible($id_piece,$id_moteur)
+    {
+        $sql = "select*from compatible where id_piece='".$id_piece."'  and id_moteur ='".$id_moteur."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
 
     public function update(){
         $attributes = $this->sanitized_attributes();
@@ -285,6 +295,11 @@ class Compatible{
         if(is_blank($this->id_piece)) {
             $this->errors[] = "piece du compatible ne doit pas être vide.";
         }
+        if ($this->check_compatible($this->id_piece, $this->id_moteur)) {
+            $this->errors[] = "compatible existe déjà.";
+        }
+
+
           return $this->errors;
     }
 };

@@ -139,6 +139,16 @@ class Category{
         }
 
     }
+    static public function check_name($name)
+    {
+        $sql = "select*from category where name='".$name."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
 
     public function update(){
         $attributes = $this->sanitized_attributes();
@@ -228,6 +238,9 @@ class Category{
             $this->errors[] = "nom du category ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 2, 'max' => 255))) {
             $this->errors[] = "nom du category doit avoir au moins 4 caractéres! ";  }
+            elseif($this->check_name($this->name)){
+                $this->errors[] = "nom de categorie deja.";
+        }        
           return $this->errors;
     }
     

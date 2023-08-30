@@ -63,6 +63,18 @@ class Voiture{
             return false;
         }
     }
+
+    static public function check_voiture($id_model,$id_moteur)
+    {
+        $sql = "select*from voiture where id_model='".$id_model."'  and id_moteur ='".$id_moteur."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
+
     
     public function create(){
         $attributes = $this->sanitized_attributes();//mna9yiin
@@ -250,6 +262,10 @@ class Voiture{
         }
         if(is_blank($this->id_model)) {
             $this->errors[] = "model du voiture ne doit pas être vide.";
+        }
+
+        if ($this->check_voiture($this->id_model, $this->id_moteur)) {
+            $this->errors[] = "Voiture existe déjà.";
         }
           return $this->errors;
     }

@@ -95,7 +95,19 @@ class Moteur{
          return $validation;
        }     
     }
-        
+    static public function check_name_puiss_energie($name,$puissance,$enrgie)
+    {
+        $sql = "select*from moteur where name='".$name."'  and puissance ='".$puissance."' and enrgie = '".$enrgie."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
+      
+    
+
     public function attributes(){
         $attributes = [];
         foreach (self::$db_columns as $column) {
@@ -253,7 +265,6 @@ class Moteur{
             $this->errors[] = "nom du moteur ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 3, 'max' => 255))) {
             $this->errors[] = "nom du moteur doit avoir au moins  caractéres! ";  }
-  
     //energie
     if(is_blank($this->enrgie)) {
         $this->errors[] = "chisie energie de moteur.";
@@ -262,6 +273,11 @@ class Moteur{
     if(is_blank($this->puissance)) {
         $this->errors[] = "puissance de moteur ne doit pas etre vide.";
     }
+    //check all
+    if ($this->check_name_puiss_energie($this->name,$this->puissance,$this->enrgie )) {
+        $this->errors[] = "Moteur existe déjà.";
+    }
+
     return $this->errors;
   } 
 };

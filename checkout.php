@@ -19,6 +19,16 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
+	<style>
+		.table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the container covers the full viewport height */
+}
+
+	</style>
 
 	<!-- check out section -->
 	<div class="checkout-section mt-150 mb-150">
@@ -35,9 +45,8 @@
 				<!-- header -->
 				<?php include('layouts/header.php'); ?>
 				<!-- end header -->
-
 				<div class="col-md-12 col-lg-12 col-xl-12">
-					<div class="order-details-wrap">
+					<div class="order-details-wrap table-container"> <!-- Add the "table-container" class here -->
 						<table class="order-details">
 							<thead>
 								<tr>
@@ -123,12 +132,15 @@
 										<h4 class="modal-title">Votre Commande</h4>
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 									</div>
+
 									<div class="modal-body" id="selectedValueDisplay">
 										<!-- Selected value will be displayed here -->
 									</div>
+
 									<div class="modal-footer">
 
 									</div>
+
 								</div>
 							</div>
 						</div>

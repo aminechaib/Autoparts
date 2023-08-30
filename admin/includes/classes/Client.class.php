@@ -243,6 +243,16 @@ class Client{
             return false;
         }
     }
+    static public function check_phone($mobile_phone)
+    {
+        $sql = "select*from client where mobile_phone='".$mobile_phone."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
 
     static public function find_by_phone($phone){
         $sql = "SELECT * FROM client ";
@@ -356,6 +366,8 @@ class Client{
             $this->errors[] = "numero telephone du client  doit avoir au moin 10 nombre! .";   
         }elseif (preg_match('/[a-z]/', $this->mobile_phone)) {
             $this->errors[] = "numero telephone du client doit avoir seulement des caractère numerique ";
+        }elseif($this->check_phone($this->mobile_phone)){
+            $this->errors[] = "num de telephone exist deja.";
         }
         if(is_blank($this->password)) {
         $this->errors[] = "le mot de passe ne doit pas être vide!";

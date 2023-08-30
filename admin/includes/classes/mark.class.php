@@ -221,6 +221,16 @@ class Mark{
     //     return $row;
     // }
 
+    static public function check_name_type($name,$type)
+    {
+        $sql = "select*from mark where name='".$name."'  and type ='".$type."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
     
 
     /////// end record code////////////////////////////
@@ -248,8 +258,12 @@ class Mark{
             $this->errors[] = "nom du marque ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 1, 'max' => 255))) {
             $this->errors[] = "nom du marque doit avoir au moins 1 caractéres! ";  }
+            if ($this->check_name_type($this->name, $this->type)) {
+                $this->errors[] = "Une Marque avec le même nom et le même type existe déjà.";
+            }
         if(empty($this->type)) {
                 $this->errors[] = "choisie un type de piece";}
+        
 
 
         return $this->errors;

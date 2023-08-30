@@ -163,6 +163,17 @@ class piece_name {
         }
 
     }
+    static public function check_name($name)
+    {
+        $sql = "select*from piece_name where name='".$name."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
+
 
     static public function find_by_name($string)
     {
@@ -250,7 +261,10 @@ class piece_name {
         if(is_blank($this->name)) {
             $this->errors[] = "nom du piece ne doit pas être vide.";
         }elseif(!has_length($this->name, array('min' => 4, 'max' => 255))) {
-            $this->errors[] = "nom du piece doit avoir au moins 4 caractéres!";}
+            $this->errors[] = "nom du piece doit avoir au moins 4 caractéres!";
+        }elseif($this->check_name($this->name)){
+                $this->errors[] = "nom de piece exist deja.";
+        }
             // categorie
             if(is_blank($this->id_categorie)) {
                 $this->errors[] = "choisie une categorie.";}

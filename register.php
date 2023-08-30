@@ -24,7 +24,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
      // var_dump($args) . "<br>";
       
       $client = new Client($args);
-      var_dump($client);
+      // var_dump($client);
       ///////////////////////////////////////////////
       $result = $client->check_validation();
       
@@ -37,7 +37,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
       }else{
         session_start();
         $_SESSION['errors'] = $result;//ykhabi les erreurs ta3 validate()
-        redirect_to('index.php');//bah yweli hna
+        redirect_to('register.php');//bah yweli hna
       }}
       //////////////////////////////////////////////
 	?>					
@@ -75,7 +75,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
         </div>
         <div id="form_status"></div>
         <div class="contact-form">
-          <form method="POST" >
+          <form method="POST" class="add-to-cart-form" >
           
               <label for="first_name">Nom:</label>
                 <p><input type="text" placeholder="Nom de client" name="first_name">
@@ -103,18 +103,16 @@ if(is_post_request() && isset($_POST['ajouter'])){
 
 
 		  <div class="<?php if(isset($_SESSION['errors']) and !empty($_SESSION['errors'])){ echo 'ui error message';} ?>">
-                        <ul class="list">
-                                        
-                        <?php
-                             if(isset($_SESSION['errors']) and !empty($_SESSION['errors'])){ 
-                            foreach ($_SESSION['errors'] as $error) {
-                            
-                                echo '<li>'. $error . '</li>';
-                            }
-                            }
-                        ?>
-
-                        </ul>
+  <br>
+      <ul class="list-group">
+    <?php
+    if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+        foreach ($_SESSION['errors'] as $error) {
+            echo '<li class="alert alert-danger col-lg-6">' . $error . '</li>';
+        }
+    }
+    ?>
+</ul>
 
                     </div>
     

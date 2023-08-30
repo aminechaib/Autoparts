@@ -41,7 +41,7 @@ include('layouts/head.php');
 							<p class="subtitle">Pièces automobiles de qualité</p>
 							<h1>Collection 100% authentique</h1>
 							<div class="hero-btns">
-								<a href="shop.php" class="boxed-btn">Visitez notre Produit</a>
+								<a href="shop.php" class="boxed-btn">Visitez notre Piece</a>
 								<a href="contact.php" class="bordered-btn">Contactez-nous</a>
 							</div>
 						</div>
@@ -61,7 +61,7 @@ include('layouts/head.php');
 							<p class="subtitle">Grande vente en cours !</p>
 							<h1>Attendez les soldes ou les promotions</h1>
 							<div class="hero-btns">
-								<a href="shop.php" class="boxed-btn">Visitez notre Produit</a>
+								<a href="shop.php" class="boxed-btn">Visitez notre Pieces</a>
 								<a href="contact.php" class="bordered-btn">Contactez-nous</a>
 							</div>
 						</div>

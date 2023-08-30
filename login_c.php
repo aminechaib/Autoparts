@@ -72,7 +72,7 @@
 				<div class="col-lg-8 mb-5 mb-lg-0">
 					<div class="form-title">
 						<h2>Avez-vous des questions ?</h2>
-						<p>N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin de plus d'informations sur nos produits!</p>
+						<p>N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin de plus d'informations sur nos Pieces!</p>
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">

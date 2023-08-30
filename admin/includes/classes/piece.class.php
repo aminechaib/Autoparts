@@ -110,7 +110,16 @@ class Piece{
         return false;
     }
     
-    
+    static public function check_name_mark_ref($id_name,$id_mark,$reference)
+    {
+        $sql = "select*from piece where id_name='".$id_name."'  and id_mark ='".$id_mark."' and reference = '".$reference."'";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return $object_array;
+        }else{
+            return false;
+        }
+    }
     
 
 
@@ -333,6 +342,11 @@ class Piece{
         if(is_blank($this->sale_price)) {
             $this->errors[] = "prix d'vent ne doit pas etre vide.";
         }
+            //check all
+    if ($this->check_name_mark_ref($this->id_name,$this->id_mark,$this->reference )) {
+        $this->errors[] = "Piece avec mem nom et reference et marque existe déjà.";
+    }
+
 
           return $this->errors;
     }

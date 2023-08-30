@@ -42,7 +42,7 @@ $currentFilename = basename($_SERVER['PHP_SELF']);
                             <li <?php if ($currentFilename === 'about.php') echo 'class="current-list-item"'; ?>><a href="about.php">À propos</a></li>
                             </li>
                             <li <?php if ($currentFilename === 'contact.php') echo 'class="current-list-item"'; ?>><a href="contact.php">Contact</a></li>
-                            <li <?php if ($currentFilename === 'shop.php') echo 'class="current-list-item"'; ?>><a href="shop.php">Produit</a></li>
+                            <li <?php if ($currentFilename === 'shop.php') echo 'class="current-list-item"'; ?>><a href="shop.php">Pieces</a></li>
                             <li>
                                 <div class="header-icons">
                                     <?php 
