@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                </td>
                                 </td>
                                 <td class="product-image">
-                                    <a href="single-product.php"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
+                                <a href="single-product.php?piece_id=<?php echo $piece->id; ?>"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
                                 </td>
                                 <td class="product-name">
                                     <?php echo $piece->piece_name; ?>
