@@ -40,19 +40,33 @@
 
 							$pieces = Piece::find_by_id_mod_ref($pieceId);
 
-							foreach ($pieces as $piece) {
-								//  var_dump($piece);
-								// echo $piece->model_name . ', ' . $piece->moteur_name . '<br>';
-								$photo = $piece->photo; // Display id_name for each piece
+							if (is_array($pieces) || is_object($pieces)) {
+								foreach ($pieces as $piece) {
+									// Your loop logic here
+							
+									// Move the assignment inside the loop
+									$photo = $piece->photo; // Display id_name for each piece
+								}
+							} else {
+								// Handle the case where $pieces is not an array or object
+								// For example, you could log an error or display a message
 							}
+							
+							// Now $photo should have the value from the last iteration of the loop
+							
+
 						?>
 							<img src="admin/piece_name/uploads/<?php echo $photo; ?>" alt=""><?php ?>
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h3><?php echo "Nom:" . $piece->piece_name . "<br>" . "Reference:" . $piece->piece_reference;  ?></h3>
-						<p class="single-product-pricing"> <?php echo "Prix:" . $piece->sale_price; ?>DA</p>
+						<?php
+						if(isset($piece->piece_name)){
+						?>
+						
+						<h3><?php echo "<span class=orange-text>Nom: </span>" . $piece->piece_name . "<br>" . "<span class=orange-text>Reference : </span>" . $piece->piece_reference;  ?></h3>
+						<p class="single-product-pricing "> <?php echo "Prix: " . $piece->sale_price; ?>DA</p>
 
 						<span>Compatible:</span>
 						<?php
@@ -64,6 +78,10 @@
 							<p><?php echo $piece->mark_name . ', ' . $piece->model_name . ', ' . $piece->moteur_name . ', ' . $piece->puissance . 'ch'; ?></p>
 						<?php
 							}
+						}
+						else{
+							echo "nothing to show";
+						}
 						?>
 
 

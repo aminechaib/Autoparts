@@ -60,6 +60,9 @@ class Piece{
        return self::find_by_sql($sql);
     }
 
+
+
+
     static protected function instantiate($record){
         $object = new self;
         foreach ($record as $property => $value) {
@@ -69,6 +72,44 @@ class Piece{
         }
         return $object;
     } 
+static public function find_by_id_mod_ref($id)
+{
+    $sql = "SELECT
+    mk.name AS mark_name,
+    pn.name AS piece_name,                                      
+    p.reference AS piece_reference,
+    pn.photo AS photo,
+    p.sale_price AS sale_price,
+    pn.id AS id_name,
+    m.name AS model_name,
+    mo.name AS moteur_name,
+    mo.puissance AS puissance,
+    mo.id AS moteur_id
+FROM
+    compatible c
+JOIN
+    piece p ON c.id_piece = p.id
+JOIN
+    piece_name pn ON p.id_name = pn.id
+JOIN
+    moteur mo ON c.id_moteur = mo.id
+JOIN
+    voiture v ON v.id_moteur = mo.id
+JOIN
+    model m ON v.id_model = m.id
+JOIN
+    mark mk ON m.id_mark = mk.id
+WHERE
+    p.id = '{$id}'";
+    $object_array= self::find_by_sql($sql);
+    if(!empty($object_array)){
+        return $object_array;
+    }else{
+        return false;
+    }
+}
+
+
 
     
     static public function find_by_id($id){
@@ -281,9 +322,11 @@ class Piece{
         }
     }
     /////// end record code////////////////////////////
-    
-
-
+    public $puissance;
+    public $piece_reference;
+    public $model_name;
+    public $mark_name;
+    public $moteur_name;
     public $quantity;
     public $photo;
     public $category_name;

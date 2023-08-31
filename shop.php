@@ -62,8 +62,8 @@ if($pieces){
 	<div class="product-image">
 							<a href="single-product.php?piece_id=<?php echo $vlue->id; ?>"><img src="admin/piece_name/uploads/<?php echo $vlue->photo; ?>" alt=""></a>
 						</div>
-	
-		<h3><?php echo h($vlue->piece_name);?></h3>
+						<h3><?php echo h($vlue->piece_name); ?><br><?php echo h($vlue->reference); ?></h3>
+
 		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DZD </p>
 	
 		<form action="shop.php?piece_id=<?php echo $vlue->id; ?>" method="POST" class="add-to-cart-form">
