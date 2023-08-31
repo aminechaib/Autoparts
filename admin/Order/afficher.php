@@ -83,7 +83,6 @@
         
     </tbody>
 </table>
-<form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="valider.php?id=<?php echo $id ?>">
 <?php
 foreach($ord as $orde){
     
@@ -93,6 +92,8 @@ foreach($ord as $orde){
 
    
 ?>
+<form method="POST" class="ui form" id="modifier_form<?php echo $id ?>" action="valider.php?id=<?php echo $id ?>">
+
 
 <input type="submit" value="VALIDER" name="valider" class="ui yellow button">
 </form>
