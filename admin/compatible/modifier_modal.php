@@ -54,7 +54,7 @@ $pieces = Piece::find_all();
                                 
                                <?php foreach ($moteurs as $moteur) {
                                    ?>
-                                <option value="<?php echo $moteur->id;?>" <?php if($compatible->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name; ?></option>
+                                <option value="<?php echo $moteur->id;?>" <?php if($compatible->id_moteur == $moteur->id) echo 'selected'; ?>>  <?php echo $moteur->name."  ".$moteur->puissance; ?></option>
                                 <?php
                                }?>
                                 </select>

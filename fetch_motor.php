@@ -7,7 +7,7 @@ if(!empty($_POST["id"])){
     {
         echo '<option value="">Select moteur</option>';		
     	foreach($objectModels as $motor){
-    		echo '<option value="'.$motor->id.'">'.$motor->name.'</option>';
+    		echo '<option value="'.$motor->id.'">'.$motor->name.' '.$motor->puissance.'</option>';
     	}
     }
     else{

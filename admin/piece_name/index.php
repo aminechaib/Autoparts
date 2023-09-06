@@ -108,8 +108,10 @@ height: 100%;
                                    <tr>
                                    <td><?php echo h($piece->id);?></td>
                                    <td><?php echo h($piece->name);?></td>
-                                   <td><?php echo h($piece->photo);?></td>
-                                   <td><?php echo h($piece->creation_date);?></td>
+                                   <td>
+  <img src="uploads/<?php echo h($piece->photo);?>" alt="" width="50" height="50">
+</td>
+       <td><?php echo h($piece->creation_date);?></td>
                                    <td><?php $categorie = $piece->categorie_name($piece->id_categorie);
                                         if ($categorie !== false) {
                                             echo h($categorie->name);

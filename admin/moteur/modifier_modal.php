@@ -180,7 +180,7 @@ $(function() {
 $('#modifier_form<?php echo $id ?>')
 
   .form('set values', {
-    name     : '<?php echo h($moteur->name); ?>',
+    name     : '<?php echo h($moteur->name."  ".$moteur->puissance." ch"); ?>',
     puissance     : '<?php echo h($moteur->puissance); ?>',
 
 

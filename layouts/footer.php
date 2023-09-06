@@ -2,13 +2,13 @@
 <div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 					<h2 class="widget-title">À propos de nous</h2>
 						<p>Nous sommes une entreprise dédiée à la vente de pièces automobiles de qualité en Algérie. Notre objectif principal est de fournir à nos clients des pièces détachées pour véhicules de haute qualité et fiables, afin de garantir la sécurité et la performance de leurs voitures.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Entrer en contact</h2>
 						<ul>
@@ -29,16 +29,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">S'abonner</h2>
-						<p>Abonnez-vous à notre liste de diffusion pour obtenir les dernières mises à jour.</p>
-						<form action="index.php">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
