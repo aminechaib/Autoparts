@@ -170,9 +170,8 @@ class Msg{
     } 
 
     static public function delete($id){
-        $sql = "DELETE FROM `msg` WHERE id =";
+        $sql = "DELETE FROM `msg` WHERE id_client =";
         $sql .= "'" . $id ."';";
-        
         $result = self::$database->query($sql);
         if($result){
            return $result;

@@ -192,7 +192,7 @@ if(!isset($page_title)){
                   <div class="content">commande</div>
                 </a>
                 <a class="item open_contact" href="<?php echo url_for('msg/index.php'); ?>">
-        <i class="clipboard list icon"></i> 
+        <i class="facebook messenger icon"></i> 
                   <div class="content">contact</div>
                 </a>
                

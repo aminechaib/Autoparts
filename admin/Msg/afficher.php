@@ -105,7 +105,7 @@ if (isset($_GET['msg_id'])) {
     </div>
     <div class="message-input">
         <input type="text" id="message" placeholder="Enter your message">
-        <button onclick="sendMessage()">Send</button>
+        <button onclick="sendMessage()">Envoyer</button>
     </div>
 </div>
 

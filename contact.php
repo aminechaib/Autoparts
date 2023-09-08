@@ -40,10 +40,73 @@
 					</div>
 					<div id="form_status"></div>
 					<div class="contact-form">
-						<div id="chat-box" style="height: 200px; border: 1px solid #ccc; overflow: auto;"></div>
-						<input type="text" id="message" placeholder="Enter your message">
-						<button onclick="sendMessage()">Send</button>
+					
+<div class="chat-container">
+    <div id="chat-box">
+        <!-- Messages will be displayed here -->
+    </div>
+    <div class="message-input">
+        <input type="text" id="message" placeholder="Enter your message">
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+</div>
 
+<style>
+    /* Define a container for the entire chat interface */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push chat box and input to the bottom */
+    height: 400px; /* Set a fixed height for the chat container */
+}
+
+/* Define styles for the chat input */
+.message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5; /* Background color for input area */
+}
+
+.message-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.message-input button {
+    background-color: #3498db; /* Blue send button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+    /* Define a container for the entire chat interface */
+    .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push chat box and input to the bottom */
+    height: 400px; /* Set a fixed height for the chat container */
+    overflow: hidden; /* Hide overflow content */
+    border: 1px solid #ccc; /* Add a border for the chat container */
+    border-radius: 5px;
+}
+
+/* Define the chat box styles */
+#chat-box {
+    flex: 1; /* Allow the chat box to grow and take available space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    background-color: #ffffff; /* Background color for chat box */
+}
+
+
+</style>
 						<script>
 							function updateChat() {
 								$.ajax({

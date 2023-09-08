@@ -3,7 +3,7 @@ require_once('../includes/initialize.php');
 require_login();
 
 
-function supprimer_modal($id_tab, $type_order){
+function supprimer_modal($id_tab, $type_msg){
 
     
     $id= $id_tab ?? false;
@@ -11,7 +11,7 @@ function supprimer_modal($id_tab, $type_order){
 
 }
 
-function afficher_modal($id_tab, $type_order){
+function afficher_modal($id_tab, $type_msg){
 
     $id= $id_tab ?? false;
     include('get_messages.php');
@@ -20,7 +20,7 @@ function afficher_modal($id_tab, $type_order){
 
 }
 
-function modifier_modal($id_tab, $type_order){
+function modifier_modal($id_tab, $type_msg){
 
     $id= $id_tab ?? false;
   
