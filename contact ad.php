@@ -35,7 +35,7 @@
 					<div id="form_status"></div>
 					<div class="contact-form">
 						<div id="chat-box" style="height: 200px; border: 1px solid #ccc; overflow: auto;"></div>
-						<input type="text" id="message" placeholder="Enter your message">
+						<input type="text" id="message" placeholder="Entrer votre message">
 						<button onclick="sendMessage()">Send</button>
 
 						<script>

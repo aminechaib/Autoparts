@@ -24,7 +24,7 @@
 						<ul>
 							<li><a href="index.php">Accueil</a></li>
 							<li><a href="about.php">À propos</a></li>
-							<li><a href="services.php">Pieces</a></li>
+							<li><a href="shop.php">Pieces</a></li>
 							<li><a href="contact.php">Contact</a></li>
 						</ul>
 					</div>
