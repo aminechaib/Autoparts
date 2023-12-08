@@ -7,7 +7,7 @@ if (isset($_POST['selectedValue'])) {
    
   if($order){
     $args = [];
-    $args['is_deleted'] = "OUI Suprimer :".date('Y-m-d H:m:s');
+    $args['is_deleted'] = "OUI Supprimer :".date('Y-m-d H:m:s');
 
    
     $order->merge_attributes($args);

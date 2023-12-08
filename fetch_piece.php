@@ -16,7 +16,7 @@ if(!empty($_POST["id"])){
             <a href="single-product.php?piece_id=<?php echo $piece->id;?>"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
           </div>
           <h3><?php echo $piece->name." ".$piece->reference; ?></h3>
-          <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
+          <p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DA </p>
           <form action="index.php?piece_id=<?php echo $piece->id;?>" method="POST" class="add-to-cart-form">
             <?php 
                 if(isset($_SESSION['client'])){

@@ -27,7 +27,8 @@ foreach(glob('classes/*.class.php') as $file) {
   // Autoload class definitions
   function my_autoload($class) {
     if(preg_match('/\A\w+\Z/', $class)) {
-      include('classes/' . $class . '.class.php');
+      include('admin/includes/classes/' . $class . '.class.php');
+      
     }
   }
   spl_autoload_register('my_autoload');
@@ -46,6 +47,8 @@ Admin_offre::set_database($database);
 Order::set_database($database);
 Order_piece::set_database($database);
 piece_name::set_database($database);
+Msg::set_database($database);
+Msg_sent::set_database($database);
 //Hebergement::set_database($database);
 //Facture::set_database($database);
 $session = new Session;

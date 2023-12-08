@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>QUALITY & PRIX</p>
+                    <p>Prix & Qualité</p>
                     <h1>À propos de nous</h1>
                 </div>
             </div>
@@ -61,7 +61,7 @@
 									</div>
 									<div class="content">
 										<h3>Livraison à domicile</h3>
-										<p>Nous proposons la livraison à domicile gratuite sur les commandes de plus de 10000DZD. Vous pouvez choisir d'avoir votre commande livrée à votre domicile ou à votre bureau. Nous proposons également une variété d'options de livraison, afin que vous puissiez choisir l'option qui vous convient le mieux.</p>
+										<p>Nous proposons la livraison à domicile gratuite sur les commandes de plus de 10000DA. Vous pouvez choisir d'avoir votre commande livrée à votre domicile ou à votre bureau. Nous proposons également une variété d'options de livraison, afin que vous puissiez choisir l'option qui vous convient le mieux.</p>
 									</div>
 								</div>
 							</div>

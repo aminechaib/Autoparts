@@ -56,7 +56,7 @@ if(is_post_request() && isset($_POST['ajouter'])){
 
         $_SESSION['toast'] = true;
         $_SESSION['toastType'] = "un ajout d'une compatible ";
-        redirect_to('index.php');
+        redirect_to('add_compatible.php');
 
       }else{
         session_start();

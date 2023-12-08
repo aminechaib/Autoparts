@@ -104,7 +104,7 @@ if(is_post_request()) {
       <div class="ui raised segment grid">
 
             <div class="centered row">
-            <img src="../assets/img/logo AP.png" class="">
+            <img src="../assets/img/logo.png" class="">
             </div>
             <div class="row">
                 <h2 class="ui blue image header centered row">

@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Quality & Prix</p>
+						<p>Prix & Qualité</p>
 						<h1>Cart</h1>
 					</div>
 				</div>
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <input type="hidden" value="<?php  echo $piece->reference;  ?>" name="pr_reference[]">
                                </td>
                                 <td class="product-price">
-                                    <?php echo $piece->sale_price . "  DZD"; ?>
+                                    <?php echo $piece->sale_price . "  DA"; ?>
                                     <input type="hidden" name="sa_price[]" value="<?php echo $piece->sale_price; ?>">
                                 </td>
                               
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="maxQuantityMsg" style="color: red;"></div>
     </td>
 
-                                <td class="product-total"><?php echo $piece->sale_price . "  DZD"; ?></td>
+                                <td class="product-total"><?php echo $piece->sale_price . "  DA"; ?></td>
                             </tr>
                             <?php
                         }
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="hidden" name="total_p" id="total_p">
         <input type="hidden" name="subtotal_p" id="subtotal_p">
         <input type="hidden" name="shipping_p" id="shipping_p">
-        <input type="submit" value="checkout" name="checkout">
+        <input type="submit" value="Valider" name="checkout">
         </div>
       </div>
     </div>
@@ -224,7 +224,7 @@ function removeFromCart(id) {
     var quantity = input.value;
     console.log(quantity);
     var total = price * quantity;
-    row.querySelector('.product-total').innerText = total.toFixed(2) + " DZD";
+    row.querySelector('.product-total').innerText = total.toFixed(2) + " DA";
     updateTotal();
     storeQuantity(input); // Store the updated quantity in local storage
 
@@ -263,12 +263,12 @@ function removeFromCart(id) {
     var shipping = subtotal * shippingPercentage;
     var total = subtotal + shipping;
 
-    document.getElementById('subtotal').innerText = subtotal.toFixed(2) + " DZD";
-    document.getElementById('shipping').innerText = shipping.toFixed(2) + " DZD";
-    document.getElementById('total').innerText = total.toFixed(2) + " DZD";
-    document.getElementById('total_p').value = total.toFixed(2) + " DZD";
-    document.getElementById('shipping_p').value = shipping.toFixed(2) + " DZD";
-    document.getElementById('subtotal_p').value = subtotal.toFixed(2) + " DZD";
+    document.getElementById('subtotal').innerText = subtotal.toFixed(2) + " DA";
+    document.getElementById('shipping').innerText = shipping.toFixed(2) + " DA";
+    document.getElementById('total').innerText = total.toFixed(2) + " DA";
+    document.getElementById('total_p').value = total.toFixed(2) + " DA";
+    document.getElementById('shipping_p').value = shipping.toFixed(2) + " DA";
+    document.getElementById('subtotal_p').value = subtotal.toFixed(2) + " DA";
    }
 
   // Store the quantity value in local storage

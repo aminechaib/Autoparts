@@ -191,6 +191,10 @@ if(!isset($page_title)){
         <i class="clipboard list icon"></i> 
                   <div class="content">commande</div>
                 </a>
+                <a class="item open_contact" href="<?php echo url_for('msg/index.php'); ?>">
+        <i class="clipboard list icon"></i> 
+                  <div class="content">contact</div>
+                </a>
                
       </div>      
     </div>

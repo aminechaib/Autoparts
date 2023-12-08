@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Quality & Prix</p>
+						<p>Prix & Qualité</p>
 						<h1>Piece</h1>
 					</div>
 				</div>
@@ -64,7 +64,7 @@ if($pieces){
 						</div>
 						<h3><?php echo h($vlue->piece_name); ?><br><?php echo h($vlue->reference); ?></h3>
 
-		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DZD </p>
+		<p class="product-price"><span>Prix unitaire</span> <?php echo h($vlue->sale_price);?>  DA </p>
 	
 		<form action="shop.php?piece_id=<?php echo $vlue->id; ?>" method="POST" class="add-to-cart-form">
 							<?php
@@ -74,7 +74,7 @@ if($pieces){
 									if ($vlue->quantity > 0)
 										echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
 									else
-										echo '<input type="submit" name="" value="out of stock">';
+										echo '<input type="submit" name="" value="En rupture stock">';
 								} else {
 									echo '<input type="submit" name="" value="Déjà ajouté">';
 								}

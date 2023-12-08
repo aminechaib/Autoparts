@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Quality & Prix</p>
+						<p>Prix & Qualité</p>
 						<h1>Verifier les Commandes</h1>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 									<th>Date de commande</th>
 									<th>status</th>
 									<th>Afficher</th>
-									<th>Suprimer</th>
+									<th>Supprimer</th>
 								</tr>
 							</thead>
 							<tbody class="order-details-body">
@@ -99,7 +99,7 @@
 
 											</td>
 											<td>
-												<button type="button" class="btn btn-custom dele-modal" data-toggle="modal" data-value="<?php echo $item; ?>">Suprimer</button>
+												<button type="button" class="btn btn-custom dele-modal" data-toggle="modal" data-value="<?php echo $item; ?>">Supprimer</button>
 												<script>
 													document.addEventListener('DOMContentLoaded', function() {
 														// Find the button by its class name

@@ -8,7 +8,7 @@
                         
 						<div class="site-logo">
 							<a href="index.php">
-								<img src="assets/img/logo AP.png" alt="">
+								<img src="assets/img/logo.png" alt="">
 							</a>   
                             <p>
                             <?php

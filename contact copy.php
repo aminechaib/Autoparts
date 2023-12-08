@@ -1,13 +1,13 @@
 	<!-- head -->
-	<?php include('layouts/head.php'); ?>
+	<?php include('layouts/head.php'); ?>					
 	<!-- end head -->
-
+	
 	<!-- header -->
-	<?php include('layouts/header.php'); ?>
+	<?php include('layouts/header.php'); ?>					
 	<!-- end header -->
 
-
-
+	
+	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -22,13 +22,7 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-	<?php
-				if (isset($_SESSION['client'])) {
-					$id = $_SESSION['client']->id;
-				} else {
-					redirect_to(url_for('index.php', 'front'));
-				}
-				?>
+
 	<!-- contact form -->
 	<div class="contact-from-section mt-150 mb-150">
 		<div class="container">
@@ -38,44 +32,22 @@
 						<h2>Avez-vous des questions ?</h2>
 						<p>N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin de plus d'informations sur nos pieces!</p>
 					</div>
-					<div id="form_status"></div>
+				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<div id="chat-box" style="height: 200px; border: 1px solid #ccc; overflow: auto;"></div>
-						<input type="text" id="message" placeholder="Enter your message">
-						<button onclick="sendMessage()">Send</button>
-
-						<script>
-							function updateChat() {
-								$.ajax({
-									url: "get_messages.php",
-									type: "GET",
-									success: function(data) {
-										$("#chat-box").html(data);
-									}
-								});
-							}
-
-							function sendMessage() {
-								var message = $("#message").val();
-								$.ajax({
-									url: "send_message.php",
-									type: "POST",
-									data: {
-										message: message
-									},
-									success: function() {
-										$("#message").val('');
-										updateChat();
-									}
-								});
-							}
-
-							// Poll for updates every 2 seconds
-							setInterval(updateChat, 2000);
-
-							// Initial chat load
-							updateChat();
-						</script>
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+						
+								<p><input type="text" placeholder="Nome" name="name" id="na">
+								<input type="text" placeholder="Prenome" name="prenome" id="na"></p>
+								<p><input type="email" placeholder="Email" name="email" id="emil">
+								<input type="text" placeholder="adress" name="adress"></p>
+							<p>
+								<input type="tel" placeholder="Phone" name="phone" id="phone">
+								<input type="text" placeholder="Subject" name="subject" id="subject">
+							</p>
+							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
+							<input type="hidden" name="token" value="" />
+							<p><input type="submit" value="Envoyer"></p>
+						</form>
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -113,11 +85,10 @@
 
 	<!-- google map section -->
 	<div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.776745996894!2d2.904647674313292!3d36.7039023731245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa553cd88f7f3%3A0xe9898bd7bdef7ba4!2sPieces%20Auto!5e0!3m2!1sfr!2sdz!4v1690289316712!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-	</div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.776745996894!2d2.904647674313292!3d36.7039023731245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa553cd88f7f3%3A0xe9898bd7bdef7ba4!2sPieces%20Auto!5e0!3m2!1sfr!2sdz!4v1690289316712!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 	<!-- end google map section -->
 
 
 	<!-- footer -->
-	<?php include('layouts/footer.php'); ?>
+	<?php include('layouts/footer.php'); ?>					
 	<!-- end footer -->

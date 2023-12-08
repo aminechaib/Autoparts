@@ -22,13 +22,7 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
-	<?php
-				if (isset($_SESSION['client'])) {
-					$id = $_SESSION['client']->id;
-				} else {
-					redirect_to(url_for('index.php', 'front'));
-				}
-				?>
+
 	<!-- contact form -->
 	<div class="contact-from-section mt-150 mb-150">
 		<div class="container">

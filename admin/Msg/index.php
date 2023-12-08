@@ -2,6 +2,9 @@
 require_once("../includes/initialize.php");
 include("../includes/app_head.php");
 include('function_modal.php');
+
+
+
 $bool = $_SESSION['toast'] ;
 ?>
 
@@ -24,7 +27,7 @@ height: 100%;
     height: 85vh;
     overflow: scroll;
 }
-.open_piece_name{
+.open_contact{
         border-right:3px solid #119ee7;
         
         }
@@ -39,35 +42,63 @@ height: 100%;
         <div class="ui padded grid">
 
 
-            <?php 
 
-
-?>
             <div class="ui fifteen wide column row centered grid segment">
+            <?php
+$msg = Piece::find_all();
+$hasQuantityLessThanThree = false;
+
+foreach ($msg as $pie) {
+    if ($pie->quantity < 3) {
+        $hasQuantityLessThanThree = true;
+        break; // No need to continue checking if we found one
+    }
+}
+?>
+
+<?php if ($hasQuantityLessThanThree): ?>
+    <style>
+        .warning-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            animation: blink 2s infinite; /* Adding animation property */
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+    <div class="warning-container">
+        <div class="warning-message">
+            Votre stock de pièces est sur le point de s'épuiser!
+        </div>
+    </div>
+<?php endif; ?>
 
                 <div class="ui pointing secondary big menu">
 
 
-                    <h1 class="ui  header item"><i class="file image outline icon"></i>Piece_name</h1>
+                    <h1 class="ui  header item"><i class="clipboard list icon"></i>Contacts</h1>
 
 
                   
 
                                    
-                    <div class="right item">
-                        <a href="add_piece_name.php" class="">
-                            <i class="big plus circle icon"></i>
-
-                        </a>
-                        <div class="ui search  " id="load_search">
-                                           <div class="ui icon input">
-                                               <input class="prompt" type="text" placeholder="chercher..."
-                                                   id="search">  
-                                               <i class="search icon"></i>
-                                           </div>
+                
+                      
                                            <div class="results">
-                                           </div>
-                                   </div>
+                                          
+                                  
                     </div>
                 </div>
               
@@ -84,59 +115,50 @@ height: 100%;
                             <tr>
                                 <th>#</th>
                                 <th>Nom</th>
-                                <th>photo</th>
-                                <th>creation date</th>
-                                <th>categorie</th>
+                                <th>prenom</th>
+                                
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                            <?php
-                        //    $piece_n = Piece_name::find_all();
-                        //    if($piece_n){
-                        //     foreach($piece_n as $pie){
-                        //         echo h($pie->category_name($pie->id_categorie)->name);
-                        //     }
-                        
-                        // };
-                              
-                        $pieces = piece_name::find_all_names();
-                                 if($pieces){
-                                   foreach($pieces as $piece){
+                               $msgs = Msg::find_all(); 
+                               if($msgs){
+                                   foreach($msgs as $msg){
+                                    //  var_dump($msg);
                                ?>
-                                   <tr>
-                                   <td><?php echo h($piece->id);?></td>
-                                   <td><?php echo h($piece->name);?></td>
+                               <tr>
+                                   <td><?php echo h($msg->id);?></td>
+                                   <td><?php echo $msg->first_name;?></td>
+                                   <td><?php echo $msg->last_name;?></td>
                                    <td>
-  <img src="uploads/<?php echo h($piece->photo);?>" alt="" width="50" height="50">
-</td>
-       <td><?php echo h($piece->creation_date);?></td>
-                                   <td><?php $categorie = $piece->categorie_name($piece->id_categorie);
-                                        if ($categorie !== false) {
-                                            echo h($categorie->name);
-                                        } else {
-                                            echo "Unknown Category";
-                                        }
-                                        ?></td>
+                                    <?php
+                                    $status = h($msg->status);
+                                    if ($status === "PENDING") {
+                                        echo '<div style="background-color: red; padding: 5px; color: white;">' . $status . '</div>';
+                                    } elseif ($status === "VALIDER") {
+                                        echo '<div style="background-color: green; padding: 5px; color: white;">' . $status . '</div>';
+                                    } else {
+                                        echo h($msg->status);
+                                    }
+                                    ?>
+                                </td>
+
+                                   <td><?php echo h($msg->is_deleted);?></td>
+                                   <td> <button class="ui tiny blue  button"
+                                            data-button_id="<?php echo h($msg->id) ?>" data-type="afficher">
+                                            <a href="afficher.php?msg_id=<?php echo $msg->id; ?>">afficher</a>
+
+                                        
+                                  
                                    <td>
-                                       <button class="ui tiny yellow  button"
-                                           data-button_id="<?php echo h($piece->id) ?>" data-type="modifier"><i
-                                               class="edit outline icon"></i><span>Modifier</span></button>
-                                       <div class="ui modal modifier m<?php echo h($piece->id, '') ?>">
-                                           <div class="content">
-                                               <?php modifier_modal($piece->id, '') ?>
-                                           </div>
-                                       </div>
-                                   </td>
-                                   
-                                   <td>
-                                    <button class="ui tiny red button" data-button_id="<?php echo h($piece->id) ?>"
+                                    <button class="ui tiny red button" data-button_id="<?php echo h($msg->id) ?>"
                                         data-type="supprimer">
                                         <i class="user slash icon"></i><span>Supprimer</span></button>
 
-                                    <div class="ui modal supprimer s<?php echo h($piece->id) ?>">
-                                        <?php supprimer_modal($piece->id, ''); ?>
+                                    <div class="ui modal supprimer s<?php echo h($msg->id) ?>">
+                                        <?php supprimer_modal($msg->id, ''); ?>
                                     </div>
                                 </td>
                                    

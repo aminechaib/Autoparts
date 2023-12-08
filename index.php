@@ -19,7 +19,7 @@ include('layouts/head.php');
 				<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
 					<div class="hero-text">
 						<div class="hero-text-tablecell">
-							<p class="subtitle">Quality & Prix</p>
+							<p class="subtitle">Prix & Qualité</p>
 							<h1>pièces de qualité supérieure</h1>
 							<div class="hero-btns">
 								<a href="shop.php" class="boxed-btn">Categorie Piece</a>
@@ -85,7 +85,7 @@ include('layouts/head.php');
 					</div>
 					<div class="content">
 						<h3>Livraison à domicile</h3>
-						<p>Pour toute commande de plus de 10000DZD</p>
+						<p>Pour toute commande de plus de 10000DA</p>
 					</div>
 				</div>
 			</div>
@@ -142,7 +142,7 @@ include('layouts/head.php');
 					<form method="POST" type="POST">
 						<p>
 							<select name="mark" id="mark">
-								<option value="">---SELECT Mark FIRST---</option>
+								<option value="">---Selectioner la Marque de ta voiture ---</option>
 								<?php
 								if ($marks) {
 									foreach ($marks as $mark) {
@@ -154,7 +154,7 @@ include('layouts/head.php');
 						</p>
 						<p>
 							<select name="model" id="model">
-								<option value="">---SELECT Model FIRST---</option>
+								<option value="">---Selectioner le Modele de ta voiture ---</</option>
 								<?php
 
 								?>
@@ -163,7 +163,7 @@ include('layouts/head.php');
 
 						<p>
 							<select name="moteur" id="moteur">
-								<option value="">---SELECT Moteur FIRST---</option>
+								<option value="">---Selectioner le Moteur de ta voiture ---</</option>
 								<?php
 
 								?>
@@ -236,7 +236,7 @@ $pieces = Piece::find_all();
 							<a href="single-product.php?piece_id=<?php echo $piece->id; ?>"><img src="admin/piece_name/uploads/<?php echo $piece->photo; ?>" alt=""></a>
 						</div>
 						<h3><?php echo $piece->piece_name . "<br>" . $piece->reference . "<br>" . $piece->category_name; ?></h3>
-						<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DZD </p>
+						<p class="product-price"><span>Prix unitaire</span> <?php echo $piece->sale_price; ?> DA </p>
 						<h3><?php
 							$id_mark = $piece->id_mark;
 							$mark = Mark::find_by_id($id_mark);
@@ -250,7 +250,7 @@ $pieces = Piece::find_all();
 									if ($piece->quantity > 0)
 										echo '<input type="submit" name="add_to_cart" value="Ajouter au panier">';
 									else
-										echo '<input type="submit" name="" value="out of stock">';
+										echo '<input type="submit" name="" value="En rupture stock">';
 								} else {
 									echo '<input type="submit" name="" value="Déjà ajouté">';
 								}
